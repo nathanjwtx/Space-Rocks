@@ -3,9 +3,12 @@ using System;
 
 public class Player : RigidBody2D
 {
-    // Member variables here, example:
-    // private int a = 2;
-    // private string b = "textvar";
+    [Export] private int Engine_Power;
+    [Export] private int Spin_Power;
+    
+    Vector2 _thrust;
+    int _rotationDir = 0;
+    
     private enum States
     {
         INIT, ALIVE, INVULNERABLE, DEAD
@@ -18,6 +21,18 @@ public class Player : RigidBody2D
         // Called every time the node is added to the scene.
         // Initialization here
         ChangeState(States.ALIVE);
+    }
+
+    public override void _Process(float delta)
+    {
+        GetInput();
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        base._PhysicsProcess(delta);
+        SetAppliedForce(_thrust.Rotated(Rotation));
+        SetAppliedTorque(Spin_Power * _rotationDir);
     }
 
     public void ChangeState(Enum state)
@@ -34,17 +49,40 @@ public class Player : RigidBody2D
                 case States.INVULNERABLE:
                     collision2D.Disabled = true;
                     break;
-                case States.DEAD;
+                case States.DEAD:
                     collision2D.Disabled = true;
                     break;
         }
 
         _state = state;
     }
-//    public override void _Process(float delta)
-//    {
-//        // Called every frame. Delta is time since last frame.
-//        // Update game logic here.
-//        
-//    }
+
+    public void GetInput()
+    {
+        _thrust = new Vector2(0, 0);
+        if (_state.Equals(States.DEAD) || _state.Equals(States.INIT))
+        {
+            return;
+        }
+
+        if (Input.IsActionPressed("thrust"))
+        {
+            _thrust = new Vector2(Engine_Power, 0);
+        }
+//        else
+//        {
+//            _thrust = new Vector2(0, 0);
+//        }
+
+        _rotationDir = 0;
+        if (Input.IsActionPressed("rotate_left"))
+        {
+            _rotationDir -= 1;
+        }
+
+        if (Input.IsActionPressed("rotate_right"))
+        {
+            _rotationDir += 1;
+        }
+    }
 }
