@@ -5,10 +5,16 @@ public class Player : RigidBody2D
 {
     [Export] private int Engine_Power;
     [Export] private int Spin_Power;
+    [Export] private PackedScene Bullet;
+    [Export] private float FireRate;
+    
+    [Signal]
+    delegate void Shoot();
     
     private Vector2 _thrust;
     private Vector2 _screensize;
     private int _rotationDir = 0;
+    private bool CanShoot = true;
     
     private enum States
     {
@@ -23,6 +29,7 @@ public class Player : RigidBody2D
         // Initialization here
         ChangeState(States.ALIVE);
         _screensize = GetViewport().GetVisibleRect().Size;
+        GetNode<Timer>("Timer").WaitTime = FireRate;
     }
 
     public override void _Process(float delta)
@@ -111,5 +118,32 @@ public class Player : RigidBody2D
         {
             _rotationDir += 1;
         }
+
+        if (Input.IsActionPressed("fire") && CanShoot)
+        {
+            Fire();
+        }
+    }
+
+    private void Fire()
+    {
+        if (_state.Equals(States.INVULNERABLE))
+        {
+            return;
+        }
+
+        var muzzle = GetNode<Node2D>("Muzzle");
+        var bullet = Bullet;
+        EmitSignal("Shoot", bullet, muzzle.GlobalPosition, Rotation);
+        CanShoot = false;
+        GetNode<Timer>("Timer").Start();
+    }
+    
+    private void _on_Timer_timeout()
+    {
+        CanShoot = true;
     }
 }
+
+
+
