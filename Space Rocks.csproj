@@ -53,6 +53,7 @@
     <Compile Include="scenes\main\Main.cs" />
     <Compile Include="scenes\player\Bullet.cs" />
     <Compile Include="scenes\player\Player.cs" />
+    <Compile Include="scenes\rock\Rock.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
