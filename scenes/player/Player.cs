@@ -6,8 +6,9 @@ public class Player : RigidBody2D
     [Export] private int Engine_Power;
     [Export] private int Spin_Power;
     
-    Vector2 _thrust;
-    int _rotationDir = 0;
+    private Vector2 _thrust;
+    private Vector2 _screensize;
+    private int _rotationDir = 0;
     
     private enum States
     {
@@ -21,6 +22,7 @@ public class Player : RigidBody2D
         // Called every time the node is added to the scene.
         // Initialization here
         ChangeState(States.ALIVE);
+        _screensize = GetViewport().GetVisibleRect().Size;
     }
 
     public override void _Process(float delta)
@@ -28,11 +30,40 @@ public class Player : RigidBody2D
         GetInput();
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _IntegrateForces(Physics2DDirectBodyState physics_state)
     {
-        base._PhysicsProcess(delta);
+        base._IntegrateForces(physics_state);
         SetAppliedForce(_thrust.Rotated(Rotation));
         SetAppliedTorque(Spin_Power * _rotationDir);
+        Transform2D xform = physics_state.GetTransform();
+        Vector2 origin;
+        Transform2D wibble;
+        if (xform.Origin.x > _screensize.x)
+        {
+            origin = new Vector2(0, xform.Origin.y);
+            wibble = new Transform2D(xform.x, xform.y, origin);
+            physics_state.SetTransform(wibble);
+        }
+        if (xform.Origin.x < 0)
+        {
+            origin = new Vector2(_screensize.x, xform.Origin.y);
+            wibble = new Transform2D(xform.x, xform.y, origin);
+            physics_state.SetTransform(wibble);
+        }
+
+        if (xform.Origin.y > _screensize.y)
+        {
+            origin = new Vector2(xform.Origin.x, 0);
+            wibble = new Transform2D(xform.x, xform.y, origin);
+            physics_state.SetTransform(wibble);
+        }
+
+        if (xform.Origin.y < 0)
+        {
+            origin = new Vector2(xform.Origin.x, _screensize.y);
+            wibble = new Transform2D(xform.x, xform.y, origin);
+            physics_state.SetTransform(wibble);
+        }
     }
 
     public void ChangeState(Enum state)
@@ -69,10 +100,6 @@ public class Player : RigidBody2D
         {
             _thrust = new Vector2(Engine_Power, 0);
         }
-//        else
-//        {
-//            _thrust = new Vector2(0, 0);
-//        }
 
         _rotationDir = 0;
         if (Input.IsActionPressed("rotate_left"))
