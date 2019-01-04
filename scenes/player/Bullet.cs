@@ -10,7 +10,6 @@ public class Bullet : Area2D
 
     public void Start(Vector2 pos, float dir)
     {
-        GD.Print("started");
         Position = pos;
         Rotation = dir;
         _velocity = new Vector2(Speed, 0).Rotated(dir);
@@ -29,11 +28,15 @@ public class Bullet : Area2D
 	
 	private void _on_Area2D_body_entered(Godot.Object body)
     {
-        var b = (Rock) body;
-        if (b.IsInGroup("rocks"))
+        if (body is Rock b)
         {
-            b.Explode();
-            QueueFree();
+            if (b.IsInGroup("rocks"))
+            {
+                b.Explode();
+                QueueFree();
+            }
         }
+//        var b = (Rock) body;
+
 	}
 }

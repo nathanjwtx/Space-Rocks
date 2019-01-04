@@ -22,7 +22,6 @@ public class Main : Node
 
     private void _on_Player_Shoot(PackedScene bullet, Vector2 pos, float dir)
     {
-        Print("bang");
         var b = (Bullet) bullet.Instance();
         b.Start(pos, dir);
         AddChild(b);
@@ -41,11 +40,27 @@ public class Main : Node
             Vector2 temp = new Vector2(1, 0);
             velocity = temp.Rotated(_random.Next(0, 360)) * _random.Next(100, 150);
         }
-        Print("rock spawn");
         var r = (Rock) RockScene.Instance();
-        Print(velocity);
         r._screensize = _screenSize;
         r.Start((Vector2) pos, (Vector2) velocity, size);
         GetNode<Node>("Rocks").AddChild(r);
+        r.Connect("Boom", this, "_on_Rock_Boom");
+    }
+
+    private void _on_Rock_Boom(int size, float radius, Vector2 pos, Vector2 vel)
+    {
+//        Print("Boom");
+        if (size <= 1)
+        {
+            return;
+        }
+
+        for (int i = -1; i < 2; i++)
+        {
+            Vector2 dir = (pos - GetNode<Player>("Player").Position).Normalized().Tangent() * i;
+            Vector2 newPos = pos + dir * radius;
+            Vector2 newVel = dir * vel.Length() * 1.5f;
+            SpawnRock(size - 1, newPos, newVel);
+        }
     }
 }

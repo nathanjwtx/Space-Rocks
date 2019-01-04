@@ -9,7 +9,7 @@ custom_solver_bias = 0.0
 radius = 1.17788
 height = 25.5234
 
-[node name="Area2D" type="Area2D" index="0" groups=[
+[node name="Area2D" type="Area2D" groups=[
 "rocks",
 ]]
 
@@ -18,9 +18,11 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision_mask = 2
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
 Speed = 1000
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
