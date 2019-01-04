@@ -55,7 +55,7 @@ public class Main : Node
             return;
         }
 
-        for (int i = -1; i < 2; i++)
+        for (int i = -1; i < 2; i+= 2)
         {
             Vector2 dir = (pos - GetNode<Player>("Player").Position).Normalized().Tangent() * i;
             Vector2 newPos = pos + dir * radius;

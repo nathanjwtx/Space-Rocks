@@ -29,6 +29,7 @@ public class Player : RigidBody2D
         // Initialization here
         ChangeState(States.ALIVE);
         _screensize = GetViewport().GetVisibleRect().Size;
+        Position = new Vector2(_screensize.x / 2, _screensize.y / 2);
         GetNode<Timer>("Timer").WaitTime = FireRate;
     }
 
