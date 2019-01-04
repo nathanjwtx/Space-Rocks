@@ -25,8 +25,6 @@ public class Player : RigidBody2D
 
     public override void _Ready()
     {
-        // Called every time the node is added to the scene.
-        // Initialization here
         ChangeState(States.ALIVE);
         _screensize = GetViewport().GetVisibleRect().Size;
         Position = new Vector2(_screensize.x / 2, _screensize.y / 2);
