@@ -28,7 +28,12 @@ public class Bullet : Area2D
     }
 	
 	private void _on_Area2D_body_entered(Godot.Object body)
-	{
-	    // Add this when rocks have been added
+    {
+        var b = (Rock) body;
+        if (b.IsInGroup("rocks"))
+        {
+            b.Explode();
+            QueueFree();
+        }
 	}
 }
