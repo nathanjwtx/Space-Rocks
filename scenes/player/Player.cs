@@ -12,7 +12,7 @@ public class Player : RigidBody2D
     delegate void Shoot();
     
     private Vector2 _thrust;
-    private Vector2 _screensize;
+    public Vector2 _screensize;
     private int _rotationDir = 0;
     private bool CanShoot = true;
     

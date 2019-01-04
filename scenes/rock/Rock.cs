@@ -3,7 +3,7 @@ using System;
 
 public class Rock : RigidBody2D
 {
-    private Vector2 _screensize;
+    public Vector2 _screensize;
     private int _size;
     private float _radius;
     private float _scaleFactor = 0.2f;
@@ -15,13 +15,14 @@ public class Rock : RigidBody2D
         
     }
 
-    private void Start(Vector2 pos, Vector2 velocity, int size)
+    public void Start(Vector2 pos, Vector2 velocity, int size)
     {
         Position = pos;
         _size = size;
         var mass = _size * 1.5;
-        GetNode<Sprite>("Sprite").Scale = new Vector2(1, 1) * _scaleFactor * size;
-        _radius = GetNode<Sprite>("Sprite").Texture.GetSize().x / 2 * _scaleFactor * size;
+        Sprite rock = GetNode<Sprite>("RockSprite");
+        rock.Scale = new Vector2(1, 1) * _scaleFactor * size;
+        _radius = rock.Texture.GetSize().x / 2 * _scaleFactor * size;
         CircleShape2D collisionShap = new CircleShape2D();
         collisionShap.Radius = _radius;
         GetNode<CollisionShape2D>("CollisionShape2D").Shape = collisionShap;
