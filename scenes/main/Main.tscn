@@ -26,6 +26,8 @@ texture = ExtResource( 3 )
 
 [node name="Player" parent="." index="1" instance=ExtResource( 4 )]
 
+visible = false
+
 [node name="RockPath" type="Path2D" parent="." index="2"]
 
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
@@ -47,6 +49,8 @@ lookahead = 4.0
 [node name="Rocks" type="Node" parent="." index="3"]
 
 [node name="HUD" parent="." index="4" instance=ExtResource( 5 )]
+
+[connection signal="LivesChanged" from="Player" to="HUD" method="UpdateLives"]
 
 [connection signal="Shoot" from="Player" to="." method="_on_Player_Shoot"]
 

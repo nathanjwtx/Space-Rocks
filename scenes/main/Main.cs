@@ -44,7 +44,7 @@ public class Main : Node
         _score = 0;
         HUD h = GetNode<HUD>("HUD");
         h.UpdateScore(_score);
-//        GetNode<Player>("Player").Start();
+        GetNode<Player>("Player").Start();
         h.ShowMessage("Get Ready!");
         Timer mt = GetNode<Timer>("HUD/MessageTimer");
         await ToSignal(mt, "timeout");

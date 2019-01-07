@@ -10,6 +10,11 @@ public class Player : RigidBody2D
     
     [Signal]
     delegate void Shoot();
+
+    [Signal]
+    delegate void LivesChanged();
+
+    private int _lives;
     
     private Vector2 _thrust;
     public Vector2 _screensize;
@@ -29,6 +34,23 @@ public class Player : RigidBody2D
         _screensize = GetViewport().GetVisibleRect().Size;
         Position = new Vector2(_screensize.x / 2, _screensize.y / 2);
         GetNode<Timer>("Timer").WaitTime = FireRate;
+    }
+
+    public void Start()
+    {
+        Visible = true;
+        Lives = 3;
+        ChangeState(States.ALIVE);
+    }
+    
+    public int Lives
+    {
+        get => _lives;
+        set
+        {
+            _lives = value;
+            EmitSignal("LivesChanged", _lives);
+        }
     }
 
     public override void _Process(float delta)
