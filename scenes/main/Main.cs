@@ -19,19 +19,14 @@ public class Main : Node
         _random = new Random();
         _screenSize = GetViewport().GetVisibleRect().Size;
         GetNode<Player>("Player")._screensize = _screenSize;
-        for (int i = 0; i < 3; i++)
-        {
-            SpawnRock(3);
-        }
     }
 
 
     public override void _Process(float delta)
     {
-//        base._Process(delta);
+        base._Process(delta);
         if (_playing && GetNode<Node>("Rocks").GetChildren().Count == 0)
         {
-            Print("new");
             NewLevel();
         }
     }
@@ -61,7 +56,7 @@ public class Main : Node
     {
         _level += 1;
         GetNode<HUD>("HUD").ShowMessage($"Wave {_level}");
-        for (int i = 0; i < _level; i++)
+        for (int i = 0; i < _level * 3; i++)
         {
             SpawnRock(3);
         }
@@ -89,7 +84,6 @@ public class Main : Node
     
     private void _on_Rock_Boom(int size, float radius, Vector2 pos, Vector2 vel)
     {
-//        Print("Boom");
         if (size <= 1)
         {
             return;

@@ -13,7 +13,7 @@ public class Player : RigidBody2D
     
     private Vector2 _thrust;
     public Vector2 _screensize;
-    private int _rotationDir = 0;
+    private int _rotationDir;
     private bool CanShoot = true;
     
     private enum States

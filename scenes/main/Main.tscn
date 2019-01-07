@@ -53,3 +53,4 @@ lookahead = 4.0
 [connection signal="StartGame" from="HUD" to="." method="_on_HUD_StartGame"]
 
 
+[editable path="HUD"]

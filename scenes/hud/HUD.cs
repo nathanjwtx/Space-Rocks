@@ -55,16 +55,8 @@ public class HUD : CanvasLayer
     
     private void _on_MessageTimer_timeout()
     {
-        GetNode<Label>("MessageLabel").Hide();
-//        GetNode<TextureButton>("StartButton").Show();
-        EmitSignal("StartGame");
-        
+        Label messageLabel = GetNode<Label>("MessageLabel");
+        messageLabel.Hide();
+        messageLabel.Text = "";
     }
-    
-//    public override void _Process(float delta)
-//    {
-//        // Called every frame. Delta is time since last frame.
-//        // Update game logic here.
-//        
-//    }
 }
