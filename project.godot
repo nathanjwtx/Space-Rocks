@@ -11,6 +11,7 @@ config_version=3
 [application]
 
 config/name="Space Rocks"
+run/main_scene="res://scenes/main/Main.tscn"
 config/icon="res://icon.png"
 
 [input]
