@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/main/Main.cs" type="Script" id=1]
 [ext_resource path="res://scenes/rock/Rock.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/space_background.png" type="Texture" id=3]
-[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/hud/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/player/Player_v2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/hud/HUD.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -13,7 +14,7 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 9.83607, 0, 0, 0, 0, 1014.15, 9.83607, 0, 0, 0, 0, 1014.15, 600, 0, 0, 0, 0, 0, 600, 0, 0, 0, 0, 0, 9.83607 )
 }
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" index="0"]
 
 script = ExtResource( 1 )
 RockScene = ExtResource( 2 )
@@ -24,11 +25,13 @@ position = Vector2( 420.587, 120.258 )
 scale = Vector2( 0.811468, 1.07608 )
 texture = ExtResource( 3 )
 
-[node name="Player" parent="." index="1" instance=ExtResource( 4 )]
+[node name="Player2" parent="." index="1" instance=ExtResource( 4 )]
+
+[node name="Player" parent="." index="2" instance=ExtResource( 5 )]
 
 visible = false
 
-[node name="RockPath" type="Path2D" parent="." index="2"]
+[node name="RockPath" type="Path2D" parent="." index="3"]
 
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 position = Vector2( 0, -10 )
@@ -46,9 +49,13 @@ cubic_interp = true
 loop = true
 lookahead = 4.0
 
-[node name="Rocks" type="Node" parent="." index="3"]
+[node name="Rocks" type="Node" parent="." index="4"]
 
-[node name="HUD" parent="." index="4" instance=ExtResource( 5 )]
+[node name="HUD" parent="." index="5" instance=ExtResource( 6 )]
+
+[connection signal="LivesChanged" from="Player2" to="HUD" method="UpdateLives"]
+
+[connection signal="Shoot" from="Player2" to="." method="_on_Player2_Shoot"]
 
 [connection signal="LivesChanged" from="Player" to="HUD" method="UpdateLives"]
 

@@ -10,4 +10,5 @@
 *.sln.DotSettings.user
 icon.png
 icon.png.import
+*.png.import
 

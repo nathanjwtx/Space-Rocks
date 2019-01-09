@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/player/Player_v2.cs" type="Script" id=1]
+[ext_resource path="res://assets/playerShip3_red.png" type="Texture" id=2]
+[ext_resource path="res://assets/playerShip3_damage1.png" type="Texture" id=3]
+[ext_resource path="res://assets/playerShip3_damage2.png" type="Texture" id=4]
+[ext_resource path="res://assets/playerShip3_damage3.png" type="Texture" id=5]
+[ext_resource path="res://assets/engine2.png" type="Texture" id=6]
+
+[node name="Player" type="RigidBody2D"]
+
+position = Vector2( 0.427185, 0 )
+input_pickable = false
+collision_layer = 4
+collision_mask = 2
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = 1.0
+angular_velocity = 0.0
+angular_damp = 5.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Angular", "Collision", "Linear" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
+
+position = Vector2( 5, 0 )
+build_mode = 0
+polygon = PoolVector2Array( -14.7058, -24.528, -10.4698, -24.528, 12.0991, -5.50066, 18.6267, -2.44518, 18.6267, 2.13804, 11.3352, 5.54074, -10.6781, 24.4292, -14.3586, 24.4292, -14.428, 11.0267, -18.7335, 6.44349, -31.6498, 11.0267, -31.9971, 10.124, -32.0665, -9.945, -30.8165, -10.7783, -18.8029, -7.16729, -14.428, -11.3339 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Ship" type="Sprite" parent="." index="1"]
+
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+offset = Vector2( 0, -10 )
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="Damage1" type="Sprite" parent="." index="2"]
+
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, -10 )
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="Damage2" type="Sprite" parent="." index="3"]
+
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+offset = Vector2( 0, -10 )
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="Damage3" type="Sprite" parent="." index="4"]
+
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+offset = Vector2( 0, -10 )
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="Engine" type="Sprite" parent="." index="5"]
+
+position = Vector2( -25, 4.86768e-006 )
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+offset = Vector2( 0, -10 )
+flip_v = true
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="Muzzle" type="Position2D" parent="." index="6"]
+
+position = Vector2( 50, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Timer" type="Timer" parent="." index="7"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+
