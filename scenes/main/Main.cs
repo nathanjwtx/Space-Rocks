@@ -18,7 +18,7 @@ public class Main : Node
     {
         _random = new Random();
         _screenSize = GetViewport().GetVisibleRect().Size;
-        GetNode<Player>("Player")._screensize = _screenSize;
+        GetNode<Player_v2>("Player")._screensize = _screenSize;
     }
 
 
@@ -44,7 +44,7 @@ public class Main : Node
         _score = 0;
         HUD h = GetNode<HUD>("HUD");
         h.UpdateScore(_score);
-        GetNode<Player>("Player").Start();
+        GetNode<Player_v2>("Player").Start();
         h.ShowMessage("Get Ready!");
         Timer mt = GetNode<Timer>("HUD/MessageTimer");
         await ToSignal(mt, "timeout");
@@ -91,7 +91,7 @@ public class Main : Node
 
         for (int i = -1; i < 2; i+= 2)
         {
-            Vector2 dir = (pos - GetNode<Player>("Player").Position).Normalized().Tangent() * i;
+            Vector2 dir = (pos - GetNode<Player_v2>("Player").Position).Normalized().Tangent() * i;
             Vector2 newPos = pos + dir * radius;
             Vector2 newVel = dir * vel.Length() * 1.5f;
             SpawnRock(size - 1, newPos, newVel);

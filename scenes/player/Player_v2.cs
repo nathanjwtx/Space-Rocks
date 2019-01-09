@@ -21,7 +21,7 @@ public class Player_v2 : RigidBody2D
     private int _rotationDir;
     private bool CanShoot = true;
     
-    private enum States
+    private enum States2
     {
         INIT, ALIVE, INVULNERABLE, DEAD
     }
@@ -30,7 +30,7 @@ public class Player_v2 : RigidBody2D
 
     public override void _Ready()
     {
-        ChangeState(States.ALIVE);
+        ChangeState(States2.ALIVE);
         _screensize = GetViewport().GetVisibleRect().Size;
         Position = new Vector2(_screensize.x / 2, _screensize.y / 2);
         GetNode<Timer>("Timer").WaitTime = FireRate;
@@ -43,7 +43,7 @@ public class Player_v2 : RigidBody2D
     {
         Visible = true;
         Lives = 3;
-        ChangeState(States.ALIVE);
+        ChangeState(States2.ALIVE);
     }
     
     public int Lives
@@ -99,19 +99,19 @@ public class Player_v2 : RigidBody2D
 
     public void ChangeState(Enum state)
     {
-        CollisionShape2D collision2D = GetNode<CollisionShape2D>("CollisionShape2D");
+        CollisionPolygon2D collision2D = GetNode<CollisionPolygon2D>("CollisionPolygon2D");
         switch (state)
         {
-                case States.INIT:
+                case States2.INIT:
                     collision2D.Disabled = true;
                     break;
-                case States.ALIVE:
+                case States2.ALIVE:
                     collision2D.Disabled = false;
                     break;
-                case States.INVULNERABLE:
+                case States2.INVULNERABLE:
                     collision2D.Disabled = true;
                     break;
-                case States.DEAD:
+                case States2.DEAD:
                     collision2D.Disabled = true;
                     break;
         }
@@ -122,7 +122,7 @@ public class Player_v2 : RigidBody2D
     public void GetInput()
     {
         _thrust = new Vector2(0, 0);
-        if (_state.Equals(States.DEAD) || _state.Equals(States.INIT))
+        if (_state.Equals(States2.DEAD) || _state.Equals(States2.INIT))
         {
             return;
         }
@@ -151,7 +151,7 @@ public class Player_v2 : RigidBody2D
 
     private void Fire()
     {
-        if (_state.Equals(States.INVULNERABLE))
+        if (_state.Equals(States2.INVULNERABLE))
         {
             return;
         }

@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/player/Player_v2.cs" type="Script" id=1]
-[ext_resource path="res://assets/playerShip3_red.png" type="Texture" id=2]
-[ext_resource path="res://assets/playerShip3_damage1.png" type="Texture" id=3]
-[ext_resource path="res://assets/playerShip3_damage2.png" type="Texture" id=4]
-[ext_resource path="res://assets/playerShip3_damage3.png" type="Texture" id=5]
-[ext_resource path="res://assets/engine2.png" type="Texture" id=6]
+[ext_resource path="res://scenes/player/Bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/playerShip3_red.png" type="Texture" id=3]
+[ext_resource path="res://assets/playerShip3_damage1.png" type="Texture" id=4]
+[ext_resource path="res://assets/playerShip3_damage2.png" type="Texture" id=5]
+[ext_resource path="res://assets/playerShip3_damage3.png" type="Texture" id=6]
+[ext_resource path="res://assets/engine2.png" type="Texture" id=7]
 
 [node name="Player" type="RigidBody2D"]
 
@@ -29,7 +30,11 @@ linear_damp = 1.0
 angular_velocity = 0.0
 angular_damp = 5.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Angular", "Collision", "Linear" ]
+_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Transform" ]
+Engine_Power = 1500
+Spin_Power = 56000
+Bullet = ExtResource( 2 )
+FireRate = 0.25
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
 
@@ -42,19 +47,11 @@ _sections_unfolded = [ "Transform" ]
 
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
-offset = Vector2( 0, -10 )
-_sections_unfolded = [ "Offset", "Transform" ]
-
-[node name="Damage1" type="Sprite" parent="." index="2"]
-
-rotation = 1.5708
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -10 )
-_sections_unfolded = [ "Offset", "Transform" ]
+_sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
-[node name="Damage2" type="Sprite" parent="." index="3"]
+[node name="Damage1" type="Sprite" parent="." index="2"]
 
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
@@ -62,11 +59,19 @@ texture = ExtResource( 4 )
 offset = Vector2( 0, -10 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="Damage3" type="Sprite" parent="." index="4"]
+[node name="Damage2" type="Sprite" parent="." index="3"]
 
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
+offset = Vector2( 0, -10 )
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="Damage3" type="Sprite" parent="." index="4"]
+
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
 offset = Vector2( 0, -10 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
@@ -75,7 +80,7 @@ _sections_unfolded = [ "Offset", "Transform" ]
 position = Vector2( -25, 4.86768e-006 )
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 offset = Vector2( 0, -10 )
 flip_v = true
 _sections_unfolded = [ "Offset", "Transform" ]
