@@ -26,7 +26,7 @@ texture = ExtResource( 3 )
 
 [node name="Player" parent="." index="1" instance=ExtResource( 4 )]
 
-Spin_Power = 5600
+Spin_Power = 5000
 
 [node name="RockPath" type="Path2D" parent="." index="2"]
 

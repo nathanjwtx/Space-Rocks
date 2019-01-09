@@ -13,6 +13,9 @@ public class Player_v2 : RigidBody2D
 
     [Signal]
     delegate void LivesChanged();
+    
+    [Signal]
+    delegate void Dead();
 
     private int _lives;
     
@@ -37,6 +40,7 @@ public class Player_v2 : RigidBody2D
         GetNode<Sprite>("Damage1").Hide();
         GetNode<Sprite>("Damage2").Hide();
         GetNode<Sprite>("Damage3").Hide();
+        GetNode<Sprite>("Explosion").Hide();
     }
 
     public void Start()
@@ -100,19 +104,29 @@ public class Player_v2 : RigidBody2D
     public void ChangeState(Enum state)
     {
         CollisionPolygon2D collision2D = GetNode<CollisionPolygon2D>("CollisionPolygon2D");
+        Sprite ship = GetNode<Sprite>("Ship");
+        Sprite engine = GetNode<Sprite>("Engine");
         switch (state)
         {
                 case States2.INIT:
                     collision2D.Disabled = true;
+                    ship.Modulate = new Color(ship.Modulate.r, ship.Modulate.g, ship.Modulate.a, 0.5f);
+                    engine.Modulate = new Color(engine.Modulate.r, engine.Modulate.g, engine.Modulate.a, 0.5f);
                     break;
                 case States2.ALIVE:
                     collision2D.Disabled = false;
                     break;
                 case States2.INVULNERABLE:
                     collision2D.Disabled = true;
+                    ship.Modulate = new Color(ship.Modulate.r, ship.Modulate.g, ship.Modulate.a, 0.5f);
+                    engine.Modulate = new Color(engine.Modulate.r, engine.Modulate.g, engine.Modulate.a, 0.5f);
+                    GetNode<Timer>("InvTimer").Start();
                     break;
                 case States2.DEAD:
                     collision2D.Disabled = true;
+                    ship.Hide();
+                    engine.Hide();
+                    LinearVelocity = new Vector2(0, 0);
                     break;
         }
 
@@ -167,4 +181,17 @@ public class Player_v2 : RigidBody2D
     {
         CanShoot = true;
     }
+    
+    private void _on_InvTimer_timeout()
+    {
+        ChangeState(States2.ALIVE);
+    }
+    
+    private void _on_AnimationPlayer_animation_finished(String anim_name)
+    {
+        GetNode<Sprite>("Explosion").Hide();
+    }
 }
+
+
+
