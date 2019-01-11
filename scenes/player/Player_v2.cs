@@ -24,7 +24,7 @@ public class Player_v2 : RigidBody2D
     private int _rotationDir;
     private bool CanShoot = true;
     
-    private enum States2
+    public enum States2
     {
         INIT, ALIVE, INVULNERABLE, DEAD
     }
@@ -190,6 +190,7 @@ public class Player_v2 : RigidBody2D
     private void _on_AnimationPlayer_animation_finished(String anim_name)
     {
         GetNode<Sprite>("Explosion").Hide();
+        QueueFree();
     }
 }
 

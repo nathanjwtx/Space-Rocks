@@ -2,14 +2,14 @@
 
 [ext_resource path="res://scenes/player/Player_v2.cs" type="Script" id=1]
 [ext_resource path="res://scenes/player/Bullet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/playerShip3_red.png" type="Texture" id=3]
-[ext_resource path="res://assets/playerShip3_damage1.png" type="Texture" id=4]
-[ext_resource path="res://assets/playerShip3_damage2.png" type="Texture" id=5]
-[ext_resource path="res://assets/playerShip3_damage3.png" type="Texture" id=6]
+[ext_resource path="res://assets/playerShip1_orange.png" type="Texture" id=3]
+[ext_resource path="res://assets/playerShip1_damage1-1.png" type="Texture" id=4]
+[ext_resource path="res://assets/playerShip1_damage2-1.png" type="Texture" id=5]
+[ext_resource path="res://assets/playerShip1_damage3-1.png" type="Texture" id=6]
 [ext_resource path="res://assets/engine2.png" type="Texture" id=7]
 [ext_resource path="res://scenes/explosion/Explosion.tscn" type="PackedScene" id=8]
 
-[node name="Player" type="RigidBody2D" index="0"]
+[node name="Player" type="RigidBody2D"]
 
 position = Vector2( 0.427185, 0 )
 input_pickable = false
@@ -91,27 +91,33 @@ _sections_unfolded = [ "Offset", "Transform" ]
 position = Vector2( 50, 0 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Timer" type="Timer" parent="." index="7"]
+[node name="Explosion" parent="." index="7" instance=ExtResource( 8 )]
+
+_sections_unfolded = [ "Animation", "Visibility" ]
+
+[node name="AnimationPlayer" parent="Explosion" index="0"]
+
+_sections_unfolded = [ "Playback Options" ]
+
+[node name="Timer" type="Timer" parent="." index="8"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = true
 autostart = true
 
-[node name="InvTimer" type="Timer" parent="." index="8"]
+[node name="InvTimer" type="Timer" parent="." index="9"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = true
 autostart = false
 
-[node name="Explosion" parent="." index="9" instance=ExtResource( 8 )]
+[connection signal="animation_finished" from="Explosion/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 [connection signal="timeout" from="InvTimer" to="." method="_on_InvTimer_timeout"]
-
-[connection signal="animation_finished" from="Explosion/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 
 [editable path="Explosion"]

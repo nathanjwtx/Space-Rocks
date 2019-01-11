@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/main/Main.cs" type="Script" id=1]
 [ext_resource path="res://scenes/rock/Rock.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/space_background.png" type="Texture" id=3]
+[ext_resource path="res://assets/backgrounds/heic1310a.jpg" type="Texture" id=3]
 [ext_resource path="res://scenes/player/Player_v2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/hud/HUD.tscn" type="PackedScene" id=5]
 
@@ -20,13 +20,21 @@ RockScene = ExtResource( 2 )
 
 [node name="Background" type="Sprite" parent="." index="0"]
 
-position = Vector2( 420.587, 120.258 )
-scale = Vector2( 0.811468, 1.07608 )
+position = Vector2( 526.751, 313.164 )
+scale = Vector2( 0.354822, 0.25 )
 texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Player" parent="." index="1" instance=ExtResource( 4 )]
 
+editor/display_folded = true
+contacts_reported = 1
+contact_monitor = true
 Spin_Power = 5000
+
+[node name="Explosion" parent="Player" index="7"]
+
+editor/display_folded = true
 
 [node name="RockPath" type="Path2D" parent="." index="2"]
 
@@ -54,7 +62,11 @@ lookahead = 4.0
 
 [connection signal="Shoot" from="Player" to="." method="_on_Player_Shoot"]
 
+[connection signal="body_entered" from="Player" to="." method="_on_Player_body_entered"]
+
 [connection signal="StartGame" from="HUD" to="." method="_on_HUD_StartGame"]
 
 
+[editable path="Player"]
+[editable path="Player/Explosion"]
 [editable path="HUD"]

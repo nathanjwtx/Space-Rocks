@@ -13,6 +13,7 @@ public class Main : Node
     private int _level;
     private int _score;
     private bool _playing;
+    private int _hits;
     
     public override void _Ready()
     {
@@ -109,4 +110,29 @@ public class Main : Node
     {
         NewGame();
     }
+    
+    private void _on_Player_body_entered(Object body)
+    {
+        Player_v2 p = GetNode<Player_v2>("Player");
+        if (body is Rock b)
+        {
+            _hits++;
+            if (_hits == 4)
+            {
+                p.GetNode<Sprite>("Damage1").Hide();
+                p.GetNode<Sprite>("Damage2").Hide();
+                p.GetNode<Sprite>("Damage3").Hide();
+                p.GetNode<Sprite>("Explosion").Show();
+                p.GetNode<AnimationPlayer>("Explosion/AnimationPlayer").Play("explosion");
+                p.ChangeState(Player_v2.States2.DEAD);
+            }
+            else
+            {
+                GetNode<Sprite>($"Player/Damage{_hits}").Show();
+            }
+        }
+    }
 }
+
+
+
