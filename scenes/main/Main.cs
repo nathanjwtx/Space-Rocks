@@ -1,6 +1,7 @@
 using Godot;
 using static Godot.GD;
 using System;
+using System.Collections.Generic;
 using Object = Godot.Object;
 
 public class Main : Node
@@ -14,6 +15,12 @@ public class Main : Node
     private int _score;
     private bool _playing;
     private int _hits;
+    
+    private List<string> backgrounds = new List<string>
+    {
+        "res://assets/backgrounds/level1.jpg",
+        "res://assets/backgrounds/level2.jpg"
+    };
     
     public override void _Ready()
     {
@@ -56,6 +63,7 @@ public class Main : Node
     private void NewLevel()
     {
         _level += 1;
+        GetNode<Sprite>("Background").Texture.ResourcePath = backgrounds[_level];
         GetNode<HUD>("HUD").ShowMessage($"Wave {_level}");
         for (int i = 0; i < _level * 3; i++)
         {

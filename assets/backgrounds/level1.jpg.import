@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/heic1310a.jpg-0f17008f0fca52efd4c019b7073b68a0.stex"
+path="res://.import/level1.jpg-2cafd43e6c8025ca821d1bd7e84cc583.stex"
 
 [deps]
 
-source_file="res://assets/backgrounds/heic1310a.jpg"
-dest_files=[ "res://.import/heic1310a.jpg-0f17008f0fca52efd4c019b7073b68a0.stex" ]
+source_file="res://assets/backgrounds/level1.jpg"
+dest_files=[ "res://.import/level1.jpg-2cafd43e6c8025ca821d1bd7e84cc583.stex" ]
 
 [params]
 

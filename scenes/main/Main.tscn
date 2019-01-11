@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/main/Main.cs" type="Script" id=1]
 [ext_resource path="res://scenes/rock/Rock.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/backgrounds/heic1310a.jpg" type="Texture" id=3]
+[ext_resource path="res://assets/backgrounds/level1.jpg" type="Texture" id=3]
 [ext_resource path="res://scenes/player/Player_v2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/hud/HUD.tscn" type="PackedScene" id=5]
 
