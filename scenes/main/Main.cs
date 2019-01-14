@@ -19,7 +19,9 @@ public class Main : Node
     private List<string> backgrounds = new List<string>
     {
         "res://assets/backgrounds/level1.jpg",
-        "res://assets/backgrounds/level2.jpg"
+        "res://assets/backgrounds/level1.jpg",
+        "res://assets/backgrounds/level2-1.jpg",
+        "res://assets/backgrounds/level3.jpg"
     };
     
     public override void _Ready()
@@ -35,24 +37,34 @@ public class Main : Node
         base._Process(delta);
         if (_playing && GetNode<Node>("Rocks").GetChildren().Count == 0)
         {
+            _level++;
             NewLevel();
         }
     }
 
-    private async void NewGame()
+    private void Reset()
     {
+        _level = 0;
+        _hits = 0;
+        Player_v2 p = GetNode<Player_v2>("Player");
+        p.Position = new Vector2(_screenSize.x / 2, _screenSize.y / 2);
         var rocks = GetNode<Node>("Rocks").GetChildren();
         foreach (var rock in rocks)
         {
             Rock r = (Rock) rock;
             r.QueueFree();
         }
-
-        _level = 0;
+    }
+    private async void NewGame()
+    {
+        Reset();
         _score = 0;
         HUD h = GetNode<HUD>("HUD");
         h.UpdateScore(_score);
-        GetNode<Player_v2>("Player").Start();
+        Player_v2 p = GetNode<Player_v2>("Player");
+        GetNode<Sprite>("Player/Ship").Show();
+        GetNode<Sprite>("Player/Engine").Show();
+        p.Start();
         h.ShowMessage("Get Ready!");
         Timer mt = GetNode<Timer>("HUD/MessageTimer");
         await ToSignal(mt, "timeout");
@@ -62,9 +74,17 @@ public class Main : Node
 
     private void NewLevel()
     {
-        _level += 1;
-        GetNode<Sprite>("Background").Texture.ResourcePath = backgrounds[_level];
-        GetNode<HUD>("HUD").ShowMessage($"Wave {_level}");
+        int level;
+        if (!_playing)
+        {
+            level = 0;
+        }
+        else
+        {
+            level = _level;
+        }
+        GetNode<Sprite>("Background").Texture = (Texture) Load(backgrounds[level]);
+        GetNode<HUD>("HUD").ShowMessage($"Wave {level}");
         for (int i = 0; i < _level * 3; i++)
         {
             SpawnRock(3);
@@ -140,7 +160,13 @@ public class Main : Node
             }
         }
     }
+    
+    private void _on_Player_Dead()
+    {
+        _playing = false;
+        Reset();
+        HUD hud = GetNode<HUD>("HUD");
+        hud.GetNode<TextureButton>("StartButton").Show();
+    }
+    
 }
-
-
-

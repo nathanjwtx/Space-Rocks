@@ -37,6 +37,8 @@ public class Player_v2 : RigidBody2D
         _screensize = GetViewport().GetVisibleRect().Size;
         Position = new Vector2(_screensize.x / 2, _screensize.y / 2);
         GetNode<Timer>("Timer").WaitTime = FireRate;
+        GetNode<Sprite>("Ship").Show();
+        GetNode<Sprite>("Engine").Show();
         GetNode<Sprite>("Damage1").Hide();
         GetNode<Sprite>("Damage2").Hide();
         GetNode<Sprite>("Damage3").Hide();
@@ -46,7 +48,8 @@ public class Player_v2 : RigidBody2D
     public void Start()
     {
         Visible = true;
-        Lives = 3;
+//        Position = new Vector2(_screensize.x / 2, _screensize.y / 2);
+//        Lives = 3;
         ChangeState(States2.ALIVE);
     }
     
@@ -190,7 +193,9 @@ public class Player_v2 : RigidBody2D
     private void _on_AnimationPlayer_animation_finished(String anim_name)
     {
         GetNode<Sprite>("Explosion").Hide();
-        QueueFree();
+//        QueueFree();
+        Hide();
+        EmitSignal("Dead");
     }
 }
 

@@ -21,7 +21,7 @@ RockScene = ExtResource( 2 )
 [node name="Background" type="Sprite" parent="." index="0"]
 
 position = Vector2( 526.751, 313.164 )
-scale = Vector2( 0.354822, 0.25 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
@@ -58,7 +58,7 @@ lookahead = 4.0
 
 [node name="HUD" parent="." index="4" instance=ExtResource( 5 )]
 
-[connection signal="LivesChanged" from="Player" to="HUD" method="UpdateLives"]
+[connection signal="Dead" from="Player" to="." method="_on_Player_Dead"]
 
 [connection signal="Shoot" from="Player" to="." method="_on_Player_Shoot"]
 
