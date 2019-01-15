@@ -28,7 +28,7 @@ public class Main : Node
     {
         _random = new Random();
         _screenSize = GetViewport().GetVisibleRect().Size;
-        GetNode<Player_v2>("Player")._screensize = _screenSize;
+//        GetNode<Player_v2>("Player")._screensize = _screenSize;
     }
 
 
@@ -47,7 +47,9 @@ public class Main : Node
         _level = 0;
         _hits = 0;
         Player_v2 p = GetNode<Player_v2>("Player");
-        p.Position = new Vector2(_screenSize.x / 2, _screenSize.y / 2);
+        p.GlobalPosition = new Vector2(_screenSize.x / 2, _screenSize.y / 2);
+//        p.Position = new Vector2(200, 200);
+        GD.Print(p.Position);
         var rocks = GetNode<Node>("Rocks").GetChildren();
         foreach (var rock in rocks)
         {

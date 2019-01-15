@@ -21,6 +21,7 @@ public class Player_v2 : RigidBody2D
     
     private Vector2 _thrust;
     public Vector2 _screensize;
+    private Vector2 _startPosition;
     private int _rotationDir;
     private bool CanShoot = true;
     
@@ -35,7 +36,7 @@ public class Player_v2 : RigidBody2D
     {
         ChangeState(States2.ALIVE);
         _screensize = GetViewport().GetVisibleRect().Size;
-        Position = new Vector2(_screensize.x / 2, _screensize.y / 2);
+        _startPosition = new Vector2(_screensize.x / 2, _screensize.y / 2);
         GetNode<Timer>("Timer").WaitTime = FireRate;
         GetNode<Sprite>("Ship").Show();
         GetNode<Sprite>("Engine").Show();
@@ -47,8 +48,11 @@ public class Player_v2 : RigidBody2D
 
     public void Start()
     {
+        GD.Print("Started");
+        GD.Print(_screensize);
         Visible = true;
-//        Position = new Vector2(_screensize.x / 2, _screensize.y / 2);
+//        GlobalPosition = new Vector2(_screensize.x / 2, _screensize.y / 2);
+        GlobalPosition = _startPosition;
 //        Lives = 3;
         ChangeState(States2.ALIVE);
     }
