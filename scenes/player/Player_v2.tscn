@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/player/Player_v2.cs" type="Script" id=1]
 [ext_resource path="res://scenes/player/Bullet.tscn" type="PackedScene" id=2]
@@ -7,9 +7,10 @@
 [ext_resource path="res://assets/playerShip1_damage2-1.png" type="Texture" id=5]
 [ext_resource path="res://assets/playerShip1_damage3-1.png" type="Texture" id=6]
 [ext_resource path="res://assets/engine2.png" type="Texture" id=7]
-[ext_resource path="res://scenes/explosion/Explosion.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/exhaust1.png" type="Texture" id=8]
+[ext_resource path="res://scenes/explosion/Explosion.tscn" type="PackedScene" id=9]
 
-[node name="Player" type="RigidBody2D"]
+[node name="Player" type="RigidBody2D" index="0"]
 
 position = Vector2( 0.427185, 0 )
 input_pickable = false
@@ -41,7 +42,7 @@ FireRate = 0.25
 
 position = Vector2( 5, 0 )
 build_mode = 0
-polygon = PoolVector2Array( -14.7058, -24.528, -10.4698, -24.528, 12.0991, -5.50066, 18.6267, -2.44518, 18.6267, 2.13804, 11.3352, 5.54074, -10.6781, 24.4292, -14.3586, 24.4292, -14.428, 11.0267, -18.7335, 6.44349, -31.6498, 11.0267, -31.9971, 10.124, -32.0665, -9.945, -30.8165, -10.7783, -18.8029, -7.16729, -14.428, -11.3339 )
+polygon = PoolVector2Array( -12.5303, -23.3817, 2.84839, -25.2329, 1.13964, -12.9868, 12.0991, -5.50066, 18.7967, -4.01592, 19.0815, 4.24302, 11.3352, 5.54074, 1.85162, 12.6444, 2.99078, 24.8904, -12.3879, 23.0392, -13.5271, 11.078, -18.7335, 6.44349, -31.6498, 11.0267, -31.9971, 10.124, -32.0665, -9.945, -30.8165, -10.7783, -18.8029, -7.16729, -12.8151, -11.7053 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Ship" type="Sprite" parent="." index="1"]
@@ -86,12 +87,22 @@ offset = Vector2( 0, -10 )
 flip_v = true
 _sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="Muzzle" type="Position2D" parent="." index="6"]
+[node name="Thrust" type="Sprite" parent="." index="6"]
 
-position = Vector2( 50, 0 )
+position = Vector2( -38, 7.39888e-006 )
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 8 )
+offset = Vector2( 0, -10 )
+flip_v = true
+_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
+
+[node name="Muzzle" type="Position2D" parent="." index="7"]
+
+position = Vector2( 35, 0 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Explosion" parent="." index="7" instance=ExtResource( 8 )]
+[node name="Explosion" parent="." index="8" instance=ExtResource( 9 )]
 
 _sections_unfolded = [ "Animation", "Visibility" ]
 
@@ -99,14 +110,14 @@ _sections_unfolded = [ "Animation", "Visibility" ]
 
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="Timer" type="Timer" parent="." index="8"]
+[node name="Timer" type="Timer" parent="." index="9"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = true
 autostart = true
 
-[node name="InvTimer" type="Timer" parent="." index="9"]
+[node name="InvTimer" type="Timer" parent="." index="10"]
 
 process_mode = 1
 wait_time = 1.0

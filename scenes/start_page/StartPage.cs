@@ -10,7 +10,7 @@ public class StartPage : CanvasLayer
     {
         string credits = "Credits:\n" +
                          "Background images are courtesy of ESA/Hubble (www.spacetelescope.ord)\n" +
-                         "Artwork by Chris Bradfield and Kenney (http://kenney.nl)\n" +
+                         "Artwork by me, Chris Bradfield or Kenney (http://kenney.nl)\n" +
                          "Based on GDScript project code by Chris Bradfield";
         GetNode<RichTextLabel>("MarginContainer/HBoxContainer/Credits").Text = credits;
 

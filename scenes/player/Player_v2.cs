@@ -44,6 +44,7 @@ public class Player_v2 : RigidBody2D
         GetNode<Sprite>("Damage2").Hide();
         GetNode<Sprite>("Damage3").Hide();
         GetNode<Sprite>("Explosion").Hide();
+        GetNode<Sprite>("Thrust").Hide();
     }
 
     public void Start()
@@ -146,7 +147,13 @@ public class Player_v2 : RigidBody2D
 
         if (Input.IsActionPressed("thrust"))
         {
+            GetNode<Sprite>("Thrust").Show();
             _thrust = new Vector2(Engine_Power, 0);
+        }
+
+        if (Input.IsActionJustReleased("thrust"))
+        {
+            GetNode<Sprite>("Thrust").Hide();
         }
 
         _rotationDir = 0;
