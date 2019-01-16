@@ -157,6 +157,7 @@ public class Main : Node
             }
             else
             {
+                b.GetNode<AudioStreamPlayer>("impact").Play();
                 GetNode<Sprite>($"Player/Damage{_hits}").Show();
             }
         }

@@ -200,7 +200,6 @@ public class Player_v2 : RigidBody2D
     private void _on_AnimationPlayer_animation_finished(String anim_name)
     {
         GetNode<Sprite>("Explosion").Hide();
-//        QueueFree();
         Hide();
         EmitSignal("Dead");
     }

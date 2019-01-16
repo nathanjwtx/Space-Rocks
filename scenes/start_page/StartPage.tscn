@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/start_page/StartPage.cs" type="Script" id=1]
 [ext_resource path="res://assets/kenvector_future_thin.ttf" type="DynamicFontData" id=2]
@@ -13,7 +13,15 @@ use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="StartPage" type="CanvasLayer"]
+[sub_resource type="DynamicFont" id=2]
+
+size = 20
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="StartPage" type="CanvasLayer" index="0"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -114,6 +122,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 0.0
+margin_top = 305.0
+margin_bottom = 502.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -124,7 +134,35 @@ custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
-_sections_unfolded = [ "custom_constants" ]
+_sections_unfolded = [ "Margin", "custom_constants" ]
+
+[node name="Label" type="Label" parent="MarginContainer2" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 20.0
+margin_top = 35.0
+margin_right = 1004.0
+margin_bottom = 162.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+text = "a - rotate left
+d - rotate right
+k - fire
+l - thrust
+space - start game"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
 
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 
