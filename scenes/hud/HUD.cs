@@ -18,7 +18,7 @@ public class HUD : CanvasLayer
     
     public override void _Ready()
     {
-
+        EmitSignal("StartGame");
     }
 
     public void ShowMessage(string message)

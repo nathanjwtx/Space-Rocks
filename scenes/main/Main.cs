@@ -138,6 +138,7 @@ public class Main : Node
     
     private void _on_HUD_StartGame()
     {
+        Print("called");
         NewGame();
     }
     
@@ -168,7 +169,7 @@ public class Main : Node
         _playing = false;
         Reset();
         HUD hud = GetNode<HUD>("HUD");
-        hud.GetNode<TextureButton>("StartButton").Show();
+        GetTree().ChangeScene("res://scenes/start_page/StartPage.tscn");
     }
     
 }

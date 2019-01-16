@@ -3,6 +3,7 @@ using System;
 
 public class StartPage : CanvasLayer
 {
+    
     private string _mainPage = "res://scenes/main/Main.tscn";
 
     public override void _Ready()
@@ -18,7 +19,6 @@ public class StartPage : CanvasLayer
     {
         GD.Print("styasrt");
         GetTree().ChangeScene(_mainPage);
-        
     }
     
     private void _on_StartButton_pressed()
