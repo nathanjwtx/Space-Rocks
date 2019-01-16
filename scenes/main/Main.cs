@@ -169,7 +169,8 @@ public class Main : Node
         _playing = false;
         Reset();
         HUD hud = GetNode<HUD>("HUD");
-        GetTree().ChangeScene("res://scenes/start_page/StartPage.tscn");
+        hud.GameOver();
+//        GetTree().ChangeScene("res://scenes/start_page/StartPage.tscn");
     }
     
 }

@@ -42,7 +42,7 @@ public class HUD : CanvasLayer
 //        }
 //    }
 
-    private void GameOver()
+    public void GameOver()
     {
         ShowMessage("It's Game Over man! It's Game Over!");
     }
