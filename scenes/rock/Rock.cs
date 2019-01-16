@@ -17,9 +17,7 @@ public class Rock : RigidBody2D
         "res://assets/Meteors/meteorGrey_big1.png",
         "res://assets/Meteors/meteorGrey_big2.png",
         "res://assets/Meteors/meteorGrey_big3.png",
-        "res://assets/Meteors/meteorGrey_big4.png",
-        "res://assets/Meteors/meteorGrey_med1.png",
-        "res://assets/Meteors/meteorGrey_med2.png"
+        "res://assets/Meteors/meteorGrey_big4.png"
     };
 
     public override void _Ready()
