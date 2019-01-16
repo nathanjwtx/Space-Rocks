@@ -21,14 +21,15 @@ public class Main : Node
         "res://assets/backgrounds/level1.jpg",
         "res://assets/backgrounds/level1.jpg",
         "res://assets/backgrounds/level2-1.jpg",
-        "res://assets/backgrounds/level3.jpg"
+        "res://assets/backgrounds/level3.jpg",
+        "res://assets/backgrounds/level4.jpg",
+        "res://assets/backgrounds/level5.jpg"
     };
     
     public override void _Ready()
     {
         _random = new Random();
         _screenSize = GetViewport().GetVisibleRect().Size;
-//        GetNode<Player_v2>("Player")._screensize = _screenSize;
     }
 
 
@@ -47,7 +48,7 @@ public class Main : Node
         _level = 0;
         _hits = 0;
         Player_v2 p = GetNode<Player_v2>("Player");
-        p.GlobalPosition = new Vector2(_screenSize.x / 2, _screenSize.y / 2);
+//        p.GlobalPosition = new Vector2(_screenSize.x / 2, _screenSize.y / 2);
         var rocks = GetNode<Node>("Rocks").GetChildren();
         foreach (var rock in rocks)
         {

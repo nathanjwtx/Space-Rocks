@@ -9,8 +9,9 @@ public class StartPage : CanvasLayer
     public override void _Ready()
     {
         string credits = "Credits:\n" +
-                         "Background images are courtesy of Wibble\n" +
-                         "Based on GDScript code by Chris Bradfield";
+                         "Background images are courtesy of ESA/Hubble (www.spacetelescope.ord)\n" +
+                         "Artwork by Chris Bradfield and Kenney (http://kenney.nl)\n" +
+                         "Based on GDScript project code by Chris Bradfield";
         GetNode<RichTextLabel>("MarginContainer/HBoxContainer/Credits").Text = credits;
 
     }

@@ -8,13 +8,6 @@ public class HUD : CanvasLayer
     delegate void StartGame();
 
     public bool Playing;
-
-//    public List<string> LivesCounter = new List<string>
-//    {
-//        "MarginContainer/HBoxContainer/LivesCounter/L1",
-//        "MarginContainer/HBoxContainer/LivesCounter/L2",
-//        "MarginContainer/HBoxContainer/LivesCounter/L3"
-//    };
     
     public override void _Ready()
     {
