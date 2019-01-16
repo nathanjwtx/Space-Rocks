@@ -11,7 +11,7 @@ public class GameOverPage : CanvasLayer
     {
         // Called every time the node is added to the scene.
         // Initialization here
-        GetNode<RichTextLabel>("MarginContainer/GameOver").Text = "It's Game Over man! It's Game Over!";
+        GetNode<Label>("MarginContainer/GameOver").Text = "It's Game Over man! It's Game Over!";
     }
 
 //    public override void _Process(float delta)
