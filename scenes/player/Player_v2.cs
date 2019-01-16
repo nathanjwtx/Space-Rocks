@@ -48,8 +48,6 @@ public class Player_v2 : RigidBody2D
 
     public void Start()
     {
-        GD.Print("Started");
-        GD.Print(_screensize);
         Visible = true;
 //        GlobalPosition = new Vector2(_screensize.x / 2, _screensize.y / 2);
         GlobalPosition = _startPosition;

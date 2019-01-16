@@ -48,8 +48,6 @@ public class Main : Node
         _hits = 0;
         Player_v2 p = GetNode<Player_v2>("Player");
         p.GlobalPosition = new Vector2(_screenSize.x / 2, _screenSize.y / 2);
-//        p.Position = new Vector2(200, 200);
-        GD.Print(p.Position);
         var rocks = GetNode<Node>("Rocks").GetChildren();
         foreach (var rock in rocks)
         {
@@ -138,7 +136,6 @@ public class Main : Node
     
     private void _on_HUD_StartGame()
     {
-        Print("called");
         NewGame();
     }
     
@@ -169,8 +166,8 @@ public class Main : Node
         _playing = false;
         Reset();
         HUD hud = GetNode<HUD>("HUD");
-        hud.GameOver();
-//        GetTree().ChangeScene("res://scenes/start_page/StartPage.tscn");
+//        hud.GameOver();
+        GetTree().ChangeScene("res://scenes/game_over/GameOverPage.tscn");
     }
     
 }
