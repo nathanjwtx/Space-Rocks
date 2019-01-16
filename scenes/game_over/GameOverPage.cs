@@ -13,7 +13,9 @@ public class GameOverPage : CanvasLayer
     {
         GetTree().ChangeScene("res://scenes/main/Main.tscn");
     }
+    
+    private void _on_Quit_pressed()
+    {
+        GetTree().Quit();
+    }
 }
-
-
-

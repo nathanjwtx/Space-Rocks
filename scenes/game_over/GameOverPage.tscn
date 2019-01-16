@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/game_over/GameOverPage.cs" type="Script" id=1]
 [ext_resource path="res://assets/kenvector_future_thin.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/play_button.png" type="Texture" id=3]
 [ext_resource path="res://assets/play_button_h.png" type="Texture" id=4]
+[ext_resource path="res://assets/quit_button.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -13,7 +14,7 @@ use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="GameOverPage" type="CanvasLayer"]
+[node name="GameOverPage" type="CanvasLayer" index="0"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -71,9 +72,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -124.5
+margin_left = -125.0
 margin_top = -200.0
-margin_right = 124.5
+margin_right = 124.0
 margin_bottom = -135.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -90,6 +91,32 @@ texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 4 )
 _sections_unfolded = [ "Anchor", "Margin", "Textures" ]
 
+[node name="Quit" type="TextureButton" parent="." index="2"]
+
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -125.0
+margin_top = -122.0
+margin_right = 124.0
+margin_bottom = -57.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 5 )
+_sections_unfolded = [ "Anchor", "Margin" ]
+
 [connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
+
+[connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
 
 
