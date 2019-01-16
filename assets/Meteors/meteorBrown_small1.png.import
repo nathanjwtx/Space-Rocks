@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/playerShip3_red.png-cafc0f752b9f6af096f6b1314cff8a32.stex"
+path="res://.import/meteorBrown_small1.png-57a862361012bffb15ad607f318fe1be.stex"
 
 [deps]
 
-source_file="res://assets/playerShip3_red.png"
-dest_files=[ "res://.import/playerShip3_red.png-cafc0f752b9f6af096f6b1314cff8a32.stex" ]
+source_file="res://assets/Meteors/meteorBrown_small1.png"
+dest_files=[ "res://.import/meteorBrown_small1.png-57a862361012bffb15ad607f318fe1be.stex" ]
 
 [params]
 

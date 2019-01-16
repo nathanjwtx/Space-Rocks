@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class Rock : RigidBody2D
 {
@@ -10,21 +11,30 @@ public class Rock : RigidBody2D
     private int _size;
     private float _radius;
     private float _scaleFactor = 0.2f;
+    
+    private List<string> _rocks = new List<string>
+    {
+        "res://assets/Meteors/meteorGrey_big1.png",
+        "res://assets/Meteors/meteorGrey_big2.png",
+        "res://assets/Meteors/meteorGrey_big3.png",
+        "res://assets/Meteors/meteorGrey_big4.png",
+        "res://assets/Meteors/meteorGrey_med1.png",
+        "res://assets/Meteors/meteorGrey_med2.png"
+    };
 
     public override void _Ready()
     {
-        // Called every time the node is added to the scene.
-        // Initialization here
-//        GetNode<Sprite>("Explosion").Hide();
+
     }
 
-    public void Start(Vector2 pos, Vector2 velocity, int size)
+    public void Start(Vector2 pos, Vector2 velocity, int size, int image)
     {
         Position = pos;
         _size = size;
         var mass = _size * 1.5;
         Sprite rock = GetNode<Sprite>("RockSprite");
-        rock.Scale = new Vector2(1, 1) * _scaleFactor * size;
+        rock.Texture = (Texture) GD.Load(_rocks[image]);
+        rock.Scale = new Vector2(1.5f, 1.5f) * _scaleFactor * size;
         _radius = rock.Texture.GetSize().x / 2 * _scaleFactor * size;
         CircleShape2D collisionShape = new CircleShape2D();
         collisionShape.Radius = _radius;

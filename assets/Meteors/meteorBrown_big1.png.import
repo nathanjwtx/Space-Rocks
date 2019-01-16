@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/playerShip3_damage1.png-9f38414ee7d6522345cbc9f83fe9fe04.stex"
+path="res://.import/meteorBrown_big1.png-8c9097fd6e156c3fe38025d37f52bd8c.stex"
 
 [deps]
 
-source_file="res://assets/playerShip3_damage1.png"
-dest_files=[ "res://.import/playerShip3_damage1.png-9f38414ee7d6522345cbc9f83fe9fe04.stex" ]
+source_file="res://assets/Meteors/meteorBrown_big1.png"
+dest_files=[ "res://.import/meteorBrown_big1.png-8c9097fd6e156c3fe38025d37f52bd8c.stex" ]
 
 [params]
 

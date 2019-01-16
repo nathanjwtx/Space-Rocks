@@ -107,7 +107,7 @@ public class Main : Node
         }
         var r = (Rock) RockScene.Instance();
         r._screensize = _screenSize;
-        r.Start((Vector2) pos, (Vector2) velocity, size);
+        r.Start((Vector2) pos, (Vector2) velocity, size, _random.Next(0, 4));
         GetNode<Node>("Rocks").AddChild(r);
         r.Connect("Boom", this, "_on_Rock_Boom");
     }
