@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ufoYellow.png-120092c8335fd2d0ef1910400787aea7.stex"
+path="res://.import/powerupGreen.png-acf5e84deca44789f6f38cfa8ac6bcbc.stex"
 
 [deps]
 
-source_file="res://assets/ufoYellow.png"
-dest_files=[ "res://.import/ufoYellow.png-120092c8335fd2d0ef1910400787aea7.stex" ]
+source_file="res://assets/power_ups/powerupGreen.png"
+dest_files=[ "res://.import/powerupGreen.png-acf5e84deca44789f6f38cfa8ac6bcbc.stex" ]
 
 [params]
 

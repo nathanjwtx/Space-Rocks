@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/exhaust1.png-f1458ebf2076d46e4fc60fde2cd38591.stex"
+path="res://.import/powerupGreen_bolt.png-77d3f56521afca10b65c7a98781ca74d.stex"
 
 [deps]
 
-source_file="res://assets/exhaust1.png"
-dest_files=[ "res://.import/exhaust1.png-f1458ebf2076d46e4fc60fde2cd38591.stex" ]
+source_file="res://assets/power_ups/powerupGreen_bolt.png"
+dest_files=[ "res://.import/powerupGreen_bolt.png-77d3f56521afca10b65c7a98781ca74d.stex" ]
 
 [params]
 

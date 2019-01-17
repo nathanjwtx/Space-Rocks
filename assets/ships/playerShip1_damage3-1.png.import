@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/space_background.png-b959da3573cc9902dfddf014b5dbe511.stex"
+path="res://.import/playerShip1_damage3-1.png-46cc5d12bab926964ed39248c61a8f02.stex"
 
 [deps]
 
-source_file="res://assets/space_background.png"
-dest_files=[ "res://.import/space_background.png-b959da3573cc9902dfddf014b5dbe511.stex" ]
+source_file="res://assets/ships/playerShip1_damage3-1.png"
+dest_files=[ "res://.import/playerShip1_damage3-1.png-46cc5d12bab926964ed39248c61a8f02.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -25,5 +25,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

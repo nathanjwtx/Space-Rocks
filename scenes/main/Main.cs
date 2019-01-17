@@ -8,6 +8,7 @@ public class Main : Node
 {
 
     [Export] private PackedScene RockScene;
+    [Export] private PackedScene PowerUpScene;
     
     private Vector2 _screenSize;
     private Random _random;
@@ -168,8 +169,14 @@ public class Main : Node
         _playing = false;
         Reset();
         HUD hud = GetNode<HUD>("HUD");
-//        hud.GameOver();
         GetTree().ChangeScene("res://scenes/game_over/GameOverPage.tscn");
     }
-    
+ 
+    private void _on_PowerUpTimer_timeout()
+    {
+        GD.Print("powerip");
+        PowerUp p = (PowerUp) PowerUpScene.Instance();
+        p.LoadPowerUp();
+        GetNode<Node>("PowerUps").AddChild(p);
+    }
 }

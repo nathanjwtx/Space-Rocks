@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shield3.png-e7c6c12a53400277fc3d5879841067be.stex"
+path="res://.import/playerShip1_damage2.png-5982fff8a20b0cc24e9451ef1fccf1f5.stex"
 
 [deps]
 
-source_file="res://assets/shield3.png"
-dest_files=[ "res://.import/shield3.png-e7c6c12a53400277fc3d5879841067be.stex" ]
+source_file="res://assets/ships/playerShip1_damage2.png"
+dest_files=[ "res://.import/playerShip1_damage2.png-5982fff8a20b0cc24e9451ef1fccf1f5.stex" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/playerShip1_damage2-1.png-d9ff40e9a8c0f46f553f27fa3f9eec7d.stex"
+path="res://.import/playerShip1_damage3.png-84e2696aab7b5273a694153d4508bf24.stex"
 
 [deps]
 
-source_file="res://assets/playerShip1_damage2-1.png"
-dest_files=[ "res://.import/playerShip1_damage2-1.png-d9ff40e9a8c0f46f553f27fa3f9eec7d.stex" ]
+source_file="res://assets/ships/playerShip1_damage3.png"
+dest_files=[ "res://.import/playerShip1_damage3.png-84e2696aab7b5273a694153d4508bf24.stex" ]
 
 [params]
 

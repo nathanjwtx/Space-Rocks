@@ -2,14 +2,14 @@
 
 [ext_resource path="res://scenes/player/Player_v2.cs" type="Script" id=1]
 [ext_resource path="res://scenes/player/Bullet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/playerShip1_orange.png" type="Texture" id=3]
-[ext_resource path="res://assets/playerShip1_damage1-1.png" type="Texture" id=4]
-[ext_resource path="res://assets/playerShip1_damage2-1.png" type="Texture" id=5]
-[ext_resource path="res://assets/playerShip1_damage3-1.png" type="Texture" id=6]
-[ext_resource path="res://assets/engine2.png" type="Texture" id=7]
-[ext_resource path="res://assets/exhaust1.png" type="Texture" id=8]
+[ext_resource path="res://assets/ships/playerShip1_orange.png" type="Texture" id=3]
+[ext_resource path="res://assets/ships/playerShip1_damage1-1.png" type="Texture" id=4]
+[ext_resource path="res://assets/ships/playerShip1_damage2-1.png" type="Texture" id=5]
+[ext_resource path="res://assets/ships/playerShip1_damage3-1.png" type="Texture" id=6]
+[ext_resource path="res://assets/ships/engine2.png" type="Texture" id=7]
+[ext_resource path="res://assets/ships/exhaust1.png" type="Texture" id=8]
 [ext_resource path="res://scenes/explosion/Explosion.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/shield3.png" type="Texture" id=10]
+[ext_resource path="res://assets/power_ups/shield3.png" type="Texture" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 

@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/playerShip1_damage3-1.png-6451e2baaf8c12102f2a30a12e0ec4f8.stex"
+path="res://.import/powerupGreen_star.png-82480f15d3ac9bfd8e9413deb5cd3cdf.stex"
 
 [deps]
 
-source_file="res://assets/playerShip1_damage3-1.png"
-dest_files=[ "res://.import/playerShip1_damage3-1.png-6451e2baaf8c12102f2a30a12e0ec4f8.stex" ]
+source_file="res://assets/power_ups/powerupGreen_star.png"
+dest_files=[ "res://.import/powerupGreen_star.png-82480f15d3ac9bfd8e9413deb5cd3cdf.stex" ]
 
 [params]
 

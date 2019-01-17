@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ufoGreen.png-17e1562be7eda302f7153bd7a45e75b7.stex"
+path="res://.import/laser_green.png-53ce7df01e8de1f51d386eae778d1b6e.stex"
 
 [deps]
 
-source_file="res://assets/ufoGreen.png"
-dest_files=[ "res://.import/ufoGreen.png-17e1562be7eda302f7153bd7a45e75b7.stex" ]
+source_file="res://assets/ships/laser_green.png"
+dest_files=[ "res://.import/laser_green.png-53ce7df01e8de1f51d386eae778d1b6e.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -25,5 +25,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

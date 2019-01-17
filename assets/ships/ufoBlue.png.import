@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/playerShip1_damage1-1.png-838cb97cff8614c7a9302159777a116c.stex"
+path="res://.import/ufoBlue.png-a48103f0d0552c6a360cea9d1af1d033.stex"
 
 [deps]
 
-source_file="res://assets/playerShip1_damage1-1.png"
-dest_files=[ "res://.import/playerShip1_damage1-1.png-838cb97cff8614c7a9302159777a116c.stex" ]
+source_file="res://assets/ships/ufoBlue.png"
+dest_files=[ "res://.import/ufoBlue.png-a48103f0d0552c6a360cea9d1af1d033.stex" ]
 
 [params]
 
