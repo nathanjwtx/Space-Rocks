@@ -14,7 +14,7 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 9.83607, 0, 0, 0, 0, 1014.15, 9.83607, 0, 0, 0, 0, 1014.15, 600, 0, 0, 0, 0, 0, 600, 0, 0, 0, 0, 0, 9.83607 )
 }
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" index="0"]
 
 script = ExtResource( 1 )
 RockScene = ExtResource( 2 )
@@ -68,6 +68,13 @@ visible = false
 
 [node name="PowerUps" type="Node" parent="." index="5"]
 
+[node name="PowerUpTimer" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = true
+
 [connection signal="Dead" from="Player" to="." method="_on_Player_Dead"]
 
 [connection signal="Shoot" from="Player" to="." method="_on_Player_Shoot"]
@@ -75,6 +82,8 @@ visible = false
 [connection signal="body_entered" from="Player" to="." method="_on_Player_body_entered"]
 
 [connection signal="StartGame" from="HUD" to="." method="_on_HUD_StartGame"]
+
+[connection signal="timeout" from="PowerUpTimer" to="." method="_on_PowerUpTimer_timeout"]
 
 
 [editable path="Player"]
