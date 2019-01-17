@@ -205,7 +205,7 @@ public class Player_v2 : RigidBody2D
         EmitSignal("Dead");
     }
     
-    private void _on_Area2D_body_entered(Godot.Object body)
+    private void _on_Shield_body_entered(Godot.Object body)
     {
         if (body is Rock b && Shielded)
         {

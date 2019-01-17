@@ -112,6 +112,7 @@ public class Main : Node
         GetNode<Node>("Rocks").AddChild(r);
         r.Connect("Boom", this, "_on_Rock_Boom");
     }
+
     
     private void _on_Rock_Boom(int size, float radius, Vector2 pos, Vector2 vel)
     {
@@ -169,6 +170,7 @@ public class Main : Node
         _playing = false;
         Reset();
         HUD hud = GetNode<HUD>("HUD");
+//        hud.GameOver();
         GetTree().ChangeScene("res://scenes/game_over/GameOverPage.tscn");
     }
  

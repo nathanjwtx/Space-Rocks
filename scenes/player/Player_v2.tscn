@@ -14,8 +14,8 @@
 [sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 68.6441
-height = 9.3633
+radius = 52.2239
+height = 6.31609
 
 [node name="Player" type="RigidBody2D" index="0"]
 
@@ -131,25 +131,30 @@ wait_time = 1.0
 one_shot = true
 autostart = false
 
-[node name="Area2D" type="Area2D" parent="." index="11"]
+[node name="Shield" type="Area2D" parent="." index="11"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision_layer = 4
+collision_mask = 2
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
 
-[node name="Sprite" type="Sprite" parent="Area2D" index="0"]
+[node name="Sprite" type="Sprite" parent="Shield" index="0"]
 
 rotation = 1.5708
+scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 10 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield" index="1"]
 
 shape = SubResource( 1 )
+_sections_unfolded = [ "Visibility" ]
 
 [connection signal="animation_finished" from="Explosion/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
@@ -157,7 +162,7 @@ shape = SubResource( 1 )
 
 [connection signal="timeout" from="InvTimer" to="." method="_on_InvTimer_timeout"]
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Shield" to="." method="_on_Shield_body_entered"]
 
 
 [editable path="Explosion"]
