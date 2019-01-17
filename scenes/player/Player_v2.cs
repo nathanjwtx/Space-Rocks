@@ -24,6 +24,7 @@ public class Player_v2 : RigidBody2D
     private Vector2 _startPosition;
     private int _rotationDir;
     private bool CanShoot = true;
+    public bool Shielded = true;
     
     public enum States2
     {
@@ -203,7 +204,21 @@ public class Player_v2 : RigidBody2D
         Hide();
         EmitSignal("Dead");
     }
+    
+    private void _on_Area2D_body_entered(Godot.Object body)
+    {
+        if (body is Rock b && Shielded)
+        {
+            if (b.IsInGroup("rocks"))
+            {
+                b.Explode();
+            }
+        }
+    }
 }
+
+
+
 
 
 
