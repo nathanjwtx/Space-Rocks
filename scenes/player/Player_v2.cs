@@ -121,6 +121,8 @@ public class Player_v2 : RigidBody2D
                     break;
                 case States2.ALIVE:
                     collision2D.Disabled = false;
+                    ship.Modulate = new Color(ship.Modulate.r, ship.Modulate.g, ship.Modulate.b);
+                    engine.Modulate = new Color(engine.Modulate.r, engine.Modulate.g, engine.Modulate.b);
                     break;
                 case States2.INVULNERABLE:
                     collision2D.Disabled = true;
@@ -197,6 +199,8 @@ public class Player_v2 : RigidBody2D
     private void _on_InvTimer_timeout()
     {
         ChangeState(States2.ALIVE);
+        Shielded = false;
+        GetNode<Area2D>("Shield").Hide();
     }
     
     private void _on_AnimationPlayer_animation_finished(String anim_name)

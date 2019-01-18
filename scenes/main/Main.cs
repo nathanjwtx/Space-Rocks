@@ -168,6 +168,7 @@ public class Main : Node
         {
             p.GetNode<Area2D>("Shield").Show();
             p.Shielded = true;
+            p.ChangeState(Player_v2.States2.INVULNERABLE);
             pUp.QueueFree();
         }
     }

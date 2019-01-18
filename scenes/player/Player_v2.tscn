@@ -17,7 +17,7 @@ custom_solver_bias = 0.0
 radius = 52.2239
 height = 6.31609
 
-[node name="Player" type="RigidBody2D"]
+[node name="Player" type="RigidBody2D" index="0"]
 
 position = Vector2( 0.427185, 0 )
 input_pickable = false
@@ -127,7 +127,7 @@ autostart = true
 [node name="InvTimer" type="Timer" parent="." index="10"]
 
 process_mode = 1
-wait_time = 1.0
+wait_time = 5.0
 one_shot = true
 autostart = false
 
