@@ -24,7 +24,7 @@ public class Player_v2 : RigidBody2D
     private Vector2 _startPosition;
     private int _rotationDir;
     private bool CanShoot = true;
-    public bool Shielded = true;
+    public bool Shielded = false;
     
     public enum States2
     {
@@ -46,6 +46,7 @@ public class Player_v2 : RigidBody2D
         GetNode<Sprite>("Damage3").Hide();
         GetNode<Sprite>("Explosion").Hide();
         GetNode<Sprite>("Thrust").Hide();
+        GetNode<Area2D>("Shield").Hide();
     }
 
     public void Start()
@@ -115,16 +116,16 @@ public class Player_v2 : RigidBody2D
         {
                 case States2.INIT:
                     collision2D.Disabled = true;
-                    ship.Modulate = new Color(ship.Modulate.r, ship.Modulate.g, ship.Modulate.a, 0.5f);
-                    engine.Modulate = new Color(engine.Modulate.r, engine.Modulate.g, engine.Modulate.a, 0.5f);
+                    ship.Modulate = new Color(ship.Modulate.r, ship.Modulate.g, ship.Modulate.b, 0.5f);
+                    engine.Modulate = new Color(engine.Modulate.r, engine.Modulate.g, engine.Modulate.b, 0.5f);
                     break;
                 case States2.ALIVE:
                     collision2D.Disabled = false;
                     break;
                 case States2.INVULNERABLE:
                     collision2D.Disabled = true;
-                    ship.Modulate = new Color(ship.Modulate.r, ship.Modulate.g, ship.Modulate.a, 0.5f);
-                    engine.Modulate = new Color(engine.Modulate.r, engine.Modulate.g, engine.Modulate.a, 0.5f);
+                    ship.Modulate = new Color(ship.Modulate.r, ship.Modulate.g, ship.Modulate.b, 0.5f);
+                    engine.Modulate = new Color(engine.Modulate.r, engine.Modulate.g, engine.Modulate.b, 0.5f);
                     GetNode<Timer>("InvTimer").Start();
                     break;
                 case States2.DEAD:

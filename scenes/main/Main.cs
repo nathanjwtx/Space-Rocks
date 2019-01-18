@@ -163,6 +163,13 @@ public class Main : Node
                 GetNode<Sprite>($"Player/Damage{_hits}").Show();
             }
         }
+
+        if (body is PowerUp pUp)
+        {
+            p.GetNode<Area2D>("Shield").Show();
+            p.Shielded = true;
+            pUp.QueueFree();
+        }
     }
     
     private void _on_Player_Dead()

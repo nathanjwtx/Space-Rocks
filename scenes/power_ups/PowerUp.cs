@@ -4,6 +4,7 @@ using System;
 public class PowerUp : RigidBody2D
 {
 
+    private bool _startVanish = false;
     public override void _Ready()
     {
 
@@ -21,11 +22,29 @@ public class PowerUp : RigidBody2D
         powerup.Show();
         Position = new Vector2(200, 200);
     }
-
-//    public override void _Process(float delta)
-//    {
-//        // Called every frame. Delta is time since last frame.
-//        // Update game logic here.
-//        
-//    }
+      
+    private void _on_SolidTimer_timeout()
+    {
+        _startVanish = true;
+    }
+    
+    public override void _Process(float delta)
+    {
+        var p = GetNode<Sprite>("Sprite");
+        GD.Print(p.Modulate.a);
+        GD.Print(_startVanish);
+        if (p.Modulate.a > 0.25 && _startVanish)
+        {
+            p.Modulate = new Color(p.Modulate.r, p.Modulate.g, p.Modulate.b, p.Modulate.a - delta);    
+        }
+        else if (p.Modulate.a <= 0.25 && _startVanish)
+        {
+            QueueFree();
+        }
+        
+    }
 }
+
+
+
+
