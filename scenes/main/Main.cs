@@ -16,6 +16,7 @@ public class Main : Node
     private int _score;
     private bool _playing;
     private int _hits;
+    private bool _powerUp;
     
     private List<string> backgrounds = new List<string>
     {
@@ -48,6 +49,7 @@ public class Main : Node
     {
         _level = 0;
         _hits = 0;
+        _powerUp = true;
         Player_v2 p = GetNode<Player_v2>("Player");
 //        p.GlobalPosition = new Vector2(_screenSize.x / 2, _screenSize.y / 2);
         var rocks = GetNode<Node>("Rocks").GetChildren();
@@ -91,6 +93,9 @@ public class Main : Node
         {
             SpawnRock(3);
         }
+        Timer t = GetNode<Timer>("PowerUpTimer");
+        t.WaitTime = _random.Next(3, 20);
+        t.Start();
     }
     
     private void SpawnRock(int size, Vector2? pos = null, Vector2? velocity = null)
@@ -187,5 +192,6 @@ public class Main : Node
         PowerUp p = (PowerUp) PowerUpScene.Instance();
         GetNode<Node>("PowerUps").AddChild(p);
         p.LoadPowerUp();
+        _powerUp = false;
     }
 }

@@ -71,9 +71,9 @@ visible = false
 [node name="PowerUpTimer" type="Timer" parent="." index="6"]
 
 process_mode = 1
-wait_time = 2.0
+wait_time = 0.01
 one_shot = true
-autostart = true
+autostart = false
 
 [connection signal="Dead" from="Player" to="." method="_on_Player_Dead"]
 
