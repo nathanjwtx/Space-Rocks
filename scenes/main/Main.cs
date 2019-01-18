@@ -185,7 +185,7 @@ public class Main : Node
     {
         GD.Print("powerip");
         PowerUp p = (PowerUp) PowerUpScene.Instance();
-        p.LoadPowerUp();
         GetNode<Node>("PowerUps").AddChild(p);
+        p.LoadPowerUp();
     }
 }
