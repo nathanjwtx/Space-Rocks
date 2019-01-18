@@ -167,7 +167,6 @@ public class Main : Node
         if (body is PowerUp pUp)
         {
             p.GetNode<Area2D>("Shield").Show();
-            p.Shielded = true;
             p.ChangeState(Player_v2.States2.INVULNERABLE);
             pUp.QueueFree();
         }

@@ -121,11 +121,13 @@ public class Player_v2 : RigidBody2D
                     break;
                 case States2.ALIVE:
                     collision2D.Disabled = false;
+                    Shielded = false;
                     ship.Modulate = new Color(ship.Modulate.r, ship.Modulate.g, ship.Modulate.b);
                     engine.Modulate = new Color(engine.Modulate.r, engine.Modulate.g, engine.Modulate.b);
                     break;
                 case States2.INVULNERABLE:
                     collision2D.Disabled = true;
+                    Shielded = true;
                     ship.Modulate = new Color(ship.Modulate.r, ship.Modulate.g, ship.Modulate.b, 0.5f);
                     engine.Modulate = new Color(engine.Modulate.r, engine.Modulate.g, engine.Modulate.b, 0.5f);
                     GetNode<Timer>("InvTimer").Start();
@@ -199,7 +201,6 @@ public class Player_v2 : RigidBody2D
     private void _on_InvTimer_timeout()
     {
         ChangeState(States2.ALIVE);
-        Shielded = false;
         GetNode<Area2D>("Shield").Hide();
     }
     
