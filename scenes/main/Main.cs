@@ -163,10 +163,6 @@ public class Main : Node
                 p.GetNode<AnimationPlayer>("Explosion/AnimationPlayer").Play("explosion");
                 p.ChangeState(Player_v2.States2.DEAD);
             }
-            else if (p.Shielded)
-            {
-                b.GetNode<AudioStreamPlayer>("impact").Play();
-            }
             else
             {
                 b.GetNode<AudioStreamPlayer>("impact").Play();

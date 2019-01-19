@@ -217,6 +217,7 @@ public class Player_v2 : RigidBody2D
         {
             if (b.IsInGroup("rocks"))
             {
+                b.GetNode<AudioStreamPlayer>("impact").Play();
                 b.Explode();
             }
         }
