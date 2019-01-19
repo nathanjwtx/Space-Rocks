@@ -89,7 +89,7 @@ public class Main : Node
         }
         GetNode<Sprite>("Background").Texture = (Texture) Load(backgrounds[level]);
         GetNode<HUD>("HUD").ShowMessage($"Wave {level}");
-        for (int i = 0; i < _level * 3; i++)
+        for (int i = 0; i < _level * 2 + 1; i++)
         {
             SpawnRock(3);
         }

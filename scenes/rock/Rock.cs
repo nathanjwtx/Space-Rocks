@@ -29,7 +29,7 @@ public class Rock : RigidBody2D
     {
         Position = pos;
         _size = size;
-        var mass = _size * 1.5;
+        var mass = size * 1.5;
         Sprite rock = GetNode<Sprite>("RockSprite");
         rock.Texture = (Texture) GD.Load(_rocks[image]);
         rock.Scale = new Vector2(1.5f, 1.5f) * _scaleFactor * size;
@@ -40,7 +40,7 @@ public class Rock : RigidBody2D
         LinearVelocity = velocity;
         Random r = new Random();
         AngularVelocity = r.Next(-15, 15) / 10f;
-        GetNode<Sprite>("Explosion").Scale = new Vector2(0.75f, 0.75f) * _size;
+        GetNode<Sprite>("Explosion").Scale = new Vector2(0.75f, 0.75f) * size;
     }
 
     public override void _IntegrateForces(Physics2DDirectBodyState physics_state)
