@@ -28,7 +28,7 @@ public class Player_v2 : RigidBody2D
     
     public enum States2
     {
-        INIT, ALIVE, INVULNERABLE, DEAD
+        INIT, ALIVE, INVULNERABLE, DEAD, SHIELDED
     }
 
     private Enum _state;
@@ -127,7 +127,6 @@ public class Player_v2 : RigidBody2D
                     break;
                 case States2.INVULNERABLE:
                     collision2D.Disabled = true;
-                    Shielded = true;
                     ship.Modulate = new Color(ship.Modulate.r, ship.Modulate.g, ship.Modulate.b, 0.5f);
                     engine.Modulate = new Color(engine.Modulate.r, engine.Modulate.g, engine.Modulate.b, 0.5f);
                     GetNode<Timer>("InvTimer").Start();
@@ -181,7 +180,7 @@ public class Player_v2 : RigidBody2D
 
     private void Fire()
     {
-        if (_state.Equals(States2.INVULNERABLE))
+        if (_state.Equals(States2.INVULNERABLE) && !Shielded)
         {
             return;
         }
@@ -202,6 +201,7 @@ public class Player_v2 : RigidBody2D
     {
         ChangeState(States2.ALIVE);
         GetNode<Area2D>("Shield").Hide();
+        Shielded = false;
     }
     
     private void _on_AnimationPlayer_animation_finished(String anim_name)
