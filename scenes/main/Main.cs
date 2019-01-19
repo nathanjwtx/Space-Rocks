@@ -159,8 +159,13 @@ public class Main : Node
                 p.GetNode<Sprite>("Damage2").Hide();
                 p.GetNode<Sprite>("Damage3").Hide();
                 p.GetNode<Sprite>("Explosion").Show();
+                b.GetNode<AudioStreamPlayer>("impact").Play();
                 p.GetNode<AnimationPlayer>("Explosion/AnimationPlayer").Play("explosion");
                 p.ChangeState(Player_v2.States2.DEAD);
+            }
+            else if (p.Shielded)
+            {
+                b.GetNode<AudioStreamPlayer>("impact").Play();
             }
             else
             {
