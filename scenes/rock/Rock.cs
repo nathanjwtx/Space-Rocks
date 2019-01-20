@@ -14,10 +14,10 @@ public class Rock : RigidBody2D
     
     private List<string> _rocks = new List<string>
     {
-        "res://assets/Meteors/meteorGrey_big1.png",
-        "res://assets/Meteors/meteorGrey_big2.png",
-        "res://assets/Meteors/meteorGrey_big3.png",
-        "res://assets/Meteors/meteorGrey_big4.png"
+        "res://assets/meteors/meteorGrey_big1.png",
+        "res://assets/meteors/meteorGrey_big2.png",
+        "res://assets/meteors/meteorGrey_big3.png",
+        "res://assets/meteors/meteorGrey_big4.png"
     };
 
     public override void _Ready()
