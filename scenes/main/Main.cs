@@ -86,6 +86,11 @@ public class Main : Node
 //            level = _level;
 //        }
 //        Print(_level);
+        Player_v2 p = GetNode<Player_v2>("Player");
+        p.GetNode<Sprite>("Damage1").Hide();
+        p.GetNode<Sprite>("Damage2").Hide();
+        p.GetNode<Sprite>("Damage3").Hide();
+        _hits = 0;
         GetNode<Sprite>("Background").Texture = (Texture) Load(backgrounds[_level + 1]);
         GetNode<HUD>("HUD").ShowMessage($"Wave {_level + 1}");
         for (int i = 0; i < _level + 1; i++)

@@ -24,7 +24,7 @@ public class Player_v2 : RigidBody2D
     private Vector2 _startPosition;
     private int _rotationDir;
     private bool CanShoot = true;
-    public bool Shielded = false;
+    public bool Shielded;
     
     public enum States2
     {
@@ -149,7 +149,6 @@ public class Player_v2 : RigidBody2D
         {
             return;
         }
-
         if (Input.IsActionPressed("thrust"))
         {
             GetNode<Sprite>("Thrust").Show();
