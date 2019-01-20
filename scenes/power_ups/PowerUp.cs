@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public class PowerUp : RigidBody2D
 {
@@ -7,9 +8,16 @@ public class PowerUp : RigidBody2D
     private Random _random;
     private bool _startVanish = false;
     private Vector2 _screenSize;
+    public string PowerUpType;
+
+    private System.Collections.Generic.Dictionary<string, string> _powerUpSprites = new System.Collections.Generic.Dictionary<string, string>();
+
+   
     
     public override void _Ready()
     {
+        _powerUpSprites.Add("shield", "res://assets/power_ups/powerupGreen_shield.png");
+        _powerUpSprites.Add("repair","res://assets/power_ups/powerupGreen_bolt.png");
         _screenSize = GetViewport().GetVisibleRect().Size;
         _random = new Random();
     }
@@ -17,7 +25,9 @@ public class PowerUp : RigidBody2D
     public void LoadPowerUp()
     {
         Sprite powerup = GetNode<Sprite>("Sprite");
-        powerup.Texture = (Texture) GD.Load("res://assets/power_ups/powerupGreen_shield.png");
+        var k = _powerUpSprites.Keys.ToList()[_random.Next(0, _powerUpSprites.Count)];
+        PowerUpType = k;
+        powerup.Texture = (Texture) GD.Load(_powerUpSprites[k]);
         RectangleShape2D square = new RectangleShape2D();
         square.Extents = new Vector2(40, 40);
         GetNode<CollisionShape2D>("CollisionShape2D").Shape = square;

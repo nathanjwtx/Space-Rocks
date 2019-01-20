@@ -172,9 +172,27 @@ public class Main : Node
 
         if (body is PowerUp pUp)
         {
-            p.GetNode<Area2D>("Shield").Show();
-            p.Shielded = true;
-            p.ChangeState(Player_v2.States2.INVULNERABLE);
+            if (pUp.PowerUpType == "shield")
+            {
+                p.GetNode<Area2D>("Shield").Show();
+                p.Shielded = true;
+                p.ChangeState(Player_v2.States2.INVULNERABLE);    
+            }
+            else if (pUp.PowerUpType == "repair" && _hits > 0)
+            {
+                if (_hits == 1)
+                {
+                    GetNode<Sprite>($"Player/Damage{_hits}").Hide();
+                    _hits--;
+                }
+                else if (_hits > 1)
+                {
+                    GetNode<Sprite>($"Player/Damage{_hits}").Hide();
+                    _hits--;
+                    GetNode<Sprite>($"Player/Damage{_hits}").Show();   
+                }
+            }
+            
             pUp.QueueFree();
         }
     }
@@ -190,7 +208,6 @@ public class Main : Node
  
     private void _on_PowerUpTimer_timeout()
     {
-        GD.Print("powerip");
         PowerUp p = (PowerUp) PowerUpScene.Instance();
         GetNode<Node>("PowerUps").AddChild(p);
         p.LoadPowerUp();
