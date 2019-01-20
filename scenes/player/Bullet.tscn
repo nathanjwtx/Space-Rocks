@@ -3,14 +3,13 @@
 [ext_resource path="res://scenes/player/Bullet.cs" type="Script" id=1]
 [ext_resource path="res://assets/ships/laser_green.png" type="Texture" id=2]
 
-
 [sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 1.17788
 height = 25.5234
 
-[node name="Area2D" type="Area2D" groups=[
+[node name="Area2D" type="Area2D" index="0" groups=[
 "rocks",
 ]]
 

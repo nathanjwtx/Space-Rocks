@@ -186,6 +186,7 @@ public class Player_v2 : RigidBody2D
 
         var muzzle = GetNode<Node2D>("Muzzle");
         var bullet = Bullet;
+        GetNode<AudioStreamPlayer>("AudioStreamPlayer").Play();
         EmitSignal("Shoot", bullet, muzzle.GlobalPosition, Rotation);
         CanShoot = false;
         GetNode<Timer>("Timer").Start();

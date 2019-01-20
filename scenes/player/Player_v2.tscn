@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/player/Player_v2.cs" type="Script" id=1]
 [ext_resource path="res://scenes/player/Bullet.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/ships/exhaust1.png" type="Texture" id=8]
 [ext_resource path="res://scenes/explosion/Explosion.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/power_ups/shield3.png" type="Texture" id=10]
+[ext_resource path="res://assets/sounds/synthetic_laser.ogg" type="AudioStream" id=11]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -155,6 +156,15 @@ _sections_unfolded = [ "Transform" ]
 
 shape = SubResource( 1 )
 _sections_unfolded = [ "Visibility" ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="12"]
+
+stream = ExtResource( 11 )
+volume_db = 1.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 [connection signal="animation_finished" from="Explosion/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
