@@ -50,8 +50,6 @@ public class Main : Node
         _level = 0;
         _hits = 0;
         _powerUp = true;
-        Player_v2 p = GetNode<Player_v2>("Player");
-//        p.GlobalPosition = new Vector2(_screenSize.x / 2, _screenSize.y / 2);
         var rocks = GetNode<Node>("Rocks").GetChildren();
         foreach (var rock in rocks)
         {
@@ -78,18 +76,19 @@ public class Main : Node
 
     private void NewLevel()
     {
-        int level;
-        if (!_playing)
-        {
-            level = 0;
-        }
-        else
-        {
-            level = _level;
-        }
-        GetNode<Sprite>("Background").Texture = (Texture) Load(backgrounds[level]);
-        GetNode<HUD>("HUD").ShowMessage($"Wave {level}");
-        for (int i = 0; i < _level * 2 + 1; i++)
+//        int level;
+//        if (!_playing)
+//        {
+//            level = 0;
+//        }
+//        else
+//        {
+//            level = _level;
+//        }
+//        Print(_level);
+        GetNode<Sprite>("Background").Texture = (Texture) Load(backgrounds[_level + 1]);
+        GetNode<HUD>("HUD").ShowMessage($"Wave {_level + 1}");
+        for (int i = 0; i < _level + 1; i++)
         {
             SpawnRock(3);
         }
