@@ -8,6 +8,7 @@ public class HUD : CanvasLayer
     delegate void StartGame();
 
     public bool Playing;
+    private int _score;
     
     public override void _Ready()
     {
@@ -24,16 +25,9 @@ public class HUD : CanvasLayer
 
     public void UpdateScore(int value)
     {
+        _score += value;
         GetNode<Label>("MarginContainer/HBoxContainer/ScoreLabel").Text = value.ToString();
     }
-
-//    private void UpdateLives(int value)
-//    {
-//        for (var i = 0; i < LivesCounter.Count; i++)
-//        {
-//            GetNode<TextureRect>(LivesCounter[i]).Visible = value > i;
-//        }
-//    }
 
     public void GameOver()
     {

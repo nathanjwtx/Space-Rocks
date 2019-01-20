@@ -9,6 +9,8 @@ public class Main : Node
 
     [Export] private PackedScene RockScene;
     [Export] private PackedScene PowerUpScene;
+
+    private Global _global;
     
     private Vector2 _screenSize;
     private Random _random;
@@ -30,6 +32,7 @@ public class Main : Node
     
     public override void _Ready()
     {
+        _global = (Global) GetNode("/root/Global");
         _random = new Random();
         _screenSize = GetViewport().GetVisibleRect().Size;
     }
@@ -125,18 +128,20 @@ public class Main : Node
     
     private void _on_Rock_Boom(int size, float radius, Vector2 pos, Vector2 vel)
     {
-        if (size <= 1)
+        if (size > 1)
         {
-            return;
+            for (int i = -1; i < 2; i += 2)
+            {
+                Vector2 dir = (pos - GetNode<Player_v2>("Player").Position).Normalized().Tangent() * i;
+                Vector2 newPos = pos + dir * radius;
+                Vector2 newVel = dir * vel.Length() * 1.5f;
+                SpawnRock(size - 1, newPos, newVel);
+            }
         }
 
-        for (int i = -1; i < 2; i+= 2)
-        {
-            Vector2 dir = (pos - GetNode<Player_v2>("Player").Position).Normalized().Tangent() * i;
-            Vector2 newPos = pos + dir * radius;
-            Vector2 newVel = dir * vel.Length() * 1.5f;
-            SpawnRock(size - 1, newPos, newVel);
-        }
+        HUD h = GetNode<HUD>("HUD");
+        _global.UpdateScore(1);
+        h.UpdateScore(_global.Score);
     }
     
     private void _on_Player_Shoot(PackedScene bullet, Vector2 pos, float dir)

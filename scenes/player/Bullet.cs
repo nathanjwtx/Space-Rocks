@@ -36,7 +36,5 @@ public class Bullet : Area2D
                 QueueFree();
             }
         }
-//        var b = (Rock) body;
-
 	}
 }
