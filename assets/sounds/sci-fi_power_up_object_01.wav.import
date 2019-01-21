@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sci-fi_power_up_object_01.wav-7b79948374f95c2806ab41aeb81450b7.sample"
+
+[deps]
+
+source_file="res://assets/sounds/sci-fi_power_up_object_01.wav"
+dest_files=[ "res://.import/sci-fi_power_up_object_01.wav-7b79948374f95c2806ab41aeb81450b7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

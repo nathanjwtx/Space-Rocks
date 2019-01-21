@@ -55,7 +55,6 @@
     <Compile Include="scenes\hud\HUD.cs" />
     <Compile Include="scenes\main\Main.cs" />
     <Compile Include="scenes\player\Bullet.cs" />
-    <Compile Include="scenes\player\Player.cs" />
     <Compile Include="scenes\player\Player_v2.cs" />
     <Compile Include="scenes\power_ups\PowerUp.cs" />
     <Compile Include="scenes\rock\Rock.cs" />

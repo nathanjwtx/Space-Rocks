@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/power_ups/PowerUp.cs" type="Script" id=1]
 
-[node name="PowerUp" type="RigidBody2D" index="0"]
+[node name="PowerUp" type="RigidBody2D"]
 
 input_pickable = false
 collision_layer = 8
@@ -31,16 +31,7 @@ _sections_unfolded = [ "Collision" ]
 
 _sections_unfolded = [ "Visibility" ]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
-
-stream = null
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Master"
-
-[node name="SolidTimer" type="Timer" parent="." index="3"]
+[node name="SolidTimer" type="Timer" parent="." index="2"]
 
 process_mode = 1
 wait_time = 3.0

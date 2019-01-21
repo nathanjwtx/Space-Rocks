@@ -87,7 +87,6 @@ public class Main : Node
             p.GetNode<Sprite>("Damage2").Hide();
             p.GetNode<Sprite>("Damage3").Hide();            
         }
-        GD.Print(_hits);
         GetNode<Sprite>("Background").Texture = (Texture) Load(backgrounds[_level + 1]);
         GetNode<HUD>("HUD").ShowMessage($"Wave {_level + 1}");
         for (int i = 0; i < _level + 1; i++)
@@ -175,6 +174,7 @@ public class Main : Node
 
         if (body is PowerUp pUp)
         {
+            p.GetNode<AudioStreamPlayer>("PowerUpCollected").Play();
             if (pUp.PowerUpType == "shield")
             {
                 p.GetNode<Area2D>("Shield").Show();

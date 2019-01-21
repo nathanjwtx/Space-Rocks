@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/player/Player_v2.cs" type="Script" id=1]
 [ext_resource path="res://scenes/player/Bullet.tscn" type="PackedScene" id=2]
@@ -10,7 +10,8 @@
 [ext_resource path="res://assets/ships/exhaust1.png" type="Texture" id=8]
 [ext_resource path="res://scenes/explosion/Explosion.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/power_ups/shield3.png" type="Texture" id=10]
-[ext_resource path="res://assets/sounds/synthetic_laser.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/sounds/sci-fi_weapon_laser_small_01.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sounds/sci-fi_power_up_object_01.wav" type="AudioStream" id=12]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -18,7 +19,7 @@ custom_solver_bias = 0.0
 radius = 52.2239
 height = 6.31609
 
-[node name="Player" type="RigidBody2D"]
+[node name="Player" type="RigidBody2D" index="0"]
 
 position = Vector2( 0.427185, 0 )
 input_pickable = false
@@ -160,6 +161,15 @@ _sections_unfolded = [ "Visibility" ]
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="12"]
 
 stream = ExtResource( 11 )
+volume_db = 1.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="PowerUpCollected" type="AudioStreamPlayer" parent="." index="13"]
+
+stream = ExtResource( 12 )
 volume_db = 1.0
 pitch_scale = 1.0
 autoplay = false
