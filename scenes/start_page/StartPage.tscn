@@ -146,11 +146,11 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 2 )
-text = "a - rotate left
-d - rotate right
-k - fire
-l - thrust
-space - start game"
+text = "a - rotate left (L thumbstick left)
+d - rotate right (L thumbstick right)
+n - fire (R2)
+m - thrust (l2)
+space - start game (Start)"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
