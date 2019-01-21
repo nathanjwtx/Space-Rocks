@@ -12,7 +12,7 @@ public class StartPage : CanvasLayer
                          "Background images are courtesy of ESA/Hubble (www.spacetelescope.ord)\n" +
                          "Artwork by me, Chris Bradfield or Kenney (http://kenney.nl)\n" +
                          "Based on GDScript project code by Chris Bradfield\n" +
-                         "Sound effects by qubecad\n" +
+                         "Sound effects by qubecad\n and GameDev Market" +
                          "Rocks In Space font: Rock Font by Jester Font Studio";
         GetNode<RichTextLabel>("MarginContainer/Credits").Text = credits;
     }
