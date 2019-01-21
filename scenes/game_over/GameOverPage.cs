@@ -14,11 +14,25 @@ public class GameOverPage : CanvasLayer
 
     private void _on_Restart_pressed()
     {
-        GetTree().ChangeScene("res://scenes/main/Main.tscn");
+        LoadStart();
     }
     
     private void _on_Quit_pressed()
     {
         GetTree().Quit();
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+        if (Input.IsActionJustReleased("start"))
+        {
+            LoadStart();
+        }
+    }
+
+    private void LoadStart()
+    {
+        GetTree().ChangeScene("res://scenes/start_page/StartPage2.tscn");
     }
 }

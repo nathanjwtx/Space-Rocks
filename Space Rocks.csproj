@@ -60,6 +60,7 @@
     <Compile Include="scenes\power_ups\PowerUp.cs" />
     <Compile Include="scenes\rock\Rock.cs" />
     <Compile Include="scenes\start_page\StartPage.cs" />
+    <Compile Include="scenes\start_page\StartPage2.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

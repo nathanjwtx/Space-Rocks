@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/start_page/StartPage.cs" type="Script" id=1]
 [ext_resource path="res://assets/kenvector_future_thin.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://assets/play_button.png" type="Texture" id=3]
-[ext_resource path="res://assets/play_button_h.png" type="Texture" id=4]
-[ext_resource path="res://assets/JFRocOut.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/JFRocOut.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -14,20 +12,12 @@ use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="DynamicFont" id=2]
-
-size = 20
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 2 )
-_sections_unfolded = [ "Font", "Settings" ]
-
 [sub_resource type="DynamicFont" id=3]
 
 size = 80
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 5 )
+font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [node name="StartPage" type="CanvasLayer" index="0"]
@@ -84,80 +74,7 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "Margin", "Size Flags", "custom_fonts" ]
 
-[node name="StartButton" type="TextureButton" parent="." index="1"]
-
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -125.0
-margin_top = -58.0
-margin_right = 124.0
-margin_bottom = 7.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-texture_normal = ExtResource( 3 )
-texture_hover = ExtResource( 4 )
-_sections_unfolded = [ "Margin", "Textures" ]
-
-[node name="MarginContainer2" type="MarginContainer" parent="." index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-margin_top = 300.0
-margin_bottom = 467.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-custom_constants/margin_right = 20
-custom_constants/margin_top = 20
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
-_sections_unfolded = [ "Hint", "Margin", "Rect", "custom_constants" ]
-
-[node name="Label" type="Label" parent="MarginContainer2" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 1004.0
-margin_bottom = 147.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
-text = "a - rotate left (L thumbstick left)
-d - rotate right (L thumbstick right)
-n - fire (R2)
-m - thrust (l2)
-space - start game (Start)"
-align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
-
-[node name="Title" type="MarginContainer" parent="." index="3"]
+[node name="Title" type="MarginContainer" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -201,6 +118,13 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
-[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
+[node name="Timer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 

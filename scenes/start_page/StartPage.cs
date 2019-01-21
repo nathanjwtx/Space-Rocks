@@ -4,7 +4,7 @@ using System;
 public class StartPage : CanvasLayer
 {
     
-    private string _mainPage = "res://scenes/main/Main.tscn";
+    private string _startPage2 = "res://scenes/start_page/StartPage2.tscn";
 
     public override void _Ready()
     {
@@ -19,21 +19,14 @@ public class StartPage : CanvasLayer
 
     public override void _Process(float delta)
     {
-        base._Process(delta);
-        if (Input.IsActionPressed("start"))
-        {
-            Start();
-        }
+
     }
 
-    public void Start()
+    private void _on_Timer_timeout()
     {
-        GD.Print("styasrt");
-        GetTree().ChangeScene(_mainPage);
-    }
-    
-    private void _on_StartButton_pressed()
-    {
-        Start();
+        GetTree().ChangeScene(_startPage2);
     }
 }
+
+
+
