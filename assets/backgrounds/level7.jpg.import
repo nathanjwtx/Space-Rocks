@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/level2-1.jpg-3ebb84bf9c056593c15c9cd3056756a3.stex"
+path="res://.import/level7.jpg-aecff31471ea55f2c7d9eb919268b100.stex"
 
 [deps]
 
-source_file="res://assets/backgrounds/level2-1.jpg"
-dest_files=[ "res://.import/level2-1.jpg-3ebb84bf9c056593c15c9cd3056756a3.stex" ]
+source_file="res://assets/backgrounds/level7.jpg"
+dest_files=[ "res://.import/level7.jpg-aecff31471ea55f2c7d9eb919268b100.stex" ]
 
 [params]
 

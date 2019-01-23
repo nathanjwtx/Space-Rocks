@@ -17,17 +17,24 @@ public class Main : Node
     private int _level;
     private int _score;
     private bool _playing;
+    private bool _newGame = true;
     private int _hits;
     private bool _powerUp;
+    private Sprite _background;
+    private int _prevBackground;
     
     private List<string> backgrounds = new List<string>
     {
         "res://assets/backgrounds/level1.jpg",
-        "res://assets/backgrounds/level1.jpg",
-        "res://assets/backgrounds/level2-1.jpg",
+        "res://assets/backgrounds/level2.jpg",
         "res://assets/backgrounds/level3.jpg",
         "res://assets/backgrounds/level4.jpg",
-        "res://assets/backgrounds/level5.jpg"
+        "res://assets/backgrounds/level5.jpg",
+        "res://assets/backgrounds/level6.jpg",
+        "res://assets/backgrounds/level7.jpg",
+        "res://assets/backgrounds/level8.jpg",
+        "res://assets/backgrounds/level9.jpg",
+        "res://assets/backgrounds/level10.jpg"
     };
     
     public override void _Ready()
@@ -35,6 +42,9 @@ public class Main : Node
         _global = (Global) GetNode("/root/Global");
         _random = new Random();
         _screenSize = GetViewport().GetVisibleRect().Size;
+        _prevBackground = _random.Next(0, 10);
+        SetBackground(_prevBackground);
+        _newGame = true;
     }
 
 
@@ -62,7 +72,6 @@ public class Main : Node
     }
     private async void NewGame()
     {
-        Reset();
         _score = 0;
         HUD h = GetNode<HUD>("HUD");
         h.UpdateScore(_score);
@@ -79,6 +88,17 @@ public class Main : Node
 
     private void NewLevel()
     {
+        if (!_newGame)
+        {
+            int r;
+            do
+            {
+                r = _random.Next(0, 10);
+            } while (_prevBackground == r);
+            _prevBackground = r;
+            SetBackground(r);                        
+        }
+        _newGame = false;
         Player_v2 p = GetNode<Player_v2>("Player");
         if (!Global.HardCore)
         {
@@ -87,7 +107,6 @@ public class Main : Node
             p.GetNode<Sprite>("Damage2").Hide();
             p.GetNode<Sprite>("Damage3").Hide();            
         }
-        GetNode<Sprite>("Background").Texture = (Texture) Load(backgrounds[_level + 1]);
         GetNode<HUD>("HUD").ShowMessage($"Wave {_level + 1}");
         for (int i = 0; i < _level + 1; i++)
         {
@@ -97,7 +116,16 @@ public class Main : Node
         t.WaitTime = _random.Next(3, 20);
         t.Start();
     }
-    
+
+    private void SetBackground(int level)
+    {
+        _background.Texture = (Texture) Load(backgrounds[level]);
+        var xScale = _screenSize.x / _background.GetTexture().GetWidth();
+        var yScale = _screenSize.y / _background.GetTexture().GetHeight();
+        _background.Position = new Vector2(0, 0);
+        _background.Scale = new Vector2(xScale, yScale);
+    }
+
     private void SpawnRock(int size, Vector2? pos = null, Vector2? velocity = null)
     {
         if (pos == null)
@@ -146,6 +174,8 @@ public class Main : Node
     
     private void _on_HUD_StartGame()
     {
+        Reset();
+        _background = GetNode<Sprite>("Background");
         NewGame();
     }
     
@@ -204,8 +234,6 @@ public class Main : Node
     {
         _playing = false;
         Reset();
-        HUD hud = GetNode<HUD>("HUD");
-//        hud.GameOver();
         GetTree().ChangeScene("res://scenes/game_over/GameOverPage.tscn");
     }
  

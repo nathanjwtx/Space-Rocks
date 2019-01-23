@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/main/Main.cs" type="Script" id=1]
 [ext_resource path="res://scenes/rock/Rock.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/power_ups/PowerUp.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/backgrounds/level1.jpg" type="Texture" id=4]
-[ext_resource path="res://scenes/player/Player_v2.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/hud/HUD.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/player/Player_v2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/hud/HUD.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -14,7 +13,7 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 9.83607, 0, 0, 0, 0, 1014.15, 9.83607, 0, 0, 0, 0, 1014.15, 600, 0, 0, 0, 0, 0, 600, 0, 0, 0, 0, 0, 9.83607 )
 }
 
-[node name="Main" type="Node" index="0"]
+[node name="Main" type="Node"]
 
 script = ExtResource( 1 )
 RockScene = ExtResource( 2 )
@@ -22,12 +21,11 @@ PowerUpScene = ExtResource( 3 )
 
 [node name="Background" type="Sprite" parent="." index="0"]
 
-position = Vector2( 526.751, 313.164 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 4 )
-_sections_unfolded = [ "Transform" ]
+centered = false
+_sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
 
-[node name="Player" parent="." index="1" instance=ExtResource( 5 )]
+[node name="Player" parent="." index="1" instance=ExtResource( 4 )]
 
 editor/display_folded = true
 contacts_reported = 1
@@ -58,13 +56,7 @@ lookahead = 4.0
 
 [node name="Rocks" type="Node" parent="." index="3"]
 
-[node name="HUD" parent="." index="4" instance=ExtResource( 6 )]
-
-editor/display_folded = true
-
-[node name="StartButton" parent="HUD" index="1"]
-
-visible = false
+[node name="HUD" parent="." index="4" instance=ExtResource( 5 )]
 
 [node name="PowerUps" type="Node" parent="." index="5"]
 

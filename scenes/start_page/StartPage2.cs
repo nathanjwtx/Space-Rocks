@@ -5,8 +5,6 @@ public class StartPage2 : CanvasLayer
 {
     private string _mainPage = "res://scenes/main/Main.tscn";
     
-    
-
     public override void _Ready()
     {
         // Called every time the node is added to the scene.
@@ -23,7 +21,7 @@ public class StartPage2 : CanvasLayer
         }
     }
     
-    private void _on_StartButton_pressed()
+    private void _on_sp2StartButton_pressed()
     {
         Start();
     }
@@ -35,10 +33,6 @@ public class StartPage2 : CanvasLayer
 
     private void _on_CheckButton_toggled(bool buttonPressed)
     {
-        GD.Print(buttonPressed);
         Global.SetHardcore(true);
     }
 }
-
-
-
