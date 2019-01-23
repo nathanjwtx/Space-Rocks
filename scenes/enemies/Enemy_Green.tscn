@@ -10,6 +10,10 @@ radius = 110.041
 
 [node name="BaseEnemy" index="0" instance=ExtResource( 1 )]
 
+Bullet = null
+Speed = 5
+Health = 0
+
 [node name="Sprite" parent="." index="0"]
 
 texture = ExtResource( 2 )

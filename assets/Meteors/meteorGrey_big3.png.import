@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/meteorGrey_big3.png-bf3169c666fc16214620c9aa392496dc.stex"
+path="res://.import/meteorGrey_big3.png-080997e9dff963a1da1d5f4da8e4c960.stex"
 
 [deps]
 
-source_file="res://assets/meteors/meteorGrey_big3.png"
-dest_files=[ "res://.import/meteorGrey_big3.png-bf3169c666fc16214620c9aa392496dc.stex" ]
+source_file="res://assets/Meteors/meteorGrey_big3.png"
+dest_files=[ "res://.import/meteorGrey_big3.png-080997e9dff963a1da1d5f4da8e4c960.stex" ]
 
 [params]
 
