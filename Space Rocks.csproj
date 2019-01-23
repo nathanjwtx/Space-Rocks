@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Global.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="scenes\enemies\BaseEnemy.cs" />
     <Compile Include="scenes\game_over\GameOverPage.cs" />
     <Compile Include="scenes\hud\HUD.cs" />
     <Compile Include="scenes\main\Main.cs" />
