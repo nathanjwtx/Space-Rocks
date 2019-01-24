@@ -19,15 +19,16 @@ public class BaseEnemy : KinematicBody2D
         Follow = new PathFollow2D();
         p.AddChild(Follow);
         Follow.Loop = false;
+        GD.Print("base");
     }
 
     public override void _Process(float delta)
     {
-        Follow.Offset += Speed * delta;
-        Position = Follow.Position;
-        if (Follow.Offset > 1)
-        {
-            QueueFree();
-        }
+//        Follow.SetOffset(Follow.GetOffset() + Speed * delta);
+           //        Position = Follow.GlobalPosition;
+           //        if (Follow.Offset > 1)
+           //        {
+           //            QueueFree();
+           //        }
     }
 }

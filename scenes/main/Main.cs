@@ -9,6 +9,7 @@ public class Main : Node
 
     [Export] private PackedScene RockScene;
     [Export] private PackedScene PowerUpScene;
+    [Export] private PackedScene Enemy;
 
     private Global _global;
     
@@ -51,7 +52,7 @@ public class Main : Node
     public override void _Process(float delta)
     {
         base._Process(delta);
-        if (_playing && GetNode<Node>("Rocks").GetChildren().Count == 0)
+        if (!_newGame && _playing && GetNode<Node>("Rocks").GetChildren().Count == 0)
         {
             _level++;
             NewLevel();
@@ -88,6 +89,7 @@ public class Main : Node
 
     private void NewLevel()
     {
+        GetNode<Timer>("EnemySpawnTimer").Start();
         if (!_newGame)
         {
             int r;
@@ -243,5 +245,12 @@ public class Main : Node
         GetNode<Node>("PowerUps").AddChild(p);
         p.LoadPowerUp();
         _powerUp = false;
+    }
+    
+    private void _on_EnemySpawnTimer_timeout()
+    {
+        Print("enemy");
+        Enemy_Green g = (Enemy_Green) Enemy.Instance();
+        AddChild(g);
     }
 }
