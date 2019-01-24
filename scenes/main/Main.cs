@@ -250,7 +250,18 @@ public class Main : Node
     private void _on_EnemySpawnTimer_timeout()
     {
         Print("enemy");
-        Enemy_Green g = (Enemy_Green) Enemy.Instance();
-        AddChild(g);
+        // update random number if additional enemy types added
+        switch (_random.Next(0, 2))
+
+        {
+            case 0:
+                Enemy_Green g = (Enemy_Green) Enemy.Instance();
+                AddChild(g);
+                break;
+            case 1:
+                Enemy_Red r = (Enemy_Red) Enemy.Instance();
+                AddChild(r);
+                break;
+        }
     }
 }

@@ -1,13 +1,13 @@
 using Godot;
 using System;
 
-public class Enemy_Green : BaseEnemy
+public class Enemy_Red : BaseEnemy
 {
 
     public override void _Ready()
     {
         base._Ready();
-        GD.Print("green");
+        GD.Print("red");
         
     }
     
