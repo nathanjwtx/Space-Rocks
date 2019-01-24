@@ -12,7 +12,7 @@ radius = 110.041
 [node name="Enemy_Green" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
-Speed = 40
+Speed = 80
 
 [node name="Sprite" parent="." index="0"]
 

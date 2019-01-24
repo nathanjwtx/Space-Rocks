@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class BaseEnemy : KinematicBody2D
 {
@@ -10,25 +11,16 @@ public class BaseEnemy : KinematicBody2D
     [Export] public int Speed;
     [Export] public int Health;
 
-    private PathFollow2D Follow;
-    
+    public PathFollow2D Follow;
+    private Random _random;
     
     public override void _Ready()
     {
-        Path2D p = GetNode<Path2D>("EnemyPaths/path1");
+        _random = new Random();
+        Path2D p = GetNode<Path2D>($"EnemyPaths/path{_random.Next(1, 5)}");
         Follow = new PathFollow2D();
         p.AddChild(Follow);
         Follow.Loop = false;
-        GD.Print("base");
     }
 
-    public override void _Process(float delta)
-    {
-//        Follow.SetOffset(Follow.GetOffset() + Speed * delta);
-           //        Position = Follow.GlobalPosition;
-           //        if (Follow.Offset > 1)
-           //        {
-           //            QueueFree();
-           //        }
-    }
 }

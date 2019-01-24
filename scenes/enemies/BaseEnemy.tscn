@@ -11,15 +11,19 @@ radius = 45.6978
 [node name="BaseEnemy" type="KinematicBody2D"]
 
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
+collision_layer = 16
+collision_mask = 14
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
 Bullet = null
 Speed = 0
 Health = 0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 0.75, 0.75 )
+_sections_unfolded = [ "Animation", "Region", "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
