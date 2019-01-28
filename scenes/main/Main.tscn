@@ -18,7 +18,6 @@ _data = {
 script = ExtResource( 1 )
 RockScene = ExtResource( 2 )
 PowerUpScene = ExtResource( 3 )
-Enemy = null
 
 [node name="Background" type="Sprite" parent="." index="0"]
 

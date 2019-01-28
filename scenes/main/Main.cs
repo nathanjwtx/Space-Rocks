@@ -37,6 +37,13 @@ public class Main : Node
         "res://assets/backgrounds/level10.jpg"
     };
     
+    private List<string> _enemyShips = new List<string>
+    {
+        "res://scenes/enemies/Enemy_Red.tscn",
+        "res://scenes/enemies/Enemy_Green.tscn"
+    };
+        
+    
     public override void _Ready()
     {
         _global = (Global) GetNode("/root/Global");
@@ -249,21 +256,8 @@ public class Main : Node
     private void _on_EnemySpawnTimer_timeout()
     {
         Print("enemy");
-        Node e;
-        PackedScene s;
-        // update random number if additional enemy types added
-        switch (_random.Next(0, 2))
-        {
-            case 0:
-                s = (PackedScene) ResourceLoader.Load("res://scenes/enemies/Enemy_Red.tscn");
-                e = s.Instance();
-                AddChild(e);
-                break;
-            case 1:
-                s = (PackedScene) ResourceLoader.Load("res://scenes/enemies/Enemy_Red.tscn");
-                e = s.Instance();
-                AddChild(e);
-                break;
-        }
+        PackedScene s = (PackedScene) ResourceLoader.Load(_enemyShips[_random.Next(0, _enemyShips.Count)]);
+        Node e = s.Instance();
+        AddChild(e);
     }
 }
