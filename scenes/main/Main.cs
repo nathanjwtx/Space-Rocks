@@ -9,7 +9,6 @@ public class Main : Node
 
     [Export] private PackedScene RockScene;
     [Export] private PackedScene PowerUpScene;
-    [Export] private PackedScene Enemy;
 
     private Global _global;
     
@@ -250,17 +249,20 @@ public class Main : Node
     private void _on_EnemySpawnTimer_timeout()
     {
         Print("enemy");
+        Node e;
+        PackedScene s;
         // update random number if additional enemy types added
         switch (_random.Next(0, 2))
-
         {
             case 0:
-                Enemy_Green g = (Enemy_Green) Enemy.Instance();
-                AddChild(g);
+                s = (PackedScene) ResourceLoader.Load("res://scenes/enemies/Enemy_Red.tscn");
+                e = s.Instance();
+                AddChild(e);
                 break;
             case 1:
-                Enemy_Red r = (Enemy_Red) Enemy.Instance();
-                AddChild(r);
+                s = (PackedScene) ResourceLoader.Load("res://scenes/enemies/Enemy_Red.tscn");
+                e = s.Instance();
+                AddChild(e);
                 break;
         }
     }
