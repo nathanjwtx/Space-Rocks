@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/sounds/Impact.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/sounds/rock_smashable_hit_impact_01.wav" type="AudioStream" id=4]
 
-[node name="Rock" type="RigidBody2D" index="0" groups=[
+[node name="Rock" type="RigidBody2D" groups=[
 "rocks",
 ]]
 

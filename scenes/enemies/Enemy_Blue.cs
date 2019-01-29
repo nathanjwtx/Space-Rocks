@@ -8,7 +8,7 @@ public class Enemy_Blue : BaseEnemy
     {
         base._Ready();
         GD.Print("blue");
-        
+        SetUpRadar(Radar_Radius);
     }
     
     public override void _Process(float delta)

@@ -9,7 +9,7 @@
 custom_solver_bias = 0.0
 radius = 45.6978
 
-[node name="BaseEnemy" type="KinematicBody2D" index="0"]
+[node name="BaseEnemy" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 16
@@ -20,6 +20,7 @@ _sections_unfolded = [ "Collision" ]
 Bullet = ExtResource( 2 )
 Speed = 0
 Health = 0
+Radar_Radius = 0.0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -31,5 +32,17 @@ _sections_unfolded = [ "Animation", "Region", "Transform" ]
 shape = SubResource( 1 )
 
 [node name="EnemyPaths" parent="." index="2" instance=ExtResource( 3 )]
+
+[node name="Radar" type="Area2D" parent="." index="3"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Radar" index="0"]
 
 
