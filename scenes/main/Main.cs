@@ -40,7 +40,9 @@ public class Main : Node
     private List<string> _enemyShips = new List<string>
     {
         "res://scenes/enemies/Enemy_Red.tscn",
-        "res://scenes/enemies/Enemy_Green.tscn"
+        "res://scenes/enemies/Enemy_Green.tscn",
+        "res://scenes/enemies/Enemy_Blue.tscn",
+        "res://scenes/enemies/Enemy_Yellow.tscn"
     };
         
     
