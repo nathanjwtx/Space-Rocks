@@ -76,9 +76,11 @@ autostart = false
 [node name="EnemySpawnTimer" type="Timer" parent="." index="7"]
 
 process_mode = 1
-wait_time = 1.0
+wait_time = 3.0
 one_shot = true
 autostart = false
+
+[node name="Enemies" type="Node" parent="." index="8"]
 
 [connection signal="Dead" from="Player" to="." method="_on_Player_Dead"]
 

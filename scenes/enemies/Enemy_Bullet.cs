@@ -2,17 +2,19 @@ using Godot;
 using System;
 using System.Runtime.CompilerServices;
 
-public class Bullet : Area2D
+public class Enemy_Bullet : Area2D
 {
     [Export] private int Speed;
 
+    public int _testSpeed;
+
     private Vector2 _velocity;
 
-    public void Start(Vector2 pos, float dir)
+    public void Start(Vector2 pos, float dir, int speed)
     {
         Position = pos;
         Rotation = dir;
-        _velocity = new Vector2(Speed, 0).Rotated(dir);
+        _velocity = new Vector2(speed, 0).Rotated(dir);
     }
 
     public override void _Process(float delta)
@@ -26,20 +28,15 @@ public class Bullet : Area2D
         QueueFree();
     }
 	
-	private void _on_Area2D_body_entered(Godot.Object body)
+    private void _on_Area2D_body_entered(Godot.Object body)
     {
-        if (body is Rock b)
+        if (body is Rock rock)
         {
-            if (b.IsInGroup("rocks"))
+            if (rock.IsInGroup("rocks"))
             {
-                b.Explode();
+                rock.Explode();
                 QueueFree();
             }
         }
-        else if (body is BaseEnemy baseEnemy)
-        {
-            baseEnemy.BaseEnemyExplode();
-            QueueFree();
-        }
-	}
+    }
 }

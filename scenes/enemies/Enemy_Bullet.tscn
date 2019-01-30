@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scenes/player/Bullet.cs" type="Script" id=1]
+[ext_resource path="res://scenes/enemies/Enemy_Bullet.cs" type="Script" id=1]
 [ext_resource path="res://assets/ships/laser_green.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -9,7 +9,7 @@ custom_solver_bias = 0.0
 radius = 1.17788
 height = 25.5234
 
-[node name="Area2D" type="Area2D" index="0" groups=[
+[node name="Area2D" type="Area2D" groups=[
 "rocks",
 ]]
 
@@ -18,12 +18,13 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-collision_mask = 2
+collision_layer = 32
+collision_mask = 15
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
-Speed = 1000
+Speed = 0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -42,8 +43,6 @@ _sections_unfolded = [ "Transform" ]
 rect = Rect2( -10, -10, 20, 20 )
 
 [connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]
-
-[connection signal="mouse_entered" from="." to="." method="_on_Area2D_mouse_entered"]
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 

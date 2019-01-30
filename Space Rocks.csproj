@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="scenes\enemies\BaseEnemy.cs" />
     <Compile Include="scenes\enemies\Enemy_Blue.cs" />
+    <Compile Include="scenes\enemies\Enemy_Bullet.cs" />
     <Compile Include="scenes\enemies\Enemy_Green.cs" />
     <Compile Include="scenes\enemies\Enemy_Red.cs" />
     <Compile Include="scenes\enemies\Enemy_Yellow.cs" />

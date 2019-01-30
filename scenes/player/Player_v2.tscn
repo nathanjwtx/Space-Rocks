@@ -19,12 +19,12 @@ custom_solver_bias = 0.0
 radius = 52.2239
 height = 6.31609
 
-[node name="Player" type="RigidBody2D" index="0"]
+[node name="Player" type="RigidBody2D"]
 
 position = Vector2( 0.427185, 0 )
 input_pickable = false
 collision_layer = 4
-collision_mask = 2
+collision_mask = 58
 mode = 0
 mass = 1.0
 friction = 1.0
@@ -41,7 +41,7 @@ linear_damp = 1.0
 angular_velocity = 0.0
 angular_damp = 5.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Transform" ]
+_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Pickable", "Transform" ]
 Engine_Power = 1500
 Spin_Power = 56000
 Bullet = ExtResource( 2 )
@@ -175,6 +175,8 @@ pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
+
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 
 [connection signal="animation_finished" from="Explosion/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 

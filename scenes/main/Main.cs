@@ -39,10 +39,10 @@ public class Main : Node
     
     private List<string> _enemyShips = new List<string>
     {
-        "res://scenes/enemies/Enemy_Red.tscn",
-        "res://scenes/enemies/Enemy_Green.tscn",
+//        "res://scenes/enemies/Enemy_Red.tscn",
+//        "res://scenes/enemies/Enemy_Green.tscn",
         "res://scenes/enemies/Enemy_Blue.tscn",
-        "res://scenes/enemies/Enemy_Yellow.tscn"
+//        "res://scenes/enemies/Enemy_Yellow.tscn"
     };
         
     
@@ -257,9 +257,11 @@ public class Main : Node
     
     private void _on_EnemySpawnTimer_timeout()
     {
-        Print("enemy");
+//        Print("enemy");
         PackedScene s = (PackedScene) ResourceLoader.Load(_enemyShips[_random.Next(0, _enemyShips.Count)]);
         Node e = s.Instance();
-        AddChild(e);
+        GetNode<Node>("Enemies").AddChild(e);
+//        AddChild(e);
     }
+    
 }
