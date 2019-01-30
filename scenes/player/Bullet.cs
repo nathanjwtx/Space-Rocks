@@ -32,7 +32,7 @@ public class Bullet : Area2D
         {
             if (b.IsInGroup("rocks"))
             {
-                b.Explode();
+                b.Explode(true);
                 QueueFree();
             }
         }

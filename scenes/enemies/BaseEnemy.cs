@@ -7,6 +7,9 @@ public class BaseEnemy : KinematicBody2D
     [Signal]
     delegate bool Shoot();
 
+    [Signal]
+    delegate void EnemyBoom();
+
     [Export] public PackedScene EnemyBullet;
     [Export] public int Speed;
     [Export] public int Health;
@@ -41,6 +44,7 @@ public class BaseEnemy : KinematicBody2D
         GetNode<Sprite>("Sprite").Hide();
         GetNode<Sprite>("Explosion").Show();
         GetNode<AnimationPlayer>("Explosion/AnimationPlayer").Play("explosion");
+        EmitSignal("EnemyBoom", 5);
         GetNode<AudioStreamPlayer>("Explode").Play();
     }
     

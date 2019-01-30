@@ -34,7 +34,7 @@ public class Enemy_Bullet : Area2D
         {
             if (rock.IsInGroup("rocks"))
             {
-                rock.Explode();
+                rock.Explode(false);
                 QueueFree();
             }
         }

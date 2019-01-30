@@ -29,3 +29,4 @@ autostart = false
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 
+[editable path="Explosion"]

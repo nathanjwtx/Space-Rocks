@@ -85,11 +85,7 @@ public class Enemy_Blue : BaseEnemy
     {
         Shoot();
     }
-    
-    private void _on_Radar_area_entered(Godot.Object area)
-    {
-//        GD.Print(area.GetClass());
-    }
+
 }
 
 

@@ -77,14 +77,14 @@ public class Rock : RigidBody2D
         }
     }
 
-    public void Explode()
+    public void Explode(bool player)
     {
         Layers = 0;
         GetNode<Sprite>("RockSprite").Hide();
         GetNode<Sprite>("Explosion").Show();
         GetNode<AnimationPlayer>("Explosion/AnimationPlayer").Play("explosion");
         GetNode<AudioStreamPlayer>("Explode").Play();
-        EmitSignal("Boom", _size, _radius, Position, LinearVelocity);
+        EmitSignal("Boom", _size, _radius, Position, LinearVelocity, player);
         LinearVelocity = new Vector2();
         AngularVelocity = 0;
     }

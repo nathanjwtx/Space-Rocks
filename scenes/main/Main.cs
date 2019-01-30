@@ -22,6 +22,7 @@ public class Main : Node
     private bool _powerUp;
     private Sprite _background;
     private int _prevBackground;
+    private HUD _hud;
     
     private List<string> backgrounds = new List<string>
     {
@@ -54,6 +55,7 @@ public class Main : Node
         _prevBackground = _random.Next(0, 10);
         SetBackground(_prevBackground);
         _newGame = true;
+        _hud = GetNode<HUD>("HUD");
     }
 
 
@@ -157,7 +159,7 @@ public class Main : Node
     }
 
     
-    private void _on_Rock_Boom(int size, float radius, Vector2 pos, Vector2 vel)
+    private void _on_Rock_Boom(int size, float radius, Vector2 pos, Vector2 vel, bool playerShot)
     {
         if (size > 1)
         {
@@ -170,9 +172,8 @@ public class Main : Node
             }
         }
 
-        HUD h = GetNode<HUD>("HUD");
-        _global.UpdateScore(1);
-        h.UpdateScore(_global.Score);
+        if (!playerShot) return;
+        UpdateScore(1);
     }
     
     private void _on_Player_Shoot(PackedScene bullet, Vector2 pos, float dir)
@@ -261,7 +262,18 @@ public class Main : Node
         PackedScene s = (PackedScene) ResourceLoader.Load(_enemyShips[_random.Next(0, _enemyShips.Count)]);
         Node e = s.Instance();
         GetNode<Node>("Enemies").AddChild(e);
+        e.Connect("EnemyBoom", this, "_on_EnemyBoom");
 //        AddChild(e);
     }
-    
+
+    private void _on_EnemyBoom(int score)
+    {
+        UpdateScore(score);
+    }
+
+    private void UpdateScore(int score)
+    {
+        _global.UpdateScore(score);
+        _hud.UpdateScore(_global.Score);        
+    }
 }
