@@ -50,18 +50,15 @@ public class Enemy_Blue : BaseEnemy
     
     private void _on_Radar_body_entered(Godot.Object body)
     {
-//        GD.Print(body.GetClass());
-////        this works
-//        if (body is Rock rock)
-//        {
-//            Target = rock;
-//            GetNode<Timer>("Timer").Start();
-//        }
-////        but this doesn't
         if (body is Player_v2 player)
         {
             GD.Print("p");
             Target = player;
+            GetNode<Timer>("Timer").Start();
+        }
+        else if (body is Rock rock && Target == null)
+        {
+            Target = rock;
             GetNode<Timer>("Timer").Start();
         }
     }
