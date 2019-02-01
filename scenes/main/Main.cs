@@ -138,22 +138,20 @@ public class Main : Node
         _background.Scale = new Vector2(xScale, yScale);
     }
 
-    private void SpawnRock(int size, Vector2? pos = null, Vector2? velocity = null)
+    private void SpawnRock(int size)
     {
-        if (pos == null)
-        {
-            GetNode<PathFollow2D>("RockPath/RockSpawn").SetOffset(_random.Next(0, int.MaxValue));
-            pos = GetNode<PathFollow2D>("RockPath/RockSpawn").Position;
-        }
-
-        if (velocity == null)
-        {
-            Vector2 temp = new Vector2(1, 0);
-            velocity = temp.Rotated(_random.Next(0, 360)) * _random.Next(100, 150);
-        }
+        GetNode<PathFollow2D>("RockPath/RockSpawn").SetOffset(_random.Next(0, int.MaxValue));
+        Vector2 pos = GetNode<PathFollow2D>("RockPath/RockSpawn").Position;
+        Vector2 temp = new Vector2(1, 0);
+        Vector2 velocity = temp.Rotated(_random.Next(0, 360)) * _random.Next(100, 150);
+        SpawnRock(size, pos, velocity);
+    }
+    
+    private void SpawnRock(int size, Vector2 pos, Vector2 velocity)
+    {
         var r = (Rock) RockScene.Instance();
         r._screensize = _screenSize;
-        r.Start((Vector2) pos, (Vector2) velocity, size, _random.Next(0, 4));
+        r.Start(pos, velocity, size, _random.Next(0, 4));
         GetNode<Node>("Rocks").AddChild(r);
         r.Connect("Boom", this, "_on_Rock_Boom");
     }
@@ -168,7 +166,7 @@ public class Main : Node
                 Vector2 dir = (pos - GetNode<Player_v2>("Player").Position).Normalized().Tangent() * i;
                 Vector2 newPos = pos + dir * radius;
                 Vector2 newVel = dir * vel.Length() * 1.5f;
-                SpawnRock(size - 1, newPos, newVel);
+                CallDeferred("SpawnRock", size - 1, newPos, newVel);
             }
         }
 
