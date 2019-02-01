@@ -37,7 +37,8 @@ public class Enemy_Blue : BaseEnemy
 
     private void Shoot()
     {
-        if (Target != null)
+//        GD.Print(IsInstanceValid(Target));
+        if (Target != null && IsInstanceValid(Target))
         {
             Vector2 dir = Target.GlobalPosition - GlobalPosition;
             Vector2 pos = new Vector2(0, 0);
@@ -80,13 +81,14 @@ public class Enemy_Blue : BaseEnemy
     
     private void _on_Timer_timeout()
     {
-        Shoot();
+        if (IsInstanceValid(Target))
+        {
+            Shoot();
+        }
+        else
+        {
+            Target = null;
+        }
     }
 
 }
-
-
-
-
-
-
