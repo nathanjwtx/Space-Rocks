@@ -194,7 +194,7 @@ public class Main : Node
         if (body is Rock b)
         {
             _hits++;
-            if (_hits == 4)
+            if (_hits >= 4)
             {
                 p.GetNode<Sprite>("Damage1").Hide();
                 p.GetNode<Sprite>("Damage2").Hide();
@@ -202,7 +202,8 @@ public class Main : Node
                 p.GetNode<Sprite>("Explosion").Show();
                 b.GetNode<AudioStreamPlayer>("impact").Play();
                 p.GetNode<AnimationPlayer>("Explosion/AnimationPlayer").Play("explosion");
-                p.ChangeState(Player_v2.States2.DEAD);
+//                p.ChangeState(Player_v2.States2.DEAD);
+                CallDeferred("p.ChangeState", Player_v2.States2.DEAD);
             }
             else
             {
