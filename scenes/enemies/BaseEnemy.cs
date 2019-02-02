@@ -52,4 +52,16 @@ public class BaseEnemy : KinematicBody2D
     {
         QueueFree();
     }
+    
+    private void _on_Shield_body_entered(object body)
+    {
+        if (body is Rock rock)
+        {
+            if (rock.IsInGroup("rocks"))
+            {
+                rock.GetNode<AudioStreamPlayer>("impact").Play();
+                rock.Explode(true);
+            }
+        }
+    }
 }

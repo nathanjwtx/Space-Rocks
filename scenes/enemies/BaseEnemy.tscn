@@ -1,74 +1,61 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/enemies/BaseEnemy.cs" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/EnemyPaths.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/explosion/Explosion.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/sounds/explosion_large_08.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/power_ups/shield1.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 
-custom_solver_bias = 0.0
 radius = 45.6978
 
-[node name="BaseEnemy" type="KinematicBody2D"]
+[sub_resource type="CapsuleShape2D" id=2]
 
-input_pickable = false
+radius = 27.1049
+height = 5.38472
+
+[node name="BaseEnemy" type="KinematicBody2D"]
 collision_layer = 16
 collision_mask = 15
-collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Pickable", "collision" ]
-EnemyBullet = null
-Speed = 0
-Health = 0
-Radar_Radius = 0.0
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
-
+[node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
-_sections_unfolded = [ "Animation", "Region", "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
-_sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="EnemyPaths" parent="." index="2" instance=ExtResource( 2 )]
+[node name="EnemyPaths" parent="." instance=ExtResource( 2 )]
 
-[node name="Radar" type="Area2D" parent="." index="3"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
+[node name="Radar" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 15
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Radar" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Radar"]
 
-_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+[node name="Explosion" parent="." instance=ExtResource( 3 )]
 
-[node name="Explosion" parent="." index="4" instance=ExtResource( 3 )]
-
-[node name="Explode" type="AudioStreamPlayer" parent="." index="5"]
-
+[node name="Explode" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Master"
+
+[node name="Shield" type="Area2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Shield"]
+position = Vector2( -0.312835, 0 )
+rotation = 1.5708
+scale = Vector2( 0.42639, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield"]
+position = Vector2( -3, 0 )
+rotation = 1.5708
+shape = SubResource( 2 )
 
 [connection signal="body_entered" from="Radar" to="." method="_on_Radar_body_entered"]
-
 [connection signal="body_exited" from="Radar" to="." method="_on_Radar_body_exited"]
-
 [connection signal="animation_finished" from="Explosion/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-
+[connection signal="body_entered" from="Shield" to="." method="_on_Shield_body_entered"]
 
 [editable path="Explosion"]
