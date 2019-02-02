@@ -3,41 +3,17 @@
 [ext_resource path="res://scenes/power_ups/PowerUp.cs" type="Script" id=1]
 
 [node name="PowerUp" type="RigidBody2D"]
-
-input_pickable = false
 collision_layer = 8
 collision_mask = 4
-mode = 0
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="." index="1"]
+[node name="Sprite" type="Sprite" parent="."]
 
-_sections_unfolded = [ "Visibility" ]
-
-[node name="SolidTimer" type="Timer" parent="." index="2"]
-
-process_mode = 1
-wait_time = 3.0
+[node name="SolidTimer" type="Timer" parent="."]
+wait_time = 10.0
 one_shot = true
 autostart = true
 
 [connection signal="timeout" from="SolidTimer" to="." method="_on_SolidTimer_timeout"]
-
-

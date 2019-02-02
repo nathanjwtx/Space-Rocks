@@ -15,176 +15,102 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 
-custom_solver_bias = 0.0
 radius = 52.2239
 height = 6.31609
 
 [node name="Player" type="RigidBody2D"]
-
 position = Vector2( 0.427185, 0 )
-input_pickable = false
 collision_layer = 4
 collision_mask = 58
-mode = 0
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
 linear_damp = 1.0
-angular_velocity = 0.0
 angular_damp = 5.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Pickable", "Transform" ]
 Engine_Power = 1500
 Spin_Power = 56000
 Bullet = ExtResource( 2 )
 FireRate = 0.25
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
-
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( 5, 0 )
-build_mode = 0
 polygon = PoolVector2Array( -12.5303, -23.3817, 2.84839, -25.2329, 1.13964, -12.9868, 12.0991, -5.50066, 18.7967, -4.01592, 19.0815, 4.24302, 11.3352, 5.54074, 1.85162, 12.6444, 2.99078, 24.8904, -12.3879, 23.0392, -13.5271, 11.078, -18.7335, 6.44349, -31.6498, 11.0267, -31.9971, 10.124, -32.0665, -9.945, -30.8165, -10.7783, -18.8029, -7.16729, -12.8151, -11.7053 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="Ship" type="Sprite" parent="." index="1"]
-
+[node name="Ship" type="Sprite" parent="."]
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -10 )
-_sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
-[node name="Damage1" type="Sprite" parent="." index="2"]
-
+[node name="Damage1" type="Sprite" parent="."]
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 offset = Vector2( 0, -10 )
-_sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="Damage2" type="Sprite" parent="." index="3"]
-
+[node name="Damage2" type="Sprite" parent="."]
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 offset = Vector2( 0, -10 )
-_sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="Damage3" type="Sprite" parent="." index="4"]
-
+[node name="Damage3" type="Sprite" parent="."]
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 6 )
 offset = Vector2( 0, -10 )
-_sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="Engine" type="Sprite" parent="." index="5"]
-
+[node name="Engine" type="Sprite" parent="."]
 position = Vector2( -25, 4.86768e-006 )
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 7 )
 offset = Vector2( 0, -10 )
 flip_v = true
-_sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="Thrust" type="Sprite" parent="." index="6"]
-
+[node name="Thrust" type="Sprite" parent="."]
 position = Vector2( -38, 7.39888e-006 )
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 8 )
 offset = Vector2( 0, -10 )
 flip_v = true
-_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
 
-[node name="Muzzle" type="Position2D" parent="." index="7"]
-
+[node name="Muzzle" type="Position2D" parent="."]
 position = Vector2( 35, 0 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="Explosion" parent="." index="8" instance=ExtResource( 9 )]
+[node name="Explosion" parent="." instance=ExtResource( 9 )]
 
-_sections_unfolded = [ "Animation", "Visibility" ]
-
-[node name="AnimationPlayer" parent="Explosion" index="0"]
-
-_sections_unfolded = [ "Playback Options" ]
-
-[node name="Timer" type="Timer" parent="." index="9"]
-
-process_mode = 1
-wait_time = 1.0
+[node name="Timer" type="Timer" parent="."]
 one_shot = true
 autostart = true
 
-[node name="InvTimer" type="Timer" parent="." index="10"]
-
-process_mode = 1
-wait_time = 5.0
+[node name="InvTimer" type="Timer" parent="."]
+wait_time = 10.0
 one_shot = true
-autostart = false
 
-[node name="Shield" type="Area2D" parent="." index="11"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
+[node name="Shield" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision" ]
 
-[node name="Sprite" type="Sprite" parent="Shield" index="0"]
-
+[node name="Sprite" type="Sprite" parent="Shield"]
 rotation = 1.5708
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 10 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield" index="1"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield"]
 shape = SubResource( 1 )
-_sections_unfolded = [ "Visibility" ]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="12"]
-
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
 volume_db = 1.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Master"
 
-[node name="PowerUpCollected" type="AudioStreamPlayer" parent="." index="13"]
-
+[node name="PowerUpCollected" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 volume_db = 1.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Master"
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
-
 [connection signal="animation_finished" from="Explosion/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-
 [connection signal="timeout" from="InvTimer" to="." method="_on_InvTimer_timeout"]
-
 [connection signal="body_entered" from="Shield" to="." method="_on_Shield_body_entered"]
-
 
 [editable path="Explosion"]

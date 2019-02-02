@@ -8,93 +8,65 @@
 
 [sub_resource type="Curve2D" id=1]
 
-bake_interval = 5.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 9.83607, 0, 0, 0, 0, 1014.15, 9.83607, 0, 0, 0, 0, 1014.15, 600, 0, 0, 0, 0, 0, 600, 0, 0, 0, 0, 0, 9.83607 )
 }
 
-[node name="Main" type="Node" index="0"]
-
+[node name="Main" type="Node"]
 script = ExtResource( 1 )
 RockScene = ExtResource( 2 )
 PowerUpScene = ExtResource( 3 )
 
-[node name="Background" type="Sprite" parent="." index="0"]
-
+[node name="Background" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
 centered = false
-_sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
 
-[node name="Player" parent="." index="1" instance=ExtResource( 4 )]
-
+[node name="Player" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
 contacts_reported = 1
 contact_monitor = true
 Spin_Power = 5000
 
 [node name="Explosion" parent="Player" index="8"]
-
 editor/display_folded = true
 
-[node name="RockPath" type="Path2D" parent="." index="2"]
-
-self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+[node name="RockPath" type="Path2D" parent="."]
 position = Vector2( 0, -10 )
 scale = Vector2( 1.00971, 1.01667 )
 curve = SubResource( 1 )
 
-[node name="RockSpawn" type="PathFollow2D" parent="RockPath" index="0"]
-
+[node name="RockSpawn" type="PathFollow2D" parent="RockPath"]
 position = Vector2( 0, 9.83607 )
-offset = 0.0
-h_offset = 0.0
-v_offset = 0.0
-rotate = true
-cubic_interp = true
-loop = true
-lookahead = 4.0
 
-[node name="Rocks" type="Node" parent="." index="3"]
+[node name="Rocks" type="Node" parent="."]
 
-[node name="HUD" parent="." index="4" instance=ExtResource( 5 )]
-
+[node name="HUD" parent="." instance=ExtResource( 5 )]
 editor/display_folded = true
 
 [node name="MarginContainer" parent="HUD" index="0"]
-
 editor/display_folded = true
 
-[node name="PowerUps" type="Node" parent="." index="5"]
+[node name="PowerUps" type="Node" parent="."]
 
-[node name="PowerUpTimer" type="Timer" parent="." index="6"]
-
-process_mode = 1
+[node name="PowerUpTimer" type="Timer" parent="."]
 wait_time = 0.01
 one_shot = true
-autostart = false
 
-[node name="EnemySpawnTimer" type="Timer" parent="." index="7"]
-
-process_mode = 1
+[node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
-autostart = false
 
-[node name="Enemies" type="Node" parent="." index="8"]
+[node name="Enemies" type="Node" parent="."]
 
 [connection signal="Dead" from="Player" to="." method="_on_Player_Dead"]
-
 [connection signal="Shoot" from="Player" to="." method="_on_Player_Shoot"]
-
 [connection signal="body_entered" from="Player" to="." method="_on_Player_body_entered"]
-
 [connection signal="StartGame" from="HUD" to="." method="_on_HUD_StartGame"]
-
 [connection signal="timeout" from="PowerUpTimer" to="." method="_on_PowerUpTimer_timeout"]
-
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]
 
-
 [editable path="Player"]
+
 [editable path="Player/Explosion"]
+
 [editable path="HUD"]

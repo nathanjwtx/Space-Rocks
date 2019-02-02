@@ -86,10 +86,10 @@ public class Main : Node
         _score = 0;
         HUD h = GetNode<HUD>("HUD");
         h.UpdateScore(_score);
-        Player_v2 p = GetNode<Player_v2>("Player");
+        Player_v2 player = GetNode<Player_v2>("Player");
         GetNode<Sprite>("Player/Ship").Show();
         GetNode<Sprite>("Player/Engine").Show();
-        p.Start();
+        player.Start();
         h.ShowMessage("Get Ready!");
         Timer mt = GetNode<Timer>("HUD/MessageTimer");
         await ToSignal(mt, "timeout");
@@ -102,31 +102,31 @@ public class Main : Node
         GetNode<Timer>("EnemySpawnTimer").Start();
         if (!_newGame)
         {
-            int r;
+            int rand;
             do
             {
-                r = _random.Next(0, 10);
-            } while (_prevBackground == r);
-            _prevBackground = r;
-            SetBackground(r);                        
+                rand = _random.Next(0, 10);
+            } while (_prevBackground == rand);
+            _prevBackground = rand;
+            SetBackground(rand);                        
         }
         _newGame = false;
-        Player_v2 p = GetNode<Player_v2>("Player");
+        Player_v2 player = GetNode<Player_v2>("Player");
         if (!Global.HardCore)
         {
             _hits = 0;
-            p.GetNode<Sprite>("Damage1").Hide();
-            p.GetNode<Sprite>("Damage2").Hide();
-            p.GetNode<Sprite>("Damage3").Hide();            
+            player.GetNode<Sprite>("Damage1").Hide();
+            player.GetNode<Sprite>("Damage2").Hide();
+            player.GetNode<Sprite>("Damage3").Hide();            
         }
         GetNode<HUD>("HUD").ShowMessage($"Wave {_level + 1}");
         for (int i = 0; i < _level + 1; i++)
         {
             SpawnRock(3);
         }
-        Timer t = GetNode<Timer>("PowerUpTimer");
-        t.WaitTime = _random.Next(3, 20);
-        t.Start();
+        Timer timer = GetNode<Timer>("PowerUpTimer");
+        timer.WaitTime = _random.Next(3, 20);
+        timer.Start();
     }
 
     private void SetBackground(int level)
@@ -149,11 +149,11 @@ public class Main : Node
     
     private void SpawnRock(int size, Vector2 pos, Vector2 velocity)
     {
-        var r = (Rock) RockScene.Instance();
-        r._screensize = _screenSize;
-        r.Start(pos, velocity, size, _random.Next(0, 4));
-        GetNode<Node>("Rocks").AddChild(r);
-        r.Connect("Boom", this, "_on_Rock_Boom");
+        var rock = (Rock) RockScene.Instance();
+        rock._screensize = _screenSize;
+        rock.Start(pos, velocity, size, _random.Next(0, 4));
+        GetNode<Node>("Rocks").AddChild(rock);
+        rock.Connect("Boom", this, "_on_Rock_Boom");
     }
 
     
@@ -190,36 +190,35 @@ public class Main : Node
     
     private void _on_Player_body_entered(Object body)
     {
-        Player_v2 p = GetNode<Player_v2>("Player");
-        if (body is Rock b)
+        Player_v2 player = GetNode<Player_v2>("Player");
+        if (body is Rock rock)
         {
             _hits++;
             if (_hits >= 4)
             {
-                p.GetNode<Sprite>("Damage1").Hide();
-                p.GetNode<Sprite>("Damage2").Hide();
-                p.GetNode<Sprite>("Damage3").Hide();
-                p.GetNode<Sprite>("Explosion").Show();
-                b.GetNode<AudioStreamPlayer>("impact").Play();
-                p.GetNode<AnimationPlayer>("Explosion/AnimationPlayer").Play("explosion");
-//                p.ChangeState(Player_v2.States2.DEAD);
-                CallDeferred("p.ChangeState", Player_v2.States2.DEAD);
+                player.GetNode<Sprite>("Damage1").Hide();
+                player.GetNode<Sprite>("Damage2").Hide();
+                player.GetNode<Sprite>("Damage3").Hide();
+                player.GetNode<Sprite>("Explosion").Show();
+                rock.GetNode<AudioStreamPlayer>("impact").Play();
+                player.GetNode<AnimationPlayer>("Explosion/AnimationPlayer").Play("explosion");
+                player.ChangeState(Player_v2.States2.DEAD);
             }
             else
             {
-                b.GetNode<AudioStreamPlayer>("impact").Play();
+                rock.GetNode<AudioStreamPlayer>("impact").Play();
                 GetNode<Sprite>($"Player/Damage{_hits}").Show();
             }
         }
 
         if (body is PowerUp pUp)
         {
-            p.GetNode<AudioStreamPlayer>("PowerUpCollected").Play();
+            player.GetNode<AudioStreamPlayer>("PowerUpCollected").Play();
             if (pUp.PowerUpType == "shield")
             {
-                p.GetNode<Area2D>("Shield").Show();
-                p.Shielded = true;
-                p.ChangeState(Player_v2.States2.INVULNERABLE);    
+                player.GetNode<Area2D>("Shield").Show();
+                player.Shielded = true;
+                player.ChangeState(Player_v2.States2.INVULNERABLE);    
             }
             else if (pUp.PowerUpType == "repair" && _hits > 0)
             {
@@ -249,20 +248,18 @@ public class Main : Node
  
     private void _on_PowerUpTimer_timeout()
     {
-        PowerUp p = (PowerUp) PowerUpScene.Instance();
-        GetNode<Node>("PowerUps").AddChild(p);
-        p.LoadPowerUp();
+        PowerUp power = (PowerUp) PowerUpScene.Instance();
+        GetNode<Node>("PowerUps").AddChild(power);
+        power.LoadPowerUp();
         _powerUp = false;
     }
     
     private void _on_EnemySpawnTimer_timeout()
     {
-//        Print("enemy");
         PackedScene s = (PackedScene) ResourceLoader.Load(_enemyShips[_random.Next(0, _enemyShips.Count)]);
         Node e = s.Instance();
         GetNode<Node>("Enemies").AddChild(e);
         e.Connect("EnemyBoom", this, "_on_EnemyBoom");
-//        AddChild(e);
     }
 
     private void _on_EnemyBoom(int score)

@@ -78,32 +78,32 @@ public class Player_v2 : RigidBody2D
         SetAppliedTorque(Spin_Power * _rotationDir);
         Transform2D xform = physics_state.GetTransform();
         Vector2 origin;
-        Transform2D wibble;
+        Transform2D newTransform;
         if (xform.Origin.x > _screensize.x)
         {
             origin = new Vector2(0, xform.Origin.y);
-            wibble = new Transform2D(xform.x, xform.y, origin);
-            physics_state.SetTransform(wibble);
+            newTransform = new Transform2D(xform.x, xform.y, origin);
+            physics_state.SetTransform(newTransform);
         }
         if (xform.Origin.x < 0)
         {
             origin = new Vector2(_screensize.x, xform.Origin.y);
-            wibble = new Transform2D(xform.x, xform.y, origin);
-            physics_state.SetTransform(wibble);
+            newTransform = new Transform2D(xform.x, xform.y, origin);
+            physics_state.SetTransform(newTransform);
         }
 
         if (xform.Origin.y > _screensize.y)
         {
             origin = new Vector2(xform.Origin.x, 0);
-            wibble = new Transform2D(xform.x, xform.y, origin);
-            physics_state.SetTransform(wibble);
+            newTransform = new Transform2D(xform.x, xform.y, origin);
+            physics_state.SetTransform(newTransform);
         }
 
         if (xform.Origin.y < 0)
         {
             origin = new Vector2(xform.Origin.x, _screensize.y);
-            wibble = new Transform2D(xform.x, xform.y, origin);
-            physics_state.SetTransform(wibble);
+            newTransform = new Transform2D(xform.x, xform.y, origin);
+            physics_state.SetTransform(newTransform);
         }
     }
 
@@ -115,30 +115,33 @@ public class Player_v2 : RigidBody2D
         switch (state)
         {
                 case States2.INIT:
-                    collision2D.Disabled = true;
+                //                    collision2D.Disabled = true;
+                    collision2D.SetDeferred("disabled", true);
                     ship.Modulate = new Color(ship.Modulate.r, ship.Modulate.g, ship.Modulate.b, 0.5f);
                     engine.Modulate = new Color(engine.Modulate.r, engine.Modulate.g, engine.Modulate.b, 0.5f);
                     break;
                 case States2.ALIVE:
-                    collision2D.Disabled = false;
+//                    collision2D.Disabled = false;
+                    collision2D.SetDeferred("disabled", false);
                     Shielded = false;
                     ship.Modulate = new Color(ship.Modulate.r, ship.Modulate.g, ship.Modulate.b);
                     engine.Modulate = new Color(engine.Modulate.r, engine.Modulate.g, engine.Modulate.b);
                     break;
                 case States2.INVULNERABLE:
-                    collision2D.Disabled = true;
+//                    collision2D.Disabled = true;
+                    collision2D.SetDeferred("disabled", true);
                     ship.Modulate = new Color(ship.Modulate.r, ship.Modulate.g, ship.Modulate.b, 0.5f);
                     engine.Modulate = new Color(engine.Modulate.r, engine.Modulate.g, engine.Modulate.b, 0.5f);
                     GetNode<Timer>("InvTimer").Start();
                     break;
                 case States2.DEAD:
-                    collision2D.Disabled = true;
+//                    collision2D.Disabled = true;
+                    collision2D.SetDeferred("disabled", true);
                     ship.Hide();
                     engine.Hide();
                     LinearVelocity = new Vector2(0, 0);
                     break;
         }
-
         _state = state;
     }
 
@@ -206,6 +209,7 @@ public class Player_v2 : RigidBody2D
     
     private void _on_AnimationPlayer_animation_finished(String anim_name)
     {
+        GD.Print("finsihed");
         GetNode<Sprite>("Explosion").Hide();
         Hide();
         EmitSignal("Dead");
