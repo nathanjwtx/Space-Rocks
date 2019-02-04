@@ -5,45 +5,29 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 
-custom_solver_bias = 0.0
 radius = 1.17788
 height = 25.5234
 
 [node name="Area2D" type="Area2D" groups=[
 "rocks",
 ]]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
 collision_layer = 32
 collision_mask = 15
-audio_bus_override = false
-audio_bus_name = "Master"
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
-Speed = 0
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
-
+[node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="2"]
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
-rect = Rect2( -10, -10, 20, 20 )
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.01
 
 [connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]
-
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
-
-
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

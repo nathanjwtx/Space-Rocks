@@ -39,4 +39,9 @@ public class Enemy_Bullet : Area2D
             }
         }
     }
+
+    private void _on_Timer_timeout()
+    {
+        QueueFree();
+    }
 }

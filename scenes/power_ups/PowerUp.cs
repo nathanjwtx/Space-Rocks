@@ -56,7 +56,6 @@ public class PowerUp : RigidBody2D
 
     public void PlayCollected()
     {
-        GD.Print("collected");
         GetNode<AudioStreamPlayer>("AudioStreamPlayer").Play();
     }
 }

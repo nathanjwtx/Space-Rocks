@@ -74,7 +74,11 @@ public class Enemy_Blue : BaseEnemy
     
     private void _on_Enemy_Blue_EnemyShoot(PackedScene bullet, Vector2 pos, float dir)
     {
+        // refactor this to BaseEnemy
         var eb = (Enemy_Bullet) bullet.Instance();
+        Timer ebTimer = eb.GetNode<Timer>("Timer");
+        ebTimer.WaitTime = 0.5f;
+        ebTimer.Start();
         eb.Start(pos, dir, _bulletSpeed);
         AddChild(eb);
     }
