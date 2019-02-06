@@ -7,11 +7,13 @@
 [sub_resource type="DynamicFont" id=1]
 
 size = 10
+use_filter = false
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 
 size = 80
+use_filter = false
 font_data = ExtResource( 3 )
 
 [node name="StartPage" type="CanvasLayer"]

@@ -24,11 +24,21 @@ public class BaseEnemy : KinematicBody2D
     {
         _random = new Random();
         GetNode<Sprite>("Explosion").Hide();
-        // remember to update the random number if new paths added
-        Path2D p = GetNode<Path2D>($"EnemyPaths/path{_random.Next(1, 5)}");
-        Follow = new PathFollow2D();
-        p.AddChild(Follow);
-        Follow.Loop = false;
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        base._PhysicsProcess(delta);
+        Follow.SetOffset(Follow.GetOffset() + Speed * delta);
+        if (Follow.UnitOffset > 1)
+        {
+            QueueFree();
+        }
+    }
+
+    public void SetupPath(PathFollow2D pathFollow2D)
+    {
+        Follow = pathFollow2D;
     }
 
     public void SetUpRadar(float radius)

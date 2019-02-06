@@ -6,27 +6,19 @@
 [ext_resource path="res://assets/ships/ufoBlue.png" type="Texture" id=4]
 
 [node name="Enemy_Blue" instance=ExtResource( 1 )]
-
 script = ExtResource( 2 )
 EnemyBullet = ExtResource( 3 )
-Speed = 50
+Speed = 200
 Radar_Radius = 200.0
 _bulletSpeed = 700
 
 [node name="Sprite" parent="." index="0"]
-
 texture = ExtResource( 4 )
 
 [node name="Timer" type="Timer" parent="." index="4"]
-
-process_mode = 1
 wait_time = 0.5
-one_shot = false
-autostart = false
 
 [connection signal="EnemyShoot" from="." to="." method="_on_Enemy_Blue_EnemyShoot"]
-
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-
 
 [editable path="Explosion"]

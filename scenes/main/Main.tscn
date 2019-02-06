@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/main/Main.cs" type="Script" id=1]
 [ext_resource path="res://scenes/rock/Rock.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/power_ups/PowerUp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/player/Player_v2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/hud/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/enemies/EnemyPaths.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -31,6 +32,7 @@ Spin_Power = 5000
 editor/display_folded = true
 
 [node name="RockPath" type="Path2D" parent="."]
+editor/display_folded = true
 position = Vector2( 0, -10 )
 scale = Vector2( 1.00971, 1.01667 )
 curve = SubResource( 1 )
@@ -56,7 +58,12 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
-[node name="Enemies" type="Node" parent="."]
+[node name="EnemyPaths" parent="." instance=ExtResource( 6 )]
+editor/display_folded = true
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2( 0.427185, 0 )
+curve = null
 
 [connection signal="Dead" from="Player" to="." method="_on_Player_Dead"]
 [connection signal="Shoot" from="Player" to="." method="_on_Player_Shoot"]
@@ -70,3 +77,5 @@ one_shot = true
 [editable path="Player/Explosion"]
 
 [editable path="HUD"]
+
+[editable path="EnemyPaths"]

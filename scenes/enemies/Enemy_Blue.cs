@@ -15,24 +15,7 @@ public class Enemy_Blue : BaseEnemy
     {
         base._Ready();
         _rand = new Random();
-//        GD.Print("blue");
         SetUpRadar(Radar_Radius);
-    }
-    
-    public override void _Process(float delta)
-    {
-        base._Process(delta);   
-        Control(delta);
-    }
-
-    public void Control(float delta)
-    {
-        Follow.SetOffset(Follow.GetOffset() + Speed * delta);
-        Position = Follow.GlobalPosition;
-        if (Follow.UnitOffset > 1)
-        {
-            QueueFree();
-        }
     }
 
     private void Shoot()
@@ -53,7 +36,7 @@ public class Enemy_Blue : BaseEnemy
     {
         if (body is Player_v2 player)
         {
-            GD.Print("p");
+            GD.Print("enemy_blue sees player");
             Target = player;
             GetNode<Timer>("Timer").Start();
         }

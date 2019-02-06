@@ -2,6 +2,7 @@ using Godot;
 using static Godot.GD;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Object = Godot.Object;
 
 public class Main : Node
@@ -23,6 +24,7 @@ public class Main : Node
     private Sprite _background;
     private int _prevBackground;
     private HUD _hud;
+    private Node _enemyNode;
     
     private List<string> backgrounds = new List<string>
     {
@@ -67,6 +69,7 @@ public class Main : Node
             _level++;
             NewLevel();
         }
+
     }
 
     private void Reset()
@@ -256,10 +259,27 @@ public class Main : Node
     
     private void _on_EnemySpawnTimer_timeout()
     {
+        // Create path and pathfollow
+        int paths = GetNode<Node>("EnemyPaths").GetChildCount();
+        Path2D randomPath = GetNode<Path2D>($"EnemyPaths/path{_random.Next(1, paths + 1)}");
+        Path2D path = GetNode<Path2D>("Path2D");
+        path.SetCurve(randomPath.Curve);
+        PathFollow2D pathFollow2D = new PathFollow2D();
+        GetNode<Path2D>("Path2D").AddChild(pathFollow2D);
+        pathFollow2D.Rotate = true;
+        pathFollow2D.Loop = false;
+
+        // Spawn enemy and send pathfollow to BaseEnemy for movement purposes
         PackedScene s = (PackedScene) ResourceLoader.Load(_enemyShips[_random.Next(0, _enemyShips.Count)]);
-        Node e = s.Instance();
-        GetNode<Node>("Enemies").AddChild(e);
-        e.Connect("EnemyBoom", this, "_on_EnemyBoom");
+        _enemyNode = s.Instance();
+        if (_enemyNode != null && _enemyNode.HasMethod("SetupPath"))
+        {
+            _enemyNode.Call("SetupPath", pathFollow2D);
+        }
+        pathFollow2D.AddChild(_enemyNode);
+
+        // Connect enemy explosion signal
+        _enemyNode.Connect("EnemyBoom", this, "_on_EnemyBoom");
     }
 
     private void _on_EnemyBoom(int score)

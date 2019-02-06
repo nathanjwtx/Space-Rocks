@@ -11,8 +11,6 @@ public class PowerUp : RigidBody2D
     public string PowerUpType;
 
     private System.Collections.Generic.Dictionary<string, string> _powerUpSprites = new System.Collections.Generic.Dictionary<string, string>();
-
-   
     
     public override void _Ready()
     {
