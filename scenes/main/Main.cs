@@ -194,34 +194,22 @@ public class Main : Node
     {
         Player_v2 player = GetNode<Player_v2>("Player");
         
-        Print(body.GetType().Name);
+        Print(Global.Hits);
         if (body is Enemy_Bullet enemyBullet)
         {
-            Print("eb");
             if (enemyBullet.BulletType == "blue")
             {
-                GD.Print("blue bullet");
+                Global.Hits = 1;
+                UpdateShipHitStatus(player);
             }
+            enemyBullet.QueueFree();
         }
         
         if (body is Rock rock)
         {
             Global.Hits = 1;
-            if (Global.Hits >= 4)
-            {
-                player.GetNode<Sprite>("Damage1").Hide();
-                player.GetNode<Sprite>("Damage2").Hide();
-                player.GetNode<Sprite>("Damage3").Hide();
-                player.GetNode<Sprite>("Explosion").Show();
-                rock.GetNode<AudioStreamPlayer>("impact").Play();
-                player.GetNode<AnimationPlayer>("Explosion/AnimationPlayer").Play("explosion");
-                player.ChangeState(Player_v2.States2.DEAD);
-            }
-            else
-            {
-                rock.GetNode<AudioStreamPlayer>("impact").Play();
-                GetNode<Sprite>($"Player/Damage{Global.Hits}").Show();
-            }
+            rock.GetNode<AudioStreamPlayer>("impact").Play();
+            UpdateShipHitStatus(player);
         }
 
         if (body is PowerUp pUp)
@@ -251,7 +239,26 @@ public class Main : Node
             pUp.QueueFree();
         }
     }
-    
+
+    private void UpdateShipHitStatus(Player_v2 player)
+    {
+        if (Global.Hits >= 4)
+        {
+            player.GetNode<Sprite>("Damage1").Hide();
+            player.GetNode<Sprite>("Damage2").Hide();
+            player.GetNode<Sprite>("Damage3").Hide();
+            player.GetNode<Sprite>("Explosion").Show();
+            
+            player.GetNode<AnimationPlayer>("Explosion/AnimationPlayer").Play("explosion");
+            player.ChangeState(Player_v2.States2.DEAD);
+        }
+        else
+        {
+//            rock.GetNode<AudioStreamPlayer>("impact").Play();
+            GetNode<Sprite>($"Player/Damage{Global.Hits}").Show();
+        }
+    }
+
     private void _on_Player_Dead()
     {
         _playing = false;
@@ -296,7 +303,7 @@ public class Main : Node
     {
         UpdateScore(score);
     }
-
+    
     private void UpdateScore(int score)
     {
         Global.Score = score;

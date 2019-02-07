@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Runtime.CompilerServices;
 
-public class Enemy_Bullet : Area2D
+public class Enemy_Bullet : RigidBody2D
 {
     [Export] private int Speed;
 
@@ -32,9 +32,9 @@ public class Enemy_Bullet : Area2D
         QueueFree();
     }
 	
-    private void _on_Area2D_body_entered(Godot.Object body)
+    private void _on_RigidBody2D_body_entered(object body)
     {
-//        GD.Print($"Bullet: {body.GetType().Name}");
+        GD.Print($"Bullet: {body.GetType().Name}");
         if (body is Rock rock)
         {
             if (rock.IsInGroup("rocks"))
@@ -45,8 +45,9 @@ public class Enemy_Bullet : Area2D
         }
         else if (body is Player_v2 playerV2)
         {
-//            playerV2.
+            
             GD.Print("Hit plater");
+            EmitSignal("HitPlayer", "blue");
         }
     }
 
@@ -55,3 +56,6 @@ public class Enemy_Bullet : Area2D
         QueueFree();
     }
 }
+
+
+

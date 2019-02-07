@@ -16,7 +16,7 @@ _bulletSpeed = 700
 texture = ExtResource( 4 )
 
 [node name="Timer" type="Timer" parent="." index="4"]
-wait_time = 0.5
+wait_time = 2.0
 
 [node name="BlueBullets" type="Node" parent="." index="8"]
 

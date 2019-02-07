@@ -8,7 +8,7 @@
 radius = 1.17788
 height = 25.5234
 
-[node name="Area2D" type="Area2D" groups=[
+[node name="RigidBody2D" type="RigidBody2D" groups=[
 "rocks",
 ]]
 collision_layer = 32
@@ -28,6 +28,6 @@ shape = SubResource( 1 )
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.01
 
-[connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_RigidBody2D_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
