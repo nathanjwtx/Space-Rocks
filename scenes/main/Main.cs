@@ -51,13 +51,11 @@ public class Main : Node
     
     public override void _Ready()
     {
-        _global = (Global) GetNode("/root/Global");
         _random = new Random();
         _screenSize = GetViewport().GetVisibleRect().Size;
         _prevBackground = _random.Next(0, 10);
         SetBackground(_prevBackground);
         _newGame = true;
-        _hud = GetNode<HUD>("HUD");
     }
 
 
@@ -74,9 +72,11 @@ public class Main : Node
 
     private void Reset()
     {
+        // Reset appears to be called prior to _Ready hence the initialisation of variables
+        _hud = GetNode<HUD>("HUD");
         _level = 0;
         _hits = 0;
-//        _global.Hits = 0;
+        Global.Hits = 0;
         _powerUp = true;
         var rocks = GetNode<Node>("Rocks").GetChildren();
         foreach (var rock in rocks)
@@ -88,13 +88,11 @@ public class Main : Node
     private async void NewGame()
     {
         _score = 0;
-        HUD h = GetNode<HUD>("HUD");
-        h.UpdateScore(_score);
         Player_v2 player = GetNode<Player_v2>("Player");
         GetNode<Sprite>("Player/Ship").Show();
         GetNode<Sprite>("Player/Engine").Show();
         player.Start();
-        h.ShowMessage("Get Ready!");
+        _hud.ShowMessage("Get Ready!");
         Timer mt = GetNode<Timer>("HUD/MessageTimer");
         await ToSignal(mt, "timeout");
         _playing = true;
@@ -116,10 +114,9 @@ public class Main : Node
         }
         _newGame = false;
         Player_v2 player = GetNode<Player_v2>("Player");
-        if (!_global.Hardcore)
+        if (!Global.Hardcore)
         {
-            _hits = 0;
-//            _global.Hits = 0;
+            Global.Hits = 0;
             player.GetNode<Sprite>("Damage1").Hide();
             player.GetNode<Sprite>("Damage2").Hide();
             player.GetNode<Sprite>("Damage3").Hide();            
@@ -209,10 +206,8 @@ public class Main : Node
         
         if (body is Rock rock)
         {
-            _hits++;
-//            _global.Hits = 1;
-            if (_hits >= 4)
-//            if (_global.Hits >= 4)
+            Global.Hits = 1;
+            if (Global.Hits >= 4)
             {
                 player.GetNode<Sprite>("Damage1").Hide();
                 player.GetNode<Sprite>("Damage2").Hide();
@@ -225,8 +220,7 @@ public class Main : Node
             else
             {
                 rock.GetNode<AudioStreamPlayer>("impact").Play();
-//                GetNode<Sprite>($"Player/Damage{_global.Hits}").Show();
-                GetNode<Sprite>($"Player/Damage{_hits}").Show();
+                GetNode<Sprite>($"Player/Damage{Global.Hits}").Show();
             }
         }
 
@@ -239,22 +233,18 @@ public class Main : Node
                 player.Shielded = true;
                 player.ChangeState(Player_v2.States2.INVULNERABLE);    
             }
-            else if (pUp.PowerUpType == "repair" && _global.Hits > 0)
+            else if (pUp.PowerUpType == "repair" && Global.Hits > 0)
             {
-                if (_global.Hits == 1)
-//                if (_hits == 1)
+                if (Global.Hits == 1)
                 {
-                    GetNode<Sprite>($"Player/Damage{_global.Hits}").Hide();
-                    _global.Hits = -1;
-//                    GetNode<Sprite>($"Player/Damage{_hits}").Hide();
-//                    _hits--;
+                    GetNode<Sprite>($"Player/Damage{Global.Hits}").Hide();
+                    Global.Hits = -1;
                 }
-                else if (_global.Hits > 1)
-//                else if (_hits > 1)
+                else if (Global.Hits > 1)
                 {
-                    GetNode<Sprite>($"Player/Damage{_global.Hits}").Hide();
-                    _global.Hits = -1;
-                    GetNode<Sprite>($"Player/Damage{_global.Hits}").Show();   
+                    GetNode<Sprite>($"Player/Damage{Global.Hits}").Hide();
+                    Global.Hits = -1;
+                    GetNode<Sprite>($"Player/Damage{Global.Hits}").Show();   
                 }
             }
             
@@ -309,7 +299,7 @@ public class Main : Node
 
     private void UpdateScore(int score)
     {
-        _global.Score = score;
-        _hud.UpdateScore(_global.Score);        
+        Global.Score = score;
+        _hud.UpdateScore();        
     }
 }

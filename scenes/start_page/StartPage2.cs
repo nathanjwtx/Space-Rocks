@@ -34,6 +34,6 @@ public class StartPage2 : CanvasLayer
 
     private void _on_CheckButton_toggled(bool buttonPressed)
     {
-        _global.Hardcore = buttonPressed;
+        Global.Hardcore = buttonPressed;
     }
 }

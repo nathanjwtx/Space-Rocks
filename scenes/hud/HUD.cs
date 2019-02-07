@@ -6,22 +6,11 @@ public class HUD : CanvasLayer
 {
     [Signal]
     delegate void StartGame();
-
-    public bool Playing;
-    private int _score;
-    private Global _global;
     
     public override void _Ready()
     {
         // send start game signal
-        _global = (Global) GetNode("/root/Global");
         EmitSignal("StartGame");
-    }
-
-    public override void _Process(float delta)
-    {
-        base._Process(delta);
-//        GetNode<Label>("MarginContainer/HBoxContainer/HitsLabel").Text = _global.Hits.ToString();
     }
 
     public void ShowMessage(string message)
@@ -32,10 +21,9 @@ public class HUD : CanvasLayer
         GetNode<Timer>("MessageTimer").Start();
     }
 
-    public void UpdateScore(int value)
+    public void UpdateScore()
     {
-        _score += value;
-        GetNode<Label>("MarginContainer/HBoxContainer/ScoreLabel").Text = value.ToString();
+        GetNode<Label>("MarginContainer/HBoxContainer/ScoreLabel").Text = Global.Score.ToString();
     }
 
     public void GameOver()

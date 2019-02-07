@@ -3,13 +3,13 @@ using System;
 
 public class GameOverPage : CanvasLayer
 {
-    private Global _global;
+//    private Global _global;
 
     public override void _Ready()
     {
-        _global = GetNode<Global>("/root/Global");
+//        _global = GetNode<Global>("/root/Global");
         GetNode<Label>("MarginContainer/GameOver").Text = "It's Game Over man! It's Game Over!";
-        GetNode<Label>("MarginContainer2/FinalScore").Text = $"Final score: {_global.Score.ToString()}";
+        GetNode<Label>("MarginContainer2/FinalScore").Text = $"Final score: {Global.Score.ToString()}";
     }
 
     private void _on_Restart_pressed()
