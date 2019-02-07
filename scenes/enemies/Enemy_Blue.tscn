@@ -8,7 +8,7 @@
 [node name="Enemy_Blue" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 EnemyBullet = ExtResource( 3 )
-Speed = 200
+Speed = 30
 Radar_Radius = 200.0
 _bulletSpeed = 700
 
@@ -17,6 +17,8 @@ texture = ExtResource( 4 )
 
 [node name="Timer" type="Timer" parent="." index="4"]
 wait_time = 0.5
+
+[node name="BlueBullets" type="Node" parent="." index="8"]
 
 [connection signal="EnemyShoot" from="." to="." method="_on_Enemy_Blue_EnemyShoot"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -59,7 +59,6 @@
     <Compile Include="scenes\enemies\Enemy_Yellow.cs" />
     <Compile Include="scenes\game_over\GameOverPage.cs" />
     <Compile Include="scenes\hud\HUD.cs" />
-    <Compile Include="scenes\Icon.cs" />
     <Compile Include="scenes\main\Main.cs" />
     <Compile Include="scenes\player\Bullet.cs" />
     <Compile Include="scenes\player\Player_v2.cs" />

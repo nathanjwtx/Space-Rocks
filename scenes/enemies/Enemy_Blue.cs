@@ -25,8 +25,8 @@ public class Enemy_Blue : BaseEnemy
         {
             Vector2 dir = Target.GlobalPosition - GlobalPosition;
             Vector2 pos = new Vector2(0, 0);
-//        float f = _rand.Next((int) -0.1, (int) 0.11);
-//        dir = dir.Rotated(f);
+//            float f = _rand.Next((int) -0.1, (int) 0.11);
+//            dir = dir.Rotated(f);
             var bullet = EnemyBullet;
             EmitSignal("EnemyShoot", bullet, pos, dir.Angle());    
         }
@@ -40,11 +40,11 @@ public class Enemy_Blue : BaseEnemy
             Target = player;
             GetNode<Timer>("Timer").Start();
         }
-        else if (body is Rock rock && Target == null)
-        {
-            Target = rock;
-            GetNode<Timer>("Timer").Start();
-        }
+//        else if (body is Rock rock && Target == null)
+//        {
+//            Target = rock;
+//            GetNode<Timer>("Timer").Start();
+//        }
     }
     
     private void _on_Radar_body_exited(Godot.Object body)
@@ -59,10 +59,11 @@ public class Enemy_Blue : BaseEnemy
     {
         // refactor this to BaseEnemy
         var eb = (Enemy_Bullet) bullet.Instance();
+//        GetNode<Node>("BlueBullets").AddChild(eb);
         Timer ebTimer = eb.GetNode<Timer>("Timer");
         ebTimer.WaitTime = 0.5f;
         ebTimer.Start();
-        eb.Start(pos, dir, _bulletSpeed);
+        eb.Start(pos, dir, _bulletSpeed, "blue");
         AddChild(eb);
     }
     

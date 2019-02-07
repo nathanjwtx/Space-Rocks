@@ -194,6 +194,15 @@ public class Main : Node
     private void _on_Player_body_entered(Object body)
     {
         Player_v2 player = GetNode<Player_v2>("Player");
+        if (body is Enemy_Bullet enemyBullet)
+        {
+            Print("eb");
+            if (enemyBullet.BulletType == "blue")
+            {
+                GD.Print("blue bullet");
+            }
+        }
+        
         if (body is Rock rock)
         {
             _hits++;
