@@ -4,11 +4,12 @@ using System;
 public class Global : Node
 {
     private int _score;
-    private static bool _hardcore;
+    private bool _hardcore;
+    private int _hits;
 
     public override void _Ready()
     {
-
+        Hits = 0;
     }
 
     public override void _Process(float delta)
@@ -20,17 +21,14 @@ public class Global : Node
         }
     }
 
-    public int Score => _score;
+    public int Hits { get => _hits; set => _hits += value; }
+    
+    public int Score { get => _score; set => _score += value; }
 
-    public static bool HardCore => _hardcore;
+    public bool Hardcore { get => _hardcore; set => _hardcore = value; }
 
-    public void UpdateScore(int value)
-    {
-        _score += value;
-    }
-
-    public static void SetHardcore(bool value)
-    {
-        _hardcore = value;
-    }
+//    public static void SetHardcore(bool value)
+//    {
+//        _hardcore = value;
+//    }
 }

@@ -76,6 +76,7 @@ public class Main : Node
     {
         _level = 0;
         _hits = 0;
+//        _global.Hits = 0;
         _powerUp = true;
         var rocks = GetNode<Node>("Rocks").GetChildren();
         foreach (var rock in rocks)
@@ -115,9 +116,10 @@ public class Main : Node
         }
         _newGame = false;
         Player_v2 player = GetNode<Player_v2>("Player");
-        if (!Global.HardCore)
+        if (!_global.Hardcore)
         {
             _hits = 0;
+//            _global.Hits = 0;
             player.GetNode<Sprite>("Damage1").Hide();
             player.GetNode<Sprite>("Damage2").Hide();
             player.GetNode<Sprite>("Damage3").Hide();            
@@ -194,6 +196,8 @@ public class Main : Node
     private void _on_Player_body_entered(Object body)
     {
         Player_v2 player = GetNode<Player_v2>("Player");
+        
+        Print(body.GetType().Name);
         if (body is Enemy_Bullet enemyBullet)
         {
             Print("eb");
@@ -206,7 +210,9 @@ public class Main : Node
         if (body is Rock rock)
         {
             _hits++;
+//            _global.Hits = 1;
             if (_hits >= 4)
+//            if (_global.Hits >= 4)
             {
                 player.GetNode<Sprite>("Damage1").Hide();
                 player.GetNode<Sprite>("Damage2").Hide();
@@ -219,6 +225,7 @@ public class Main : Node
             else
             {
                 rock.GetNode<AudioStreamPlayer>("impact").Play();
+//                GetNode<Sprite>($"Player/Damage{_global.Hits}").Show();
                 GetNode<Sprite>($"Player/Damage{_hits}").Show();
             }
         }
@@ -232,18 +239,22 @@ public class Main : Node
                 player.Shielded = true;
                 player.ChangeState(Player_v2.States2.INVULNERABLE);    
             }
-            else if (pUp.PowerUpType == "repair" && _hits > 0)
+            else if (pUp.PowerUpType == "repair" && _global.Hits > 0)
             {
-                if (_hits == 1)
+                if (_global.Hits == 1)
+//                if (_hits == 1)
                 {
-                    GetNode<Sprite>($"Player/Damage{_hits}").Hide();
-                    _hits--;
+                    GetNode<Sprite>($"Player/Damage{_global.Hits}").Hide();
+                    _global.Hits = -1;
+//                    GetNode<Sprite>($"Player/Damage{_hits}").Hide();
+//                    _hits--;
                 }
-                else if (_hits > 1)
+                else if (_global.Hits > 1)
+//                else if (_hits > 1)
                 {
-                    GetNode<Sprite>($"Player/Damage{_hits}").Hide();
-                    _hits--;
-                    GetNode<Sprite>($"Player/Damage{_hits}").Show();   
+                    GetNode<Sprite>($"Player/Damage{_global.Hits}").Hide();
+                    _global.Hits = -1;
+                    GetNode<Sprite>($"Player/Damage{_global.Hits}").Show();   
                 }
             }
             
@@ -298,7 +309,7 @@ public class Main : Node
 
     private void UpdateScore(int score)
     {
-        _global.UpdateScore(score);
+        _global.Score = score;
         _hud.UpdateScore(_global.Score);        
     }
 }

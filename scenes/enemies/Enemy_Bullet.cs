@@ -34,6 +34,7 @@ public class Enemy_Bullet : Area2D
 	
     private void _on_Area2D_body_entered(Godot.Object body)
     {
+//        GD.Print($"Bullet: {body.GetType().Name}");
         if (body is Rock rock)
         {
             if (rock.IsInGroup("rocks"))
@@ -45,6 +46,7 @@ public class Enemy_Bullet : Area2D
         else if (body is Player_v2 playerV2)
         {
 //            playerV2.
+            GD.Print("Hit plater");
         }
     }
 

@@ -4,12 +4,13 @@ using System;
 public class StartPage2 : CanvasLayer
 {
     private string _mainPage = "res://scenes/main/Main.tscn";
+    private Global _global;
     
     public override void _Ready()
     {
         // Called every time the node is added to the scene.
         // Initialization here
-        
+        _global = (Global) GetNode("/root/Global");
     }
 
     public override void _Process(float delta)
@@ -33,6 +34,6 @@ public class StartPage2 : CanvasLayer
 
     private void _on_CheckButton_toggled(bool buttonPressed)
     {
-        Global.SetHardcore(true);
+        _global.Hardcore = buttonPressed;
     }
 }

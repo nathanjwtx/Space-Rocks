@@ -9,11 +9,19 @@ public class HUD : CanvasLayer
 
     public bool Playing;
     private int _score;
+    private Global _global;
     
     public override void _Ready()
     {
         // send start game signal
+        _global = (Global) GetNode("/root/Global");
         EmitSignal("StartGame");
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+//        GetNode<Label>("MarginContainer/HBoxContainer/HitsLabel").Text = _global.Hits.ToString();
     }
 
     public void ShowMessage(string message)
