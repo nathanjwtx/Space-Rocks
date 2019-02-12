@@ -194,7 +194,7 @@ public class Main : Node
     {
         Player_v2 player = GetNode<Player_v2>("Player");
         
-        Print(Global.Hits);
+//        Print(Global.Hits);
         if (body is Enemy_Bullet enemyBullet)
         {
             if (enemyBullet.BulletType == "blue")

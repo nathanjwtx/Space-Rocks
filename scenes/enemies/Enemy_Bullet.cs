@@ -13,11 +13,13 @@ public class Enemy_Bullet : RigidBody2D
 
     public string BulletType { get => _bulletType; set => _bulletType = value; }
 
-    public void Start(Vector2 pos, float dir, int speed, string type)
+    public void Start(Vector2 pos, float dir, int speed, string type, float bulletAngle)
     {
         BulletType = type;
         GlobalPosition = pos;
-        Rotation = dir;
+//        Rotation = dir;
+        GetNode<Sprite>("Sprite").RotationDegrees = bulletAngle;
+//        GD.Print(bulletAngle);
         _velocity = new Vector2(speed, 0).Rotated(dir);
     }
 

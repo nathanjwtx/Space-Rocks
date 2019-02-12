@@ -25,10 +25,12 @@ public class Enemy_Blue : BaseEnemy
         {
             Vector2 dir = Target.GlobalPosition - GlobalPosition;
             Vector2 pos = new Vector2(0, 0);
+            float bulletAngle = (float) (dir.Normalized().Angle() * 180 / Math.PI);
 //            float f = _rand.Next((int) -0.1, (int) 0.11);
 //            dir = dir.Rotated(f);
+            GD.Print(dir.Normalized().Angle() * 180/Math.PI);
             var bullet = EnemyBullet;
-            EmitSignal("EnemyShoot", bullet, pos, dir.Angle());    
+            EmitSignal("EnemyShoot", bullet, pos, dir.Angle(), dir.Normalized());
         }
     }
     
@@ -55,7 +57,7 @@ public class Enemy_Blue : BaseEnemy
         }
     }
     
-    private void _on_Enemy_Blue_EnemyShoot(PackedScene bullet, Vector2 pos, float dir)
+    private void _on_Enemy_Blue_EnemyShoot(PackedScene bullet, Vector2 pos, float dir, float bulletAngle)
     {
         // refactor this to BaseEnemy
         var eb = (Enemy_Bullet) bullet.Instance();
@@ -63,7 +65,7 @@ public class Enemy_Blue : BaseEnemy
         Timer ebTimer = eb.GetNode<Timer>("Timer");
         ebTimer.WaitTime = 0.5f;
         ebTimer.Start();
-        eb.Start(pos, dir, _bulletSpeed, "blue");
+        eb.Start(pos, dir, _bulletSpeed, "blue", bulletAngle);
         AddChild(eb);
     }
     
