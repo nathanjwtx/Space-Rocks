@@ -133,6 +133,7 @@ public class Main : Node
 
     private void SetBackground(int level)
     {
+        _background = GetNode<Sprite>("Background");
         _background.Texture = (Texture) Load(backgrounds[level]);
         var xScale = _screenSize.x / _background.GetTexture().GetWidth();
         var yScale = _screenSize.y / _background.GetTexture().GetHeight();
