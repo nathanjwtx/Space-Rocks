@@ -13,20 +13,18 @@ public class Enemy_Bullet : RigidBody2D
 
     public string BulletType { get => _bulletType; set => _bulletType = value; }
 
-    public void Start(Vector2 pos, float dir, int speed, string type, float bulletAngle)
+    public void Start(Vector2 pos, Vector2 dir, int speed)
     {
-        BulletType = type;
+//        BulletType = type;
         GlobalPosition = pos;
-//        Rotation = dir;
-        GetNode<Sprite>("Sprite").RotationDegrees = bulletAngle;
-//        GD.Print(bulletAngle);
-        _velocity = new Vector2(speed, 0).Rotated(dir);
+        Rotation = dir.Angle();
+        _velocity = new Vector2(speed, 0).Rotated(dir.Rotated(0f).Angle());
     }
 
     public override void _Process(float delta)
     {
         base._Process(delta);
-        GlobalPosition += _velocity * delta;
+        Position += _velocity * delta;
     }
     
     private void _on_VisibilityNotifier2D_screen_exited()

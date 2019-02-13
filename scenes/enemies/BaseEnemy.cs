@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class BaseEnemy : KinematicBody2D
 {
     [Signal]
-    delegate bool Shoot();
+    delegate bool EnemyShooting();
 
     [Signal]
     delegate void EnemyBoom();

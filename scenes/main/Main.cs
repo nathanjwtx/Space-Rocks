@@ -84,6 +84,7 @@ public class Main : Node
             Rock r = (Rock) rock;
             r.QueueFree();
         }
+        
     }
     private async void NewGame()
     {
@@ -296,10 +297,19 @@ public class Main : Node
         }
         pathFollow2D.AddChild(_enemyNode);
 
-        // Connect enemy explosion signal
+        // Connect enemy explosion and shooting signals
         _enemyNode.Connect("EnemyBoom", this, "_on_EnemyBoom");
+        _enemyNode.Connect("EnemyShooting",this, "_on_EnemyShooting");
     }
 
+    private void _on_EnemyShooting(PackedScene bullet, Vector2 pos, Vector2 dir, int bulletSpeed)
+    {
+        GD.Print("Bang bang");
+        var b = (Enemy_Bullet) bullet.Instance();
+        b.Start(pos, dir, bulletSpeed);
+        AddChild(b);
+    }
+    
     private void _on_EnemyBoom(int score)
     {
         UpdateScore(score);

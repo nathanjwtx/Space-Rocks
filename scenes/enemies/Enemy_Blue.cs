@@ -20,17 +20,14 @@ public class Enemy_Blue : BaseEnemy
 
     private void Shoot()
     {
-//        GD.Print(IsInstanceValid(Target));
         if (Target != null && IsInstanceValid(Target))
         {
             Vector2 dir = Target.GlobalPosition - GlobalPosition;
-            Vector2 pos = new Vector2(0, 0);
-            float bulletAngle = (float) (dir.Normalized().Angle() * 180 / Math.PI);
-//            float f = _rand.Next((int) -0.1, (int) 0.11);
-//            dir = dir.Rotated(f);
+            Vector2 pos = GlobalPosition;
             GD.Print(dir.Normalized().Angle() * 180/Math.PI);
             var bullet = EnemyBullet;
-            EmitSignal("EnemyShoot", bullet, pos, dir.Angle(), dir.Normalized());
+//            EmitSignal("EnemyShoot", bullet, pos, dir.Angle(), dir.Normalized());
+            EmitSignal("EnemyShooting", bullet, pos, dir, _bulletSpeed);
         }
     }
     
@@ -65,8 +62,8 @@ public class Enemy_Blue : BaseEnemy
         Timer ebTimer = eb.GetNode<Timer>("Timer");
         ebTimer.WaitTime = 0.5f;
         ebTimer.Start();
-        eb.Start(pos, dir, _bulletSpeed, "blue", bulletAngle);
-        AddChild(eb);
+//        eb.Start(pos, dir, _bulletSpeed, "blue", bulletAngle);
+//        AddChild(eb);
     }
     
     private void _on_Timer_timeout()
