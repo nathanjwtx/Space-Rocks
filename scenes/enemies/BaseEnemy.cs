@@ -36,6 +36,7 @@ public class BaseEnemy : KinematicBody2D
         }
     }
 
+    // called from Main scene
     public void SetupPath(PathFollow2D pathFollow2D)
     {
         Follow = pathFollow2D;

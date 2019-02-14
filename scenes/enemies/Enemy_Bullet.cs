@@ -13,9 +13,9 @@ public class Enemy_Bullet : RigidBody2D
 
     public string BulletType { get => _bulletType; set => _bulletType = value; }
 
-    public void Start(Vector2 pos, Vector2 dir, int speed)
+    public void Start(Vector2 pos, Vector2 dir, int speed, string type)
     {
-//        BulletType = type;
+        BulletType = type;
         GlobalPosition = pos;
         Rotation = dir.Angle();
         _velocity = new Vector2(speed, 0).Rotated(dir.Rotated(0f).Angle());

@@ -26,7 +26,7 @@ public class Main : Node
     private HUD _hud;
     private Node _enemyNode;
     
-    private List<string> backgrounds = new List<string>
+    private readonly List<string> backgrounds = new List<string>
     {
         "res://assets/backgrounds/level1.jpg",
         "res://assets/backgrounds/level2.jpg",
@@ -40,11 +40,11 @@ public class Main : Node
         "res://assets/backgrounds/level10.jpg"
     };
     
-    private List<string> _enemyShips = new List<string>
+    private readonly List<string> _enemyShips = new List<string>
     {
 //        "res://scenes/enemies/Enemy_Red.tscn",
-//        "res://scenes/enemies/Enemy_Green.tscn",
-        "res://scenes/enemies/Enemy_Blue.tscn",
+        "res://scenes/enemies/Enemy_Green.tscn",
+//        "res://scenes/enemies/Enemy_Blue.tscn",
 //        "res://scenes/enemies/Enemy_Yellow.tscn"
     };
         
@@ -302,11 +302,12 @@ public class Main : Node
         _enemyNode.Connect("EnemyShooting",this, "_on_EnemyShooting");
     }
 
-    private void _on_EnemyShooting(PackedScene bullet, Vector2 pos, Vector2 dir, int bulletSpeed)
+    private void _on_EnemyShooting(PackedScene bullet, Vector2 pos, Vector2 dir, int bulletSpeed, string type)
     {
         GD.Print("Bang bang");
         var b = (Enemy_Bullet) bullet.Instance();
-        b.Start(pos, dir, bulletSpeed);
+        b.GetNode<Sprite>("Sprite").Texture = (Texture) Load($"res://assets/ships/laser_{type}.png");
+        b.Start(pos, dir, bulletSpeed, type);
         AddChild(b);
     }
     

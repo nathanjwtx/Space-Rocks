@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/laser_green.png-53ce7df01e8de1f51d386eae778d1b6e.stex"
+path="res://.import/laser_red.png-63bd3a0514d7fe1900cc99157952457e.stex"
 
 [deps]
 
-source_file="res://assets/ships/laser_green.png"
-dest_files=[ "res://.import/laser_green.png-53ce7df01e8de1f51d386eae778d1b6e.stex" ]
+source_file="res://assets/ships/laser_red.png"
+dest_files=[ "res://.import/laser_red.png-63bd3a0514d7fe1900cc99157952457e.stex" ]
 
 [params]
 
@@ -17,7 +17,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -27,5 +27,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

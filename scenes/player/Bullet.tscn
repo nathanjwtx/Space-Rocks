@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/player/Bullet.cs" type="Script" id=1]
-[ext_resource path="res://assets/ships/laser_green.png" type="Texture" id=2]
+[ext_resource path="res://assets/ships/laser_blue.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
 radius = 1.17788
-height = 25.5234
+height = 29.4027
 
 [node name="Area2D" type="Area2D" groups=[
 "rocks",
@@ -16,7 +16,7 @@ script = ExtResource( 1 )
 Speed = 1000
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
+rotation = 1.5708
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -24,10 +24,9 @@ public class Enemy_Blue : BaseEnemy
         {
             Vector2 dir = Target.GlobalPosition - GlobalPosition;
             Vector2 pos = GlobalPosition;
-            GD.Print(dir.Normalized().Angle() * 180/Math.PI);
             var bullet = EnemyBullet;
 //            EmitSignal("EnemyShoot", bullet, pos, dir.Angle(), dir.Normalized());
-            EmitSignal("EnemyShooting", bullet, pos, dir, _bulletSpeed);
+            EmitSignal("EnemyShooting", bullet, pos, dir, _bulletSpeed, "blue");
         }
     }
     
@@ -54,17 +53,18 @@ public class Enemy_Blue : BaseEnemy
         }
     }
     
-    private void _on_Enemy_Blue_EnemyShoot(PackedScene bullet, Vector2 pos, float dir, float bulletAngle)
-    {
-        // refactor this to BaseEnemy
-        var eb = (Enemy_Bullet) bullet.Instance();
-//        GetNode<Node>("BlueBullets").AddChild(eb);
-        Timer ebTimer = eb.GetNode<Timer>("Timer");
-        ebTimer.WaitTime = 0.5f;
-        ebTimer.Start();
-//        eb.Start(pos, dir, _bulletSpeed, "blue", bulletAngle);
-//        AddChild(eb);
-    }
+//    private void _on_Enemy_Blue_EnemyShoot(PackedScene bullet, Vector2 pos, float dir, float bulletAngle)
+//    {
+//        // refactor this to BaseEnemy
+//        var eb = (Enemy_Bullet) bullet.Instance();
+//        
+////        GetNode<Node>("BlueBullets").AddChild(eb);
+//        Timer ebTimer = eb.GetNode<Timer>("Timer");
+//        ebTimer.WaitTime = 0.5f;
+//        ebTimer.Start();
+////        eb.Start(pos, dir, _bulletSpeed, "blue", bulletAngle);
+////        AddChild(eb);
+//    }
     
     private void _on_Timer_timeout()
     {
