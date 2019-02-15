@@ -69,4 +69,28 @@ public class PowerUp : RigidBody2D
         GetNode<AnimationPlayer>("Explosion/AnimationPlayer").Play("explosion");
         GetNode<AudioStreamPlayer>("Explode").Play();
     }
+    
+    private void _on_PowerUp_body_entered(object body)
+    {
+        GD.Print($"PowerUp entered by: {body.GetType().Name}");
+        if (body is Enemy_Bullet enemyBullet)
+        {
+            if (enemyBullet.BulletType == "green")
+            {
+                enemyBullet.QueueFree();
+                Explode();                
+            }
+        }
+    }
+    
+    private void _on_AnimationPlayer_animation_finished(String anim_name)
+    {
+        QueueFree();
+    }
 }
+
+
+
+
+
+

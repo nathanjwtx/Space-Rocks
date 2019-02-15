@@ -10,7 +10,9 @@ extents = Vector2( 15.8301, 16.9547 )
 
 [node name="PowerUp" type="RigidBody2D"]
 collision_layer = 8
-collision_mask = 36
+collision_mask = 37
+contacts_reported = 1
+contact_monitor = true
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -30,5 +32,6 @@ stream = ExtResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="_on_PowerUp_body_entered"]
 [connection signal="timeout" from="SolidTimer" to="." method="_on_SolidTimer_timeout"]
+[connection signal="animation_finished" from="Explosion/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="Explosion"]

@@ -71,7 +71,7 @@ public class BaseEnemy : KinematicBody2D
             if (rock.IsInGroup("rocks"))
             {
                 rock.GetNode<AudioStreamPlayer>("impact").Play();
-                rock.Explode(true);
+                rock.Explode(false);
             }
         }
     }

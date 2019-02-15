@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Runtime.CompilerServices;
 
-public class Enemy_Bullet : Area2D
+public class Enemy_Bullet : RigidBody2D
 {
     [Export] private int Speed;
 
@@ -34,7 +34,33 @@ public class Enemy_Bullet : Area2D
         QueueFree();
     }
     
-    private void _on_Area2D_body_entered(object body)
+//    private void _on_Area2D_body_entered(object body)
+//    {
+//        GD.Print($"Bullet: {body.GetType().Name}");
+//        if (body is Rock rock)
+//        {
+//            if (rock.IsInGroup("rocks"))
+//            {
+//                rock.Explode(false);
+//                QueueFree();
+//            }
+//        }
+//        else if (body is PowerUp powerUp && BulletType == "green")
+//        {
+//            GD.Print("I shot a powerup");
+//            powerUp.Explode();
+//            QueueFree();
+//        }
+//        else if (body is Player_v2 playerV2)
+//        {
+//            if (!playerV2.Shielded)
+//            {
+//                GD.Print("I hit the player");
+//            }
+//        }
+//    }
+    
+    private void _on_RigidBody2D_body_entered(object body)
     {
         GD.Print($"Bullet: {body.GetType().Name}");
         if (body is Rock rock)
@@ -45,14 +71,14 @@ public class Enemy_Bullet : Area2D
                 QueueFree();
             }
         }
-        else if (body is PowerUp powerUp && BulletType == "green")
-        {
-            GD.Print("I shot a powerup");
-            powerUp.Explode();
-            QueueFree();
-        }
     }
 }
+
+
+
+
+
+
 
 
 
