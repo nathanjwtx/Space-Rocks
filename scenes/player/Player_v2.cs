@@ -209,7 +209,6 @@ public class Player_v2 : RigidBody2D
     
     private void _on_AnimationPlayer_animation_finished(String anim_name)
     {
-        GD.Print("finsihed");
         GetNode<Sprite>("Explosion").Hide();
         Hide();
         EmitSignal("Dead");
@@ -225,14 +224,5 @@ public class Player_v2 : RigidBody2D
                 b.Explode(true);
             }
         }
-    }
-    
-    private void _on_Player_body_entered(Godot.Object body)
-    {
-        
-//        if (body is Enemy_Blue blue)
-//        {
-//            GD.Print("Blue enemy");
-//        }
     }
 }

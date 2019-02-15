@@ -45,11 +45,6 @@ public class Enemy_Bullet : Area2D
                 QueueFree();
             }
         }
-//        else if (body is Player_v2 playerV2 && BulletType == "blue")
-//        {
-//            
-//            GD.Print("Hit plater");
-//        }
         else if (body is PowerUp powerUp && BulletType == "green")
         {
             GD.Print("I shot a powerup");
