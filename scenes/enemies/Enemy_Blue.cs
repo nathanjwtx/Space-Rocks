@@ -26,7 +26,7 @@ public class Enemy_Blue : BaseEnemy
             Vector2 pos = GlobalPosition;
             var bullet = EnemyBullet;
 //            EmitSignal("EnemyShoot", bullet, pos, dir.Angle(), dir.Normalized());
-            EmitSignal("EnemyShooting", bullet, pos, dir, _bulletSpeed, "blue");
+            EmitSignal("EnemyShooting", bullet, pos, dir, _bulletSpeed, "red");
         }
     }
     

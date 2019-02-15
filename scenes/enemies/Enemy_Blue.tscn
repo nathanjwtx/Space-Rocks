@@ -8,7 +8,7 @@
 [node name="Enemy_Blue" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 EnemyBullet = ExtResource( 3 )
-Speed = 30
+Speed = 100
 Radar_Radius = 200.0
 _bulletSpeed = 700
 

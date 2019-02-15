@@ -32,22 +32,23 @@ public class Enemy_Green : BaseEnemy
     
     private void _on_Radar_body_entered(Godot.Object body)
     {
-        if (body is Player_v2 player)
+        if (body is PowerUp powerUp)
         {
-            GD.Print("enemy_green sees player");
-            Target = player;
+            GD.Print("enemy_green sees powerup");
+            Target = powerUp;
             GetNode<Timer>("Timer").Start();
         }
-//        else if (body is Rock rock && Target == null)
-//        {
-//            Target = rock;
-//            GetNode<Timer>("Timer").Start();
-//        }
+        else if (body is Rock rock && Target == null)
+        {
+            GD.Print("Green shooting a rock");
+            Target = rock;
+            GetNode<Timer>("Timer").Start();
+        }
     }
     
     private void _on_Radar_body_exited(Godot.Object body)
     {
-        if (body is Player_v2 player)
+        if (body is PowerUp powerUp)
         {
             Target = null;   
         }
@@ -70,7 +71,6 @@ public class Enemy_Green : BaseEnemy
     {
         if (IsInstanceValid(Target))
         {
-            GD.Print("Green shooting");
             Shoot();
         }
         else

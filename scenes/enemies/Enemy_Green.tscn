@@ -5,12 +5,12 @@
 [ext_resource path="res://scenes/enemies/Enemy_Bullet.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/ships/ufoGreen.png" type="Texture" id=4]
 
-[node name="Enemy_Green" index="0" instance=ExtResource( 1 )]
+[node name="Enemy_Green" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 EnemyBullet = ExtResource( 3 )
 Speed = 80
-Radar_Radius = 400.0
-_bulletSpeed = 500
+Radar_Radius = 300.0
+_bulletSpeed = 700
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 4 )

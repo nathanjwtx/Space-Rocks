@@ -2,16 +2,13 @@ using Godot;
 using System;
 using System.Runtime.CompilerServices;
 
-public class Enemy_Bullet : RigidBody2D
+public class Enemy_Bullet : Area2D
 {
     [Export] private int Speed;
 
-    public int _testSpeed;
-    private string _bulletType;
-
     private Vector2 _velocity;
 
-    public string BulletType { get => _bulletType; set => _bulletType = value; }
+    public string BulletType { get; private set; }
 
     public void Start(Vector2 pos, Vector2 dir, int speed, string type)
     {
@@ -31,8 +28,13 @@ public class Enemy_Bullet : RigidBody2D
     {
         QueueFree();
     }
-	
-    private void _on_RigidBody2D_body_entered(object body)
+
+    private void _on_Timer_timeout()
+    {
+        QueueFree();
+    }
+    
+    private void _on_Area2D_body_entered(object body)
     {
         GD.Print($"Bullet: {body.GetType().Name}");
         if (body is Rock rock)
@@ -43,17 +45,17 @@ public class Enemy_Bullet : RigidBody2D
                 QueueFree();
             }
         }
-        else if (body is Player_v2 playerV2)
+//        else if (body is Player_v2 playerV2 && BulletType == "blue")
+//        {
+//            
+//            GD.Print("Hit plater");
+//        }
+        else if (body is PowerUp powerUp && BulletType == "green")
         {
-            
-            GD.Print("Hit plater");
-            EmitSignal("HitPlayer", "blue");
+            GD.Print("I shot a powerup");
+            powerUp.Explode();
+            QueueFree();
         }
-    }
-
-    private void _on_Timer_timeout()
-    {
-        QueueFree();
     }
 }
 
