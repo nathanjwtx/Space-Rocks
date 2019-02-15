@@ -34,7 +34,6 @@ public class Enemy_Blue : BaseEnemy
     {
         if (body is Player_v2 player)
         {
-            GD.Print("enemy_blue sees player");
             Target = player;
             GetNode<Timer>("Timer").Start();
         }

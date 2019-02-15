@@ -72,7 +72,7 @@ public class PowerUp : RigidBody2D
     
     private void _on_PowerUp_body_entered(object body)
     {
-        GD.Print($"PowerUp entered by: {body.GetType().Name}");
+//        GD.Print($"PowerUp entered by: {body.GetType().Name}");
         if (body is Enemy_Bullet enemyBullet)
         {
             if (enemyBullet.BulletType == "green")

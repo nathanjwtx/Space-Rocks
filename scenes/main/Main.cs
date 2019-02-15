@@ -44,7 +44,7 @@ public class Main : Node
     {
 //        "res://scenes/enemies/Enemy_Red.tscn",
         "res://scenes/enemies/Enemy_Green.tscn",
-//        "res://scenes/enemies/Enemy_Blue.tscn",
+        "res://scenes/enemies/Enemy_Blue.tscn",
 //        "res://scenes/enemies/Enemy_Yellow.tscn"
     };
         
@@ -102,6 +102,7 @@ public class Main : Node
 
     private void NewLevel()
     {
+        Print($"New level: {Global.Hits}");
         GetNode<Timer>("EnemySpawnTimer").Start();
         if (!_newGame)
         {
@@ -173,7 +174,6 @@ public class Main : Node
                 CallDeferred("SpawnRock", size - 1, newPos, newVel);
             }
         }
-        Print(playerShot);
         if (!playerShot) return;
         UpdateScore(1);
     }
@@ -196,7 +196,7 @@ public class Main : Node
     {
         Player_v2 player = GetNode<Player_v2>("Player");
         
-        Print(Global.Hits);
+        Print($"Player entered: {Global.Hits}");
         if (body is Enemy_Bullet enemyBullet)
         {
             Print(enemyBullet.BulletType);
@@ -282,8 +282,8 @@ public class Main : Node
     {
         // Create path and pathfollow
         int paths = GetNode<Node>("EnemyPaths").GetChildCount();
-//        Path2D randomPath = GetNode<Path2D>($"EnemyPaths/path{_random.Next(1, paths + 1)}");
-        Path2D randomPath = GetNode<Path2D>($"EnemyPaths/path1");
+        Path2D randomPath = GetNode<Path2D>($"EnemyPaths/path{_random.Next(1, paths + 1)}");
+//        Path2D randomPath = GetNode<Path2D>($"EnemyPaths/path1");
         Path2D path = GetNode<Path2D>("Path2D");
         path.SetCurve(randomPath.Curve);
         PathFollow2D pathFollow2D = new PathFollow2D();
