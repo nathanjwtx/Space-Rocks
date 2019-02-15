@@ -305,7 +305,6 @@ public class Main : Node
 
     private void _on_EnemyShooting(PackedScene bullet, Vector2 pos, Vector2 dir, int bulletSpeed, string type)
     {
-        GD.Print("Bang bang");
         var b = (Enemy_Bullet) bullet.Instance();
         b.GetNode<Sprite>("Sprite").Texture = (Texture) Load($"res://assets/ships/laser_{type}.png");
         b.Start(pos, dir, bulletSpeed, type);

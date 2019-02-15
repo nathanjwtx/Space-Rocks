@@ -59,6 +59,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="EnemyPaths" parent="." instance=ExtResource( 6 )]
+editor/display_folded = true
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2( 0.427185, 0 )
