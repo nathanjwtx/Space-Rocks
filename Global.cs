@@ -7,11 +7,12 @@ public class Global : Node
     private static bool _hardcore;
     private static int _hits;
     private static int _highscore;
-    private string ScoreFile = "user://highscore.txt";
+    private static string ScoreFile = "user://highscore.txt";
 
     public override void _Ready()
     {
         GD.Print(OS.GetUserDataDir());
+        Setup();
     }
 
     public override void _Process(float delta)
@@ -30,6 +31,13 @@ public class Global : Node
     public static bool Hardcore { get => _hardcore; set => _hardcore = value; }
     public static int HighScore { get => _highscore; set => _highscore = value; }
 
+    public static void SetHighscore()
+    {
+        if (Score <= HighScore) return;
+        HighScore = Score;
+        SaveScore();
+    }
+    
     public void Setup()
     {
         File f = new File();
@@ -42,7 +50,7 @@ public class Global : Node
         }
     }
 
-    public void SaveScore()
+    public static void SaveScore()
     {
         File f = new File();
         f.Open(ScoreFile, 2);

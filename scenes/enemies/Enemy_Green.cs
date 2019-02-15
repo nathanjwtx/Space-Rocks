@@ -34,13 +34,11 @@ public class Enemy_Green : BaseEnemy
     {
         if (body is PowerUp powerUp)
         {
-            GD.Print("enemy_green sees powerup");
             Target = powerUp;
             GetNode<Timer>("Timer").Start();
         }
         else if (body is Rock rock && Target == null)
         {
-            GD.Print("Green shooting a rock");
             Target = rock;
             GetNode<Timer>("Timer").Start();
         }

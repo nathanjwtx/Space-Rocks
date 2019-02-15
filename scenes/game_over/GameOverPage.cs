@@ -10,6 +10,7 @@ public class GameOverPage : CanvasLayer
 //        _global = GetNode<Global>("/root/Global");
         GetNode<Label>("MarginContainer/GameOver").Text = "It's Game Over man! It's Game Over!";
         GetNode<Label>("MarginContainer2/FinalScore").Text = $"Final score: {Global.Score.ToString()}";
+        Global.SetHighscore();
     }
 
     private void _on_Restart_pressed()

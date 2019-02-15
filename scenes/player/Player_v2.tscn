@@ -107,7 +107,6 @@ volume_db = 1.0
 stream = ExtResource( 12 )
 volume_db = 1.0
 
-[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="animation_finished" from="Explosion/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="InvTimer" to="." method="_on_InvTimer_timeout"]

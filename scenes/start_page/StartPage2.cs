@@ -4,13 +4,14 @@ using System;
 public class StartPage2 : CanvasLayer
 {
     private string _mainPage = "res://scenes/main/Main.tscn";
-    private Global _global;
+//    private Global _global;
     
     public override void _Ready()
     {
         // Called every time the node is added to the scene.
         // Initialization here
-        _global = (Global) GetNode("/root/Global");
+//        _global = (Global) GetNode("/root/Global");
+        GetNode<Label>("MarginContainer/HighScore").Text = $"Highscore: {Global.HighScore}";
     }
 
     public override void _Process(float delta)
