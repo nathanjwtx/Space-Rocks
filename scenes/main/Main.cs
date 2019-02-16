@@ -19,7 +19,7 @@ public class Main : Node
     private int _score;
     private bool _playing;
     private bool _newGame = true;
-    private int _hits;
+//    private int _hits;
     private bool _powerUp;
     private Sprite _background;
     private int _prevBackground;
@@ -75,7 +75,7 @@ public class Main : Node
         // Reset appears to be called prior to _Ready hence the initialisation of variables
         _hud = GetNode<HUD>("HUD");
         _level = 0;
-        _hits = 0;
+//        _hits = 0;
         Global.Hits = 0;
         _powerUp = true;
         var rocks = GetNode<Node>("Rocks").GetChildren();
@@ -102,7 +102,6 @@ public class Main : Node
 
     private void NewLevel()
     {
-        Print($"New level: {Global.Hits}");
         GetNode<Timer>("EnemySpawnTimer").Start();
         if (!_newGame)
         {
@@ -131,6 +130,7 @@ public class Main : Node
         Timer timer = GetNode<Timer>("PowerUpTimer");
         timer.WaitTime = _random.Next(3, 20);
         timer.Start();
+        Print($"New level: {Global.Hits}");
     }
 
     private void SetBackground(int level)
@@ -202,7 +202,7 @@ public class Main : Node
             Print(enemyBullet.BulletType);
             if (enemyBullet.BulletType == "red")
             {
-                Global.Hits = 1;
+                Global.UpdateHits(1);
                 UpdateShipHitStatus(player);
             }
             enemyBullet.QueueFree();
@@ -210,7 +210,7 @@ public class Main : Node
         
         if (body is Rock rock)
         {
-            Global.Hits = 1;
+            Global.UpdateHits(1);
             rock.GetNode<AudioStreamPlayer>("impact").Play();
             UpdateShipHitStatus(player);
         }
@@ -229,14 +229,15 @@ public class Main : Node
                 if (Global.Hits == 1)
                 {
                     GetNode<Sprite>($"Player/Damage{Global.Hits}").Hide();
-                    Global.Hits = -1;
+//                    Global.UpdateHits(-1);
                 }
                 else if (Global.Hits > 1)
                 {
                     GetNode<Sprite>($"Player/Damage{Global.Hits}").Hide();
-                    Global.Hits = -1;
+//                    Global.UpdateHits(-1);
                     GetNode<Sprite>($"Player/Damage{Global.Hits}").Show();   
                 }
+                Global.UpdateHits(-1);
             }
             
             pUp.QueueFree();

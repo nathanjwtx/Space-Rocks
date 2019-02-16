@@ -24,13 +24,18 @@ public class Global : Node
         }
     }
 
-    public static int Hits { get => _hits; set => _hits += value; }
+    public static int Hits { get => _hits; set => _hits = value; }
     
     public static int Score { get => _score; set => _score += value; }
 
     public static bool Hardcore { get => _hardcore; set => _hardcore = value; }
     public static int HighScore { get => _highscore; set => _highscore = value; }
 
+    public static void UpdateHits(int hit)
+    {
+        Hits += hit;
+    }
+    
     public static void SetHighscore()
     {
         if (Score <= HighScore) return;

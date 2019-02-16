@@ -28,9 +28,6 @@ contacts_reported = 1
 contact_monitor = true
 Spin_Power = 5000
 
-[node name="Explosion" parent="Player" index="8"]
-editor/display_folded = true
-
 [node name="RockPath" type="Path2D" parent="."]
 editor/display_folded = true
 position = Vector2( 0, -10 )
