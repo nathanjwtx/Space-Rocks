@@ -46,8 +46,8 @@ public class Player_v2 : RigidBody2D
         GetNode<Sprite>("Damage3").Hide();
         GetNode<Sprite>("Explosion").Hide();
         GetNode<Sprite>("Thrust").Hide();
-        GetNode<Particles2D>("Exhaust").Hide();
-        GetNode<Particles2D>("DamagedExhaust").Hide();
+//        GetNode<Particles2D>("Exhaust").Hide();
+//        GetNode<Particles2D>("DamagedExhaust").Hide();
         GetNode<Area2D>("Shield").Hide();
     }
 
@@ -156,23 +156,21 @@ public class Player_v2 : RigidBody2D
         }
         if (Input.IsActionPressed("thrust") && Global.Hits < 3)
         {
-            GetNode<Sprite>("Thrust").Show();
-            GetNode<Particles2D>("Exhaust").Show();
+            GetNode<Sprite>("Thrust").Show();            
             GetNode<Particles2D>("Exhaust").Emitting = true;
             _thrust = new Vector2(Engine_Power, 0);
         }
         else if (Input.IsActionPressed("thrust") && Global.Hits == 3)
         {
-            GetNode<Particles2D>("DamagedExhaust").Show();
+            GetNode<Particles2D>("DamagedExhaust").Emitting = true;
             _thrust = new Vector2(Engine_Power / 2, 0);
         }
 
         if (Input.IsActionJustReleased("thrust"))
         {
             GetNode<Sprite>("Thrust").Hide();
-            GetNode<Particles2D>("Exhaust").Hide();
             GetNode<Particles2D>("Exhaust").Emitting = false;
-            GetNode<Particles2D>("DamagedExhaust").Hide();
+            GetNode<Particles2D>("DamagedExhaust").Emitting = false;
         }
 
         _rotationDir = 0;

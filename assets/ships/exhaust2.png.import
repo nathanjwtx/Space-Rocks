@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/thrust_texture.png-1182e317af8f8bc91e7dfd4cfec9dcd0.stex"
+path="res://.import/exhaust2.png-099db68585a025df2c399b2ca56eb2ad.stex"
 
 [deps]
 
-source_file="res://assets/ships/thrust_texture.png"
-dest_files=[ "res://.import/thrust_texture.png-1182e317af8f8bc91e7dfd4cfec9dcd0.stex" ]
+source_file="res://assets/ships/exhaust2.png"
+dest_files=[ "res://.import/exhaust2.png-099db68585a025df2c399b2ca56eb2ad.stex" ]
 
 [params]
 

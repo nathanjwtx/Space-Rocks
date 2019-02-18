@@ -5,7 +5,6 @@
 [ext_resource path="res://assets/sounds/sci-fi_power_down_01.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-
 extents = Vector2( 15.8301, 16.9547 )
 
 [node name="PowerUp" type="RigidBody2D"]
@@ -21,7 +20,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 
 [node name="SolidTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 5.0
 one_shot = true
 autostart = true
 
