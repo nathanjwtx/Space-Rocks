@@ -128,7 +128,6 @@ public class Main : Node
         Timer timer = GetNode<Timer>("PowerUpTimer");
         timer.WaitTime = _random.Next(3, 20);
         timer.Start();
-        Print($"New level: {Global.Hits}");
     }
 
     private void SetBackground(int level)
@@ -194,7 +193,7 @@ public class Main : Node
     {
         Player_v2 player = GetNode<Player_v2>("Player");
         
-        Print($"Player entered: {Global.Hits}");
+//        Print($"Player entered: {Global.Hits}");
         if (body is Enemy_Bullet enemyBullet)
         {
             Print(enemyBullet.BulletType);
@@ -227,12 +226,10 @@ public class Main : Node
                 if (Global.Hits == 1)
                 {
                     GetNode<Sprite>($"Player/Damage{Global.Hits}").Hide();
-//                    Global.UpdateHits(-1);
                 }
                 else if (Global.Hits > 1)
                 {
                     GetNode<Sprite>($"Player/Damage{Global.Hits}").Hide();
-//                    Global.UpdateHits(-1);
                     GetNode<Sprite>($"Player/Damage{Global.Hits}").Show();   
                 }
                 Global.UpdateHits(-1);
@@ -279,7 +276,7 @@ public class Main : Node
     
     private void _on_EnemySpawnTimer_timeout()
     {
-        // Create path and pathfollow
+        /* Create path and pathfollow */
         int paths = GetNode<Node>("EnemyPaths").GetChildCount();
         Path2D randomPath = GetNode<Path2D>($"EnemyPaths/path{_random.Next(1, paths + 1)}");
 //        Path2D randomPath = GetNode<Path2D>($"EnemyPaths/path1");
@@ -290,7 +287,7 @@ public class Main : Node
         pathFollow2D.Rotate = true;
         pathFollow2D.Loop = false;
 
-        // Spawn enemy and send pathfollow to BaseEnemy for movement purposes
+        /* Spawn enemy and send pathfollow to BaseEnemy for movement purposes */
         PackedScene s = (PackedScene) ResourceLoader.Load(_enemyShips[_random.Next(0, _enemyShips.Count)]);
         _enemyNode = s.Instance();
         if (_enemyNode != null && _enemyNode.HasMethod("SetupPath"))
@@ -299,7 +296,7 @@ public class Main : Node
         }
         pathFollow2D.AddChild(_enemyNode);
 
-        // Connect enemy explosion and shooting signals
+        /* Connect enemy explosion and shooting signals */
         _enemyNode.Connect("EnemyBoom", this, "_on_EnemyBoom");
         _enemyNode.Connect("EnemyShooting",this, "_on_EnemyShooting");
     }

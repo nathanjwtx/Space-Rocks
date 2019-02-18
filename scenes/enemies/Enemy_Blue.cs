@@ -25,23 +25,18 @@ public class Enemy_Blue : BaseEnemy
             Vector2 dir = Target.GlobalPosition - GlobalPosition;
             Vector2 pos = GlobalPosition;
             var bullet = EnemyBullet;
-//            EmitSignal("EnemyShoot", bullet, pos, dir.Angle(), dir.Normalized());
             EmitSignal("EnemyShooting", bullet, pos, dir, _bulletSpeed, "red");
         }
     }
     
     private void _on_Radar_body_entered(Godot.Object body)
     {
+        /* Blue enemy only shoots the player */
         if (body is Player_v2 player)
         {
             Target = player;
             GetNode<Timer>("Timer").Start();
         }
-//        else if (body is Rock rock && Target == null)
-//        {
-//            Target = rock;
-//            GetNode<Timer>("Timer").Start();
-//        }
     }
     
     private void _on_Radar_body_exited(Godot.Object body)

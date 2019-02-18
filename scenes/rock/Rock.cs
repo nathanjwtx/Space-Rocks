@@ -49,29 +49,29 @@ public class Rock : RigidBody2D
         Transform2D xform = physics_state.GetTransform();
         Vector2 origin;
         Transform2D wibble;
-        if (xform.Origin.x > _screensize.x + _radius)
+        if (xform.origin.x > _screensize.x + _radius)
         {
-            origin = new Vector2(0 - _radius, xform.Origin.y);
+            origin = new Vector2(0 - _radius, xform.origin.y);
             wibble = new Transform2D(xform.x, xform.y, origin);
             physics_state.SetTransform(wibble);
         }
-        if (xform.Origin.x < 0 - _radius)
+        if (xform.origin.x < 0 - _radius)
         {
-            origin = new Vector2(_screensize.x + _radius, xform.Origin.y);
-            wibble = new Transform2D(xform.x, xform.y, origin);
-            physics_state.SetTransform(wibble);
-        }
-
-        if (xform.Origin.y > _screensize.y + _radius)
-        {
-            origin = new Vector2(xform.Origin.x, 0 - _radius);
+            origin = new Vector2(_screensize.x + _radius, xform.origin.y);
             wibble = new Transform2D(xform.x, xform.y, origin);
             physics_state.SetTransform(wibble);
         }
 
-        if (xform.Origin.y < 0 - _radius)
+        if (xform.origin.y > _screensize.y + _radius)
         {
-            origin = new Vector2(xform.Origin.x, _screensize.y + _radius);
+            origin = new Vector2(xform.origin.x, 0 - _radius);
+            wibble = new Transform2D(xform.x, xform.y, origin);
+            physics_state.SetTransform(wibble);
+        }
+
+        if (xform.origin.y < 0 - _radius)
+        {
+            origin = new Vector2(xform.origin.x, _screensize.y + _radius);
             wibble = new Transform2D(xform.x, xform.y, origin);
             physics_state.SetTransform(wibble);
         }

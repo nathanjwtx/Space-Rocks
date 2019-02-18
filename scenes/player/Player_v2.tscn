@@ -14,29 +14,23 @@
 [ext_resource path="res://assets/sounds/sci-fi_power_up_object_01.wav" type="AudioStream" id=12]
 
 [sub_resource type="CapsuleShape2D" id=1]
-
 radius = 52.2239
 height = 6.31609
 
 [sub_resource type="Gradient" id=2]
-
 offsets = PoolRealArray( 0, 0.943396, 1 )
 colors = PoolColorArray( 0.0859375, 0.0825596, 0.0812378, 1, 0.46875, 0.467348, 0.459595, 1, 1, 0.847059, 0, 1 )
 
 [sub_resource type="GradientTexture" id=3]
-
 gradient = SubResource( 2 )
 
 [sub_resource type="Curve" id=4]
-
 _data = [ Vector2( 0.0125622, 1 ), 0.0, -0.00208985, 0, 0, Vector2( 1, 0.00389993 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=5]
-
 curve = SubResource( 4 )
 
 [sub_resource type="ParticlesMaterial" id=6]
-
 emission_shape = 2
 emission_box_extents = Vector3( 1, 10, 1 )
 flag_disable_z = true
@@ -51,30 +45,24 @@ scale_curve = SubResource( 5 )
 color_ramp = SubResource( 3 )
 
 [sub_resource type="Gradient" id=7]
-
 colors = PoolColorArray( 1, 0.108398, 0, 1, 1, 0.541176, 0, 1 )
 
 [sub_resource type="GradientTexture" id=8]
-
 gradient = SubResource( 7 )
 
 [sub_resource type="Curve" id=9]
-
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=10]
-
 curve = SubResource( 9 )
 
 [sub_resource type="ParticlesMaterial" id=11]
-
 emission_shape = 2
 emission_box_extents = Vector3( 1, 8, 1 )
 flag_disable_z = true
 spread = 0.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 400.0
-angular_velocity = 0.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 8.0
@@ -189,8 +177,12 @@ process_material = SubResource( 6 )
 show_behind_parent = true
 position = Vector2( -28, 0 )
 rotation = 3.14159
+emitting = false
 amount = 25
 lifetime = 0.1
+visibility_rect = Rect2( 0, -20, 40, 40 )
+local_coords = false
+draw_order = 1
 process_material = SubResource( 11 )
 
 [connection signal="animation_finished" from="Explosion/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

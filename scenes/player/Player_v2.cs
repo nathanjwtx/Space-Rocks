@@ -58,15 +58,15 @@ public class Player_v2 : RigidBody2D
         ChangeState(States2.ALIVE);
     }
     
-    public int Lives
-    {
-        get => _lives;
-        set
-        {
-            _lives = value;
-            EmitSignal("LivesChanged", _lives);
-        }
-    }
+//    public int Lives
+//    {
+//        get => _lives;
+//        set
+//        {
+//            _lives = value;
+//            EmitSignal("LivesChanged", _lives);
+//        }
+//    }
 
     public override void _Process(float delta)
     {
@@ -81,29 +81,29 @@ public class Player_v2 : RigidBody2D
         Transform2D xform = physics_state.GetTransform();
         Vector2 origin;
         Transform2D newTransform;
-        if (xform.Origin.x > _screensize.x)
+        if (xform.origin.x > _screensize.x)
         {
-            origin = new Vector2(0, xform.Origin.y);
+            origin = new Vector2(0, xform.origin.y);
             newTransform = new Transform2D(xform.x, xform.y, origin);
             physics_state.SetTransform(newTransform);
         }
-        if (xform.Origin.x < 0)
+        if (xform.origin.x < 0)
         {
-            origin = new Vector2(_screensize.x, xform.Origin.y);
-            newTransform = new Transform2D(xform.x, xform.y, origin);
-            physics_state.SetTransform(newTransform);
-        }
-
-        if (xform.Origin.y > _screensize.y)
-        {
-            origin = new Vector2(xform.Origin.x, 0);
+            origin = new Vector2(_screensize.x, xform.origin.y);
             newTransform = new Transform2D(xform.x, xform.y, origin);
             physics_state.SetTransform(newTransform);
         }
 
-        if (xform.Origin.y < 0)
+        if (xform.origin.y > _screensize.y)
         {
-            origin = new Vector2(xform.Origin.x, _screensize.y);
+            origin = new Vector2(xform.origin.x, 0);
+            newTransform = new Transform2D(xform.x, xform.y, origin);
+            physics_state.SetTransform(newTransform);
+        }
+
+        if (xform.origin.y < 0)
+        {
+            origin = new Vector2(xform.origin.x, _screensize.y);
             newTransform = new Transform2D(xform.x, xform.y, origin);
             physics_state.SetTransform(newTransform);
         }
@@ -158,6 +158,7 @@ public class Player_v2 : RigidBody2D
         {
             GetNode<Sprite>("Thrust").Show();
             GetNode<Particles2D>("Exhaust").Show();
+            GetNode<Particles2D>("Exhaust").Emitting = true;
             _thrust = new Vector2(Engine_Power, 0);
         }
         else if (Input.IsActionPressed("thrust") && Global.Hits == 3)
@@ -170,6 +171,7 @@ public class Player_v2 : RigidBody2D
         {
             GetNode<Sprite>("Thrust").Hide();
             GetNode<Particles2D>("Exhaust").Hide();
+            GetNode<Particles2D>("Exhaust").Emitting = false;
             GetNode<Particles2D>("DamagedExhaust").Hide();
         }
 

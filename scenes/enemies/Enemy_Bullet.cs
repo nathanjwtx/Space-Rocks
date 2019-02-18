@@ -62,7 +62,7 @@ public class Enemy_Bullet : RigidBody2D
     
     private void _on_RigidBody2D_body_entered(object body)
     {
-        GD.Print($"Bullet: {body.GetType().Name}");
+//        GD.Print($"Bullet: {body.GetType().Name}");
         if (body is Rock rock)
         {
             if (rock.IsInGroup("rocks"))
