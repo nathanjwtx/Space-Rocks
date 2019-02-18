@@ -19,7 +19,6 @@ public class Main : Node
     private int _score;
     private bool _playing;
     private bool _newGame = true;
-//    private int _hits;
     private bool _powerUp;
     private Sprite _background;
     private int _prevBackground;
@@ -72,10 +71,9 @@ public class Main : Node
 
     private void Reset()
     {
-        // Reset appears to be called prior to _Ready hence the initialisation of variables
+        /* Reset appears to be called prior to _Ready hence the initialisation of variables */
         _hud = GetNode<HUD>("HUD");
         _level = 0;
-//        _hits = 0;
         Global.Hits = 0;
         _powerUp = true;
         var rocks = GetNode<Node>("Rocks").GetChildren();

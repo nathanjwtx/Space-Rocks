@@ -52,6 +52,7 @@ public class BaseEnemy : KinematicBody2D
     public void BaseEnemyExplode()
     {
         Layers = 0;
+        GetNode<Sprite>("Sprite2").Hide();
         GetNode<Sprite>("Sprite").Hide();
         GetNode<Sprite>("Explosion").Show();
         GetNode<AnimationPlayer>("Explosion/AnimationPlayer").Play("explosion");
