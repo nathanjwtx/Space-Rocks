@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/start_page/StartPage.cs" type="Script" id=1]
 [ext_resource path="res://assets/kenvector_future_thin.ttf" type="DynamicFontData" id=2]
@@ -8,8 +8,56 @@
 size = 10
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 80
+[sub_resource type="Animation" id=2]
+resource_name = "ZoomFont"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Container/Label:custom_fonts/font:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 1, 80 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Container2/Label:custom_fonts/font:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1, 80 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Container3/Label:custom_fonts/font:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1, 80 ]
+}
+
+[sub_resource type="DynamicFont" id=3]
+size = 1
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 1
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 1
 font_data = ExtResource( 3 )
 
 [node name="StartPage" type="CanvasLayer"]
@@ -19,37 +67,64 @@ script = ExtResource( 1 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 20.0
 margin_top = -113.0
 margin_bottom = -10.0
 
 [node name="Credits" type="RichTextLabel" parent="MarginContainer"]
-margin_right = 1024.0
+margin_right = 1004.0
 margin_bottom = 103.0
 size_flags_horizontal = 3
 custom_fonts/normal_font = SubResource( 1 )
 text = "Testing"
 
-[node name="Title" type="MarginContainer" parent="."]
-anchor_right = 1.0
-margin_top = 45.0
-margin_bottom = 242.0
-custom_constants/margin_right = 20
-custom_constants/margin_top = 20
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
-
-[node name="TitleText" type="Label" parent="Title"]
-margin_left = 20.0
-margin_top = 53.0
-margin_right = 1004.0
-margin_bottom = 144.0
-custom_fonts/font = SubResource( 2 )
-text = "Rocks In Space"
-align = 1
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
-autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/ZoomFont = SubResource( 2 )
+
+[node name="Container" type="Container" parent="."]
+margin_left = 56.0
+margin_top = 53.0
+margin_right = 413.0
+margin_bottom = 144.0
+
+[node name="Label" type="Label" parent="Container"]
+margin_top = 53.0
+margin_right = 40.0
+margin_bottom = 144.0
+custom_fonts/font = SubResource( 3 )
+text = "rocks"
+align = 2
+
+[node name="Container2" type="Container" parent="."]
+margin_left = 431.0
+margin_top = 53.0
+margin_right = 583.0
+margin_bottom = 144.0
+
+[node name="Label" type="Label" parent="Container2"]
+margin_top = 53.0
+margin_right = 40.0
+margin_bottom = 144.0
+custom_fonts/font = SubResource( 4 )
+text = "in"
+align = 1
+
+[node name="Container3" type="Container" parent="."]
+margin_left = 591.0
+margin_top = 53.0
+margin_right = 1004.0
+margin_bottom = 144.0
+
+[node name="Label" type="Label" parent="Container3"]
+margin_top = 53.0
+margin_right = 375.0
+margin_bottom = 144.0
+custom_fonts/font = SubResource( 5 )
+text = "space!"
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

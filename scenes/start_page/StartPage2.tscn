@@ -7,24 +7,20 @@
 [ext_resource path="res://assets/JFRocOut.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="DynamicFont" id=1]
-
 size = 20
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
-
 size = 20
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
-
 size = 80
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=4]
-
 size = 15
 font_data = ExtResource( 2 )
 
@@ -69,9 +65,9 @@ custom_constants/margin_bottom = 20
 
 [node name="Label" type="Label" parent="MarginContainer2"]
 margin_left = 20.0
-margin_top = 67.0
+margin_top = 46.0
 margin_right = 1004.0
-margin_bottom = 220.0
+margin_bottom = 199.0
 custom_fonts/font = SubResource( 2 )
 text = "a - rotate left (L thumbstick left)
 d - rotate right (L thumbstick right)
@@ -82,6 +78,7 @@ escape - quit game"
 align = 1
 
 [node name="Title" type="MarginContainer" parent="."]
+visible = false
 anchor_right = 1.0
 margin_top = 45.0
 margin_bottom = 242.0
@@ -91,6 +88,7 @@ custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
 
 [node name="TitleText" type="Label" parent="Title"]
+visible = false
 margin_left = 20.0
 margin_top = 53.0
 margin_right = 1004.0

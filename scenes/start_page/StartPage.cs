@@ -15,18 +15,16 @@ public class StartPage : CanvasLayer
                          "Sound effects by qubecad\n and GameDev Market" +
                          "Rocks In Space font: Rock Font by Jester Font Studio";
         GetNode<RichTextLabel>("MarginContainer/Credits").Text = credits;
-    }
-
-    public override void _Process(float delta)
-    {
-
+        GetNode<AnimationPlayer>("AnimationPlayer").Play("ZoomFont");
     }
 
     private void _on_Timer_timeout()
     {
         GetTree().ChangeScene(_startPage2);
     }
+    
+    private void _on_AnimationPlayer_animation_finished(String anim_name)
+    {
+        GetNode<Timer>("Timer").Start();
+    }
 }
-
-
-
