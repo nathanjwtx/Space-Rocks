@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/playerShip1_damage3.png-84e2696aab7b5273a694153d4508bf24.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
@@ -14,6 +17,7 @@ dest_files=[ "res://.import/playerShip1_damage3.png-84e2696aab7b5273a694153d4508
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -23,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

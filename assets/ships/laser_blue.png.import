@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/laser_blue.png-eb6a6f3def676a6cba136622b58f52ef.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 

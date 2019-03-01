@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/meteorGrey_big1.png-60c0aad839af7eaf0b8d5a7212c46c7f.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
