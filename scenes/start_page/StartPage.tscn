@@ -85,7 +85,7 @@ one_shot = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/ZoomFont = SubResource( 2 )
 
-[node name="Container" type="Container" parent="."]
+[node name="Container" type="Control" parent="."]
 margin_left = 56.0
 margin_top = 53.0
 margin_right = 413.0
@@ -99,7 +99,7 @@ custom_fonts/font = SubResource( 3 )
 text = "rocks"
 align = 2
 
-[node name="Container2" type="Container" parent="."]
+[node name="Container2" type="Control" parent="."]
 margin_left = 431.0
 margin_top = 53.0
 margin_right = 583.0
@@ -113,7 +113,7 @@ custom_fonts/font = SubResource( 4 )
 text = "in"
 align = 1
 
-[node name="Container3" type="Container" parent="."]
+[node name="Container3" type="Control" parent="."]
 margin_left = 591.0
 margin_top = 53.0
 margin_right = 1004.0
