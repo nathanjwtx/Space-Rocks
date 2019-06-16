@@ -125,6 +125,5 @@ margin_right = 375.0
 margin_bottom = 144.0
 custom_fonts/font = SubResource( 5 )
 text = "space!"
-
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
