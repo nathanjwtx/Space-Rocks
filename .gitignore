@@ -8,6 +8,6 @@
 \.import/
 \.vs/
 *.sln.DotSettings.user
-*/.import
+*\.import
 
 
